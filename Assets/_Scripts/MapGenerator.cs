@@ -10,10 +10,14 @@ public class MapGenerator : MonoBehaviour {
     void Start () {
 		
 	}
-	
+
+    int countDown = 60 * 3;
 	// Update is called once per frame
-	void Update () {
-		
+	void FixedUpdate () {
+        if ( countDown-- <= 0)
+        {
+            Destroy(gameObject);
+        }
 	}
 
     private void OnCollisionEnter(Collision collision)
@@ -38,7 +42,5 @@ public class MapGenerator : MonoBehaviour {
             roadSegment.transform.rotation
             );
     }
-
-
 
 }
