@@ -378,6 +378,27 @@ Prefab:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 1985188344806862, guid: ebae15917358f7a48a80b2f3525d94d8, type: 2}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ebae15917358f7a48a80b2f3525d94d8, type: 2}
   m_IsPrefabAsset: 0
+--- !u!1 &1996684975 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1929333045972088, guid: 6711208437a9a4242adfc636af137f60,
+    type: 2}
+  m_PrefabInternal: {fileID: 1100714382}
+--- !u!114 &1996684977
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1996684975}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb8207576bf4ca544891201d93924a73, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  roadSegment: {fileID: 0}

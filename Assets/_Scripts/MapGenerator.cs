@@ -4,9 +4,7 @@ using UnityEngine;
 
 public class MapGenerator : MonoBehaviour {
 
-    public GameObject NextMap;
-    public GameObject RoadSpawnPoint;
-    public GameObject ThisMap;
+    public GameObject roadSegment;
 
     // Use this for initialization
     void Start () {
@@ -31,12 +29,14 @@ public class MapGenerator : MonoBehaviour {
     // Spawn new map
     void SpawnMap()
     {
-        Vector3 localOffset = new Vector3(0, 0, ThisMap.transform.localPosition.z); //offset for first road block
-        Vector3 spawnPosition = transform.position + localOffset;
-        Instantiate(NextMap, spawnPosition, transform.rotation);  //instantiate first new block, this works fine
-        Vector3 newRoadSpawnPosition = RoadSpawnPoint.transform.position;
-        newRoadSpawnPosition.z = RoadSpawnPoint.transform.position.z + 1000; //trying to create a new point of instantiation for the road 1000 units along from the previous one
-        //Debug.Log("Straight Road spawned.");
+        var lastTileBounds = roadSegment.GetComponent<MeshFilter>().mesh.bounds;
+
+        Instantiate(roadSegment,
+            new Vector3(roadSegment.transform.position.x - lastTileBounds.size.x * roadSegment.transform.localScale.x,
+            roadSegment.transform.position.y,
+            roadSegment.transform.position.z),
+            roadSegment.transform.rotation
+            );
     }
 
 
