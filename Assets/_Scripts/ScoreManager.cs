@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ScoreManager : MonoBehaviour
+public class ScoreManager
 {
+    private static ScoreManager scoreManager;
+    private int scorePoints = 0;
 
     private static float  scorePoints = 0;
 
