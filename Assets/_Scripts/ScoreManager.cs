@@ -10,6 +10,10 @@ public class ScoreManager : MonoBehaviour
 
     public Text scoreText;
 
+    private bool isDead = false;
+
+    public DeathMenu deathMenu;
+
     public static float GetScore()
     {
         return scorePoints;
@@ -32,8 +36,17 @@ public class ScoreManager : MonoBehaviour
 
     private void Update()
     {
-        scorePoints += Time.deltaTime;
+        if (isDead)
+            return;
+
+        AddScore(Time.deltaTime);
         scoreText.text = ((int)scorePoints).ToString();
+    }
+
+    public void OnDeath()
+    {
+        isDead = true;
+        deathMenu.ToggleEndMenu(scorePoints);
     }
 
 }

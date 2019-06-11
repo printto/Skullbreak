@@ -15,9 +15,9 @@ public class Player : MonoBehaviour {
     private bool isGrounded;
     private float jumpSpeed = 10f;
 
-    private float animationDuration = 2.0f;
+    private float animationDuration = 1.0f;
 
-
+    private bool isDead = false;
     Rigidbody rb;
 
 
@@ -35,15 +35,12 @@ public class Player : MonoBehaviour {
             return;
         }
 
+        if (isDead) return;
+
         moveVector = Vector3.zero;
 
         //X Forward and Backward
         moveVector.x = MoveSpeed;
-
-        //Y Up and Down
-
-        //Z - Left and Right
-        //moveVector.z = Input.GetAxisRaw("Horizontal") * MoveSpeed;
 
         // jump improve
         if (rb.velocity.y < 0)
@@ -75,6 +72,17 @@ public class Player : MonoBehaviour {
         {
             isGrounded = true;
         }
-    }
 
+        if (collision.gameObject.tag.Equals("Obstacle"))
+        {
+            Death();
+        }
+    } 
+
+    private void Death()
+    {
+        Debug.Log("Dead");
+        isDead = true;
+        GetComponent<ScoreManager>().OnDeath();
+    }
 }
