@@ -300,7 +300,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0684ce0ae2130040a2774b2c60e2804, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1001 &1522224192
+--- !u!1001 &1002369867
 Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -309,7 +309,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4476093223039034, guid: 3a3aae9d2e7575547adfeb1239bcffc6, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 0.37
+      value: 1.24
       objectReference: {fileID: 0}
     - target: {fileID: 4476093223039034, guid: 3a3aae9d2e7575547adfeb1239bcffc6, type: 2}
       propertyPath: m_LocalPosition.y
@@ -338,10 +338,6 @@ Prefab:
     - target: {fileID: 4476093223039034, guid: 3a3aae9d2e7575547adfeb1239bcffc6, type: 2}
       propertyPath: m_RootOrder
       value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 1985188344806862, guid: ebae15917358f7a48a80b2f3525d94d8, type: 2}
-      propertyPath: m_TagString
-      value: Player
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3a3aae9d2e7575547adfeb1239bcffc6, type: 2}
@@ -383,7 +379,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4046212820126384, guid: ebae15917358f7a48a80b2f3525d94d8, type: 2}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1985188344806862, guid: ebae15917358f7a48a80b2f3525d94d8, type: 2}
       propertyPath: m_TagString
