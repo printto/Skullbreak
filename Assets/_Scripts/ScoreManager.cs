@@ -6,9 +6,8 @@ using UnityEngine.UI;
 public class ScoreManager
 {
     private static ScoreManager scoreManager;
-    private int scorePoints = 0;
 
-    private static float  scorePoints = 0;
+    private static float scorePoints = 0;
 
     public Text scoreText;
 
