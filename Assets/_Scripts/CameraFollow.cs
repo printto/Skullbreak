@@ -10,7 +10,7 @@ public class CameraFollow : MonoBehaviour {
 
     
     private float transition = 0.0f;
-    private float animationDuration = 2.0f;
+    private float animationDuration = 1.0f;
     private Vector3 animatonOffset = new Vector3(0, 5, 5);
     
     
@@ -43,7 +43,7 @@ public class CameraFollow : MonoBehaviour {
            //Animation at the start of the game
            transform.position = Vector3.Lerp(moveVector + animatonOffset, moveVector, transition);
            transition += Time.deltaTime * 1 / animationDuration;
-            transform.LookAt(lookAt.position + Vector3.up);
+           transform.LookAt(lookAt.position + Vector3.up);
 
         }
         
