@@ -4,12 +4,14 @@ using UnityEngine;
 
 public class MapGenerator : MonoBehaviour {
 
-    public GameObject roadSegment;
+    public GameObject CurrentSegment;
+    public GameObject[] RoadSegments;
+    bool createdNext;
 
     // Use this for initialization
     void Start () {
-		
-	}
+        createdNext = false;
+    }
 
     int countDown = 60 * 3;
 	// Update is called once per frame
@@ -20,10 +22,10 @@ public class MapGenerator : MonoBehaviour {
         }
 	}
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnCollisionStay(Collision collision)
     {
         //Debug.Log("Hit something");
-        if (collision.gameObject.tag.Equals("Player"))
+        if (collision.gameObject.tag.Equals("Player") && !createdNext)
         {
             SpawnMap();
         }
@@ -33,14 +35,20 @@ public class MapGenerator : MonoBehaviour {
     // Spawn new map
     void SpawnMap()
     {
-        var lastTileBounds = roadSegment.GetComponent<MeshFilter>().mesh.bounds;
 
-        Instantiate(roadSegment,
-            new Vector3(roadSegment.transform.position.x - lastTileBounds.size.x * roadSegment.transform.localScale.x,
-            roadSegment.transform.position.y,
-            roadSegment.transform.position.z),
-            roadSegment.transform.rotation
+        int randomed = Random.Range(0, RoadSegments.Length - 1);
+
+        var lastTileBounds = RoadSegments[randomed].GetComponent<MeshFilter>().mesh.bounds;
+
+        Instantiate(RoadSegments[randomed],
+            new Vector3(RoadSegments[randomed].transform.position.x - lastTileBounds.size.x * RoadSegments[randomed].transform.localScale.x,
+            RoadSegments[randomed].transform.position.y,
+            RoadSegments[randomed].transform.position.z),
+            RoadSegments[randomed].transform.rotation
             );
+
+        createdNext = true;
+
     }
 
 }
