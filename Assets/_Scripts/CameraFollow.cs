@@ -43,7 +43,7 @@ public class CameraFollow : MonoBehaviour {
            //Animation at the start of the game
            transform.position = Vector3.Lerp(moveVector + animatonOffset, moveVector, transition);
            transition += Time.deltaTime * 1 / animationDuration;
-            transform.LookAt(lookAt.position + Vector3.up);
+           transform.LookAt(lookAt.position + Vector3.up);
 
         }
         

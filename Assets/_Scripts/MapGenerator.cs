@@ -13,7 +13,7 @@ public class MapGenerator : MonoBehaviour {
         createdNext = false;
     }
 
-    int countDown = 60 * 3;
+    int countDown = 60 * 10;
 	// Update is called once per frame
 	void FixedUpdate () {
         if ( countDown-- <= 0)
@@ -38,7 +38,7 @@ public class MapGenerator : MonoBehaviour {
 
         int randomed = Random.Range(0, RoadSegments.Length - 1);
 
-        var lastTileBounds = RoadSegments[randomed].GetComponent<MeshFilter>().mesh.bounds;
+        var lastTileBounds = RoadSegments[randomed].GetComponent<MeshFilter>().sharedMesh.bounds;
 
         Instantiate(RoadSegments[randomed],
             new Vector3(RoadSegments[randomed].transform.position.x - lastTileBounds.size.x * RoadSegments[randomed].transform.localScale.x,
