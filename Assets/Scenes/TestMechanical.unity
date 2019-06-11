@@ -323,6 +323,11 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1985188344806862, guid: ebae15917358f7a48a80b2f3525d94d8,
     type: 2}
   m_PrefabInternal: {fileID: 1522224192}
+--- !u!4 &489180647 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4046212820126384, guid: ebae15917358f7a48a80b2f3525d94d8,
+    type: 2}
+  m_PrefabInternal: {fileID: 1522224192}
 --- !u!54 &489180648
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -351,19 +356,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MoveSpeed: 10
   moveVector: {x: 0, y: 0, z: 0}
---- !u!114 &489180650
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 489180643}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: adca7390141f4f241b3605b326c80e6f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  scoreText: {fileID: 149774285}
-  deathMenu: {fileID: 0}
 --- !u!1 &534669902
 GameObject:
   m_ObjectHideFlags: 0
@@ -374,6 +366,7 @@ GameObject:
   - component: {fileID: 534669905}
   - component: {fileID: 534669904}
   - component: {fileID: 534669903}
+  - component: {fileID: 534669907}
   - component: {fileID: 534669906}
   m_Layer: 0
   m_Name: Main Camera
@@ -450,9 +443,23 @@ MonoBehaviour:
   m_GameObject: {fileID: 534669902}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b0684ce0ae2130040a2774b2c60e2804, type: 3}
+  m_Script: {fileID: 11500000, guid: 6de800c9afc95c84689bc017b057cf11, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &534669907
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 534669902}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aec29e83bd0c3c3449680d4934a138d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 489180647}
+  smoothSpeed: 0.05
+  offset: {x: 5, y: 2, z: 0}
 --- !u!1 &916697359
 GameObject:
   m_ObjectHideFlags: 0
@@ -532,7 +539,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4476093223039034, guid: 3a3aae9d2e7575547adfeb1239bcffc6, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 0.46
+      value: 0.74
       objectReference: {fileID: 0}
     - target: {fileID: 4476093223039034, guid: 3a3aae9d2e7575547adfeb1239bcffc6, type: 2}
       propertyPath: m_LocalPosition.y
@@ -606,7 +613,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4046212820126384, guid: ebae15917358f7a48a80b2f3525d94d8, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 1
+      value: 2.13
       objectReference: {fileID: 0}
     - target: {fileID: 4046212820126384, guid: ebae15917358f7a48a80b2f3525d94d8, type: 2}
       propertyPath: m_LocalPosition.z
@@ -650,6 +657,7 @@ GameObject:
   - component: {fileID: 1990245411}
   - component: {fileID: 1990245410}
   - component: {fileID: 1990245409}
+  - component: {fileID: 1990245413}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -733,3 +741,15 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &1990245413
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1990245408}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc0388fce8ef9d24bbf8f22fae4883b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ScoreText: {fileID: 149774285}

@@ -20,7 +20,6 @@ public class Player : MonoBehaviour {
     private bool isDead = false;
     Rigidbody rb;
 
-
     // Use this for initialization
     void Start () {
         rb = GetComponent<Rigidbody>();
@@ -58,16 +57,19 @@ public class Player : MonoBehaviour {
             isGrounded = false;
         }
 
-       
-
         transform.Translate(new Vector3(-1, 0f, Input.GetAxis("Horizontal")) * MoveSpeed * Time.deltaTime, Space.Self);
+
+        if (isDead)
+            return;
+
+        addTimeScore();
+
     }
 
     private void OnCollisionEnter(Collision collision)
     {
         //Debug.Log("Hit something");
   
-
         if (collision.gameObject.tag.Equals("Ground") && isGrounded == false)
         {
             isGrounded = true;
@@ -75,14 +77,20 @@ public class Player : MonoBehaviour {
 
         if (collision.gameObject.tag.Equals("Obstacle"))
         {
-            Death();
+            //Death();
         }
     } 
 
-    private void Death()
+    /*private void Death()
     {
         Debug.Log("Dead");
         isDead = true;
         GetComponent<ScoreManager>().OnDeath();
+    }*/
+
+    void addTimeScore()
+    {
+        ScoreManager.AddScore(Time.deltaTime);
     }
+
 }

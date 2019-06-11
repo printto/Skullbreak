@@ -3,17 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ScoreManager
+public class ScoreManager : MonoBehaviour
 {
-    private static ScoreManager scoreManager;
-
     private static float scorePoints = 0;
 
-    public Text scoreText;
-
-    private bool isDead = false;
-
-    public DeathMenu deathMenu;
+    public Text ScoreText;
 
     public static float GetScore()
     {
@@ -30,24 +24,9 @@ public class ScoreManager
         scorePoints += score;
     }
 
-    private void Start()
+    public void Update()
     {
-        
-    }
-
-    private void Update()
-    {
-        if (isDead)
-            return;
-
-        AddScore(Time.deltaTime);
-        scoreText.text = ((int)scorePoints).ToString();
-    }
-
-    public void OnDeath()
-    {
-        isDead = true;
-        deathMenu.ToggleEndMenu(scorePoints);
+        ScoreText.text = ((int)scorePoints).ToString();
     }
 
 }

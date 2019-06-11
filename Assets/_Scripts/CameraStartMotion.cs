@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CameraFollow : MonoBehaviour {
+public class CameraStartMotion : MonoBehaviour {
 
     private Transform lookAt;
     private Vector3 startOffset;
@@ -36,7 +36,7 @@ public class CameraFollow : MonoBehaviour {
 
         if (transition > 1.0f)
        {
-           transform.position = moveVector;
+           //transform.position = moveVector;
        }
        else
        {

@@ -36,15 +36,16 @@ public class MapGenerator : MonoBehaviour {
     void SpawnMap()
     {
 
-        int randomed = Random.Range(0, RoadSegments.Length - 1);
+        int randomed = Random.Range(0, RoadSegments.Length);
+        Debug.Log(randomed);
 
-        var lastTileBounds = RoadSegments[randomed].GetComponent<MeshFilter>().mesh.bounds;
+        var lastTileBounds = GetComponent<MeshFilter>().mesh.bounds;
 
         Instantiate(RoadSegments[randomed],
-            new Vector3(RoadSegments[randomed].transform.position.x - lastTileBounds.size.x * RoadSegments[randomed].transform.localScale.x,
-            RoadSegments[randomed].transform.position.y,
-            RoadSegments[randomed].transform.position.z),
-            RoadSegments[randomed].transform.rotation
+            new Vector3(transform.position.x - lastTileBounds.size.x * transform.localScale.x,
+            transform.position.y,
+            transform.position.z),
+            transform.rotation
             );
 
         createdNext = true;

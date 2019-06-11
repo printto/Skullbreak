@@ -4,9 +4,6 @@ using UnityEngine;
 
 public class Coin : MonoBehaviour {
 
-    private ScoreManager score = ScoreManager.getManger();
-   
-
 	// Use this for initialization
 	void Start () {
 	}
@@ -17,7 +14,7 @@ public class Coin : MonoBehaviour {
 
     public void OnCollisionEnter(Collision collision) {
         Destroy(gameObject);
-        score.AddScore(1);
-        Debug.Log(score.GetScore());
+        ScoreManager.AddScore(1);
+        Debug.Log(ScoreManager.GetScore());
     }
 }
