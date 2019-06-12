@@ -4,17 +4,18 @@ using UnityEngine;
 
 public class Coin : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	}
+    public int ScoreToAdd = 5;
+
+    //Unused at the moment
+    public int WalletValue = 1;
 
     public void OnCollisionEnter(Collision collision) {
-        Destroy(gameObject);
-        ScoreManager.AddScore(1);
-        Debug.Log(ScoreManager.GetScore());
+
+        if (collision.gameObject.tag.Equals("Player"))
+        {
+            ScoreManager.AddScore(ScoreToAdd);
+            Destroy(gameObject);
+        }
+
     }
 }

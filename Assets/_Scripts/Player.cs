@@ -22,6 +22,7 @@ public class Player : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
+        ScoreManager.SetScore(0);
         rb = GetComponent<Rigidbody>();
 	}
 	
