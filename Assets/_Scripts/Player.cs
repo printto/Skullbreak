@@ -62,20 +62,22 @@ public class Player : MonoBehaviour {
         }
         */
 
-        if(Input.GetMouseButton(0))
-        {
-            mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            direction = (mousePosition - transform.position).normalized;
-            rb.velocity = new Vector3(0f, 0f, direction.z * MoveSpeed);
-        }
-        else
-        {
-            rb.velocity = Vector3.zero;
-        }
+        /*
+       if(Input.GetMouseButton(0))
+       {
+           mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+           direction = (mousePosition - transform.position).normalized;
+           rb.velocity = new Vector3(0f, 0f, direction.z * MoveSpeed);
+       }
+       else
+       {
+           rb.velocity = Vector3.zero;
+       }
+       */
 
 
 
-        if(Time.time < animationDuration)
+        if (Time.time < animationDuration)
         {
             transform.Translate(new Vector3(-1, 0f, 0f) * MoveSpeed * Time.deltaTime, Space.Self);
             return;
