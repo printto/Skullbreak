@@ -36,7 +36,7 @@ public class Player : MonoBehaviour {
     void Start () {
         ScoreManager.SetScore(0);
         rb = GetComponent<Rigidbody>();
-        Cursor.lockState = CursorLockMode.Locked;
+        //Cursor.lockState = CursorLockMode.Locked;
 	}
 
     int countFrame = 0;
@@ -53,54 +53,6 @@ public class Player : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
-
-        /*
-        foreach (Touch t in Input.touches)
-        {
-            if(t.phase == TouchPhase.Began)
-            {
-                initTouch = t;
-            }
-            else if (t.phase == TouchPhase.Moved && !swiping)
-            {
-                float xMoved = initTouch.position.x - t.position.x;
-                float yMoved = initTouch.position.y - t.position.y;
-                float distance = Mathf.Sqrt((xMoved * xMoved) + (yMoved * yMoved));
-                bool swipedLeft = Mathf.Abs(xMoved) > Mathf.Abs(yMoved);
-
-                if(distance > 50f)
-                {
-                    if (swipedLeft && xMoved > 0 )
-                    {
-                        cube.transform.Translate(-1, 0, 0);
-                    }
-                    else if (swipedLeft && xMoved < 0)
-                    {
-                        cube.transform.Translate(1, 0, 0);
-                    }
-                    swiping = true;
-                }
-            }
-            else if (t.phase == TouchPhase.Ended)
-            {
-                initTouch = new Touch();
-                swiping = false;
-            }
-        }
-        */
-        if (Input.touchCount > 0)
-        {
-            Touch touch = Input.GetTouch(0); // get first touch since touch count is greater than zero
-
-            if (touch.phase == TouchPhase.Stationary || touch.phase == TouchPhase.Moved)
-            {
-                // get the touch position from the screen touch to world point
-                Vector3 touchedPos = Camera.main.ScreenToWorldPoint(new Vector3(touch.position.x, touch.position.y, 10));
-                // lerp and set the position of the current object to that of the touch, but smoothly over time.
-                transform.position = Vector3.Lerp(transform.position, touchedPos, Time.deltaTime) * 10;
-            }
-        }
-
 
         if (Time.time < animationDuration)
         {
@@ -130,15 +82,6 @@ public class Player : MonoBehaviour {
             isGrounded = false;
         }
 
-        /*
-        //Shooty bits
-        if (Input.GetMouseButtonDown(0)) //button 0 is left click and 1 is right click
-        {
-            GameObject temp = Instantiate(Projectile, transform.position, playerCam.transform.rotation);
-            temp.GetComponent<Rigidbody>().velocity = playerCam.transform.forward * ProjectileForce;
-        }
-        */
-
         //Shooty bits
         if (Input.GetMouseButtonDown(0)) //button 0 is left click and 1 is right click
         {
@@ -146,6 +89,27 @@ public class Player : MonoBehaviour {
             temp.GetComponent<Rigidbody>().velocity = playerCam.transform.forward * BulletForce * 100;
         }
 
+        if (Input.touchCount > 0 &&
+       Input.GetTouch(0).phase == TouchPhase.Moved)
+        {
+
+            // Get movement of the finger since last frame
+            Vector2 touchDeltaPosition = Input.GetTouch(0).deltaPosition;
+            float toGo = touchDeltaPosition.x / 10;
+            if (toGo > 1)
+            {
+                toGo = 1;
+            }
+            else if (toGo < -1)
+            {
+                toGo = -1;
+            }
+
+            // Move object across XY plane
+            transform.Translate(new Vector3(0f , 0f, toGo) * MoveSpeed * Time.deltaTime, Space.Self);
+        }
+
+        //Keyboard move
         transform.Translate(new Vector3(-1, 0f, Input.GetAxis("Horizontal")) * MoveSpeed * Time.deltaTime, Space.Self);
 
         addTimeScore();
