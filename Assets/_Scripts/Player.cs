@@ -56,8 +56,8 @@ public class Player : MonoBehaviour {
             }
             else if (t.phase == TouchPhase.Moved)
             {
-                float xMoved = initTouch.position.x - t.position.x;
-                float yMoved = initTouch.position.y - t.position.y;
+                float xMoved = initTouch.position.x - t.position.y;
+                float yMoved = initTouch.position.x - t.position.y;
                 float distance = Mathf.Sqrt((xMoved * xMoved) + (yMoved * yMoved));
                 bool swipedLeft = Mathf.Abs(xMoved) > Mathf.Abs(yMoved);
 
