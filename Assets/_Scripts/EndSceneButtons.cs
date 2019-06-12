@@ -5,7 +5,12 @@ using UnityEngine.SceneManagement;
 
 public class EndSceneButtons : MonoBehaviour {
 
-	public void RestartGame()
+    private void Start()
+    {
+        Cursor.lockState = CursorLockMode.None;
+    }
+
+    public void RestartGame()
     {
         SceneManager.LoadScene(0);
     }
