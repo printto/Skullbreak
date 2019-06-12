@@ -101,7 +101,7 @@ public class Player : MonoBehaviour {
         }
         */
 
-        /*
+        
         if (Input.touchCount > 0)
         {
             Touch touch = Input.GetTouch(0); // get first touch since touch count is greater than zero
@@ -114,8 +114,9 @@ public class Player : MonoBehaviour {
                 transform.position = Vector3.Lerp(transform.position, touchedPos, Time.deltaTime) * 10;
             }
         }
-        */
+        
 
+        /*
         if(Input.touchCount > 0)
         {
             if (Input.GetTouch(0).phase == TouchPhase.Began)
@@ -147,6 +148,7 @@ public class Player : MonoBehaviour {
                 cube = null;
             }
         }
+        */
 
         if (Time.time < animationDuration)
         {
