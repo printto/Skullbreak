@@ -9,13 +9,19 @@ public class Player : MonoBehaviour {
     //public float TurnRate = 2f;
     public Vector3 moveVector;
     public float SpeedIncreaseRate = 0.0001f;
-    public float MaxSpeed = 25f;
+    public float MaxSpeed = 25;
 
     //Jumping
     private float fall = 2.5f;
     private float lowJump = 2f;
     private bool isGrounded;
     private float jumpSpeed = 10f;
+
+    //Bullet asset
+    public GameObject Bullet;
+    public float BulletForce = 100000;
+    public Camera playerCam;
+
 
     private float animationDuration = 1.0f;
 
@@ -67,6 +73,22 @@ public class Player : MonoBehaviour {
         {
             rb.AddForce(new Vector3(0, 1, 0) * jumpSpeed, ForceMode.Impulse);
             isGrounded = false;
+        }
+
+        /*
+        //Shooty bits
+        if (Input.GetMouseButtonDown(0)) //button 0 is left click and 1 is right click
+        {
+            GameObject temp = Instantiate(Projectile, transform.position, playerCam.transform.rotation);
+            temp.GetComponent<Rigidbody>().velocity = playerCam.transform.forward * ProjectileForce;
+        }
+        */
+
+        //Shooty bits
+        if (Input.GetMouseButtonDown(0)) //button 0 is left click and 1 is right click
+        {
+            GameObject temp = Instantiate(Bullet, new Vector3(transform.position.x - 3, transform.position.y, transform.position.z), playerCam.transform.rotation);
+            temp.GetComponent<Rigidbody>().velocity = playerCam.transform.forward * BulletForce * 100;
         }
 
         transform.Translate(new Vector3(-1, 0f, Input.GetAxis("Horizontal")) * MoveSpeed * Time.deltaTime, Space.Self);

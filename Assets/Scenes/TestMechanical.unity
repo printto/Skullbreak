@@ -569,6 +569,15 @@ Prefab:
       propertyPath: m_LocalScale.x
       value: 0.12101876
       objectReference: {fileID: 0}
+    - target: {fileID: 114826323367647900, guid: ebae15917358f7a48a80b2f3525d94d8,
+        type: 2}
+      propertyPath: playerCam
+      value: 
+      objectReference: {fileID: 534669904}
+    - target: {fileID: 1096817806146646, guid: ebae15917358f7a48a80b2f3525d94d8, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ebae15917358f7a48a80b2f3525d94d8, type: 2}
   m_IsPrefabAsset: 0
