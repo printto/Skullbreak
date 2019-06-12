@@ -54,7 +54,7 @@ public class Player : MonoBehaviour {
             {
                 initTouch = t;
             }
-            else if (t.phase == TouchPhase.Moved)
+            else if (t.phase == TouchPhase.Moved && !swiping)
             {
                 float xMoved = initTouch.position.x - t.position.y;
                 float yMoved = initTouch.position.x - t.position.y;
@@ -63,13 +63,13 @@ public class Player : MonoBehaviour {
 
                 if(distance > 50f)
                 {
-                    if (swipedLeft && xMoved > 0)
+                    if (swipedLeft && xMoved > 0 )
                     {
-                        cube.transform.Translate(-5, 0, 0);
+                        cube.transform.Translate(-3, 0, 0);
                     }
                     else if (swipedLeft && xMoved < 0)
                     {
-                        cube.transform.Translate(5, 0, 0);
+                        cube.transform.Translate(-3, 0, 0);
                     }
                     swiping = true;
                 }
