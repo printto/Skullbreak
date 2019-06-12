@@ -8,6 +8,8 @@ public class Player : MonoBehaviour {
     public float MoveSpeed = 10;
     //public float TurnRate = 2f;
     public Vector3 moveVector;
+    public float SpeedIncreaseRate = 0.0001f;
+    public float MaxSpeed = 25f;
 
     //Jumping
     private float fall = 2.5f;
@@ -17,7 +19,6 @@ public class Player : MonoBehaviour {
 
     private float animationDuration = 1.0f;
 
-    private bool isDead = false;
     Rigidbody rb;
 
     // Use this for initialization
@@ -25,17 +26,27 @@ public class Player : MonoBehaviour {
         ScoreManager.SetScore(0);
         rb = GetComponent<Rigidbody>();
 	}
-	
-	// Update is called once per frame
-	void Update () {
+
+    int countFrame = 0;
+    private void FixedUpdate()
+    {
+        if(countFrame % 60 == 0 && MoveSpeed < MaxSpeed)
+        {
+            //Increase speed as the time goes by
+            MoveSpeed += SpeedIncreaseRate;
+            Debug.Log("Current movespeed:" + MoveSpeed);
+        }
+        countFrame++;
+    }
+
+    // Update is called once per frame
+    void Update () {
 
         if(Time.time < animationDuration)
         {
             transform.Translate(new Vector3(-1, 0f, 0f) * MoveSpeed * Time.deltaTime, Space.Self);
             return;
         }
-
-        if (isDead) return;
 
         moveVector = Vector3.zero;
 
@@ -60,9 +71,6 @@ public class Player : MonoBehaviour {
 
         transform.Translate(new Vector3(-1, 0f, Input.GetAxis("Horizontal")) * MoveSpeed * Time.deltaTime, Space.Self);
 
-        if (isDead)
-            return;
-
         addTimeScore();
 
     }
@@ -75,19 +83,8 @@ public class Player : MonoBehaviour {
         {
             isGrounded = true;
         }
-
-        if (collision.gameObject.tag.Equals("Obstacle"))
-        {
-            //Death();
-        }
+        
     } 
-
-    /*private void Death()
-    {
-        Debug.Log("Dead");
-        isDead = true;
-        GetComponent<ScoreManager>().OnDeath();
-    }*/
 
     void addTimeScore()
     {
