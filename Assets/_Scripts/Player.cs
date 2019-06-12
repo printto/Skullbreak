@@ -65,11 +65,11 @@ public class Player : MonoBehaviour {
                 {
                     if (swipedLeft && xMoved > 0 )
                     {
-                        cube.transform.Translate(-3, 0, 0);
+                        cube.transform.Translate(-1, 0, 0);
                     }
                     else if (swipedLeft && xMoved < 0)
                     {
-                        cube.transform.Translate(-3, 0, 0);
+                        cube.transform.Translate(1, 0, 0);
                     }
                     swiping = true;
                 }
