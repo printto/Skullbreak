@@ -19,6 +19,10 @@ public class Player : MonoBehaviour {
 
     private float animationDuration = 1.0f;
 
+    //Android Control
+    private Vector3 touchPosition;
+    private Vector3 direction;
+
     Rigidbody rb;
 
     // Use this for initialization
@@ -41,6 +45,21 @@ public class Player : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
+
+
+        if(Input.touchCount > 0 )
+        {
+            Touch touch = Input.GetTouch(0);
+
+            touchPosition = Camera.main.ScreenToWorldPoint(touch.position);
+            touchPosition.y = 0;
+            direction = (touchPosition - transform.position);
+            rb.velocity = new Vector3(0f, 0f, direction.x) * MoveSpeed;
+
+            if (touch.phase == TouchPhase.Ended)
+                rb.velocity = Vector3.zero;
+
+        }
 
         if(Time.time < animationDuration)
         {
