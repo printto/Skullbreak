@@ -54,7 +54,7 @@ public class Player : MonoBehaviour {
             touchPosition = Camera.main.ScreenToWorldPoint(touch.position);
             touchPosition.y = 0;
             direction = (touchPosition - transform.position);
-            rb.velocity = new Vector3(0f, 0f, direction.x) * MoveSpeed;
+            rb.velocity = new Vector3(0f, 0f, direction.z) * MoveSpeed;
 
             if (touch.phase == TouchPhase.Ended)
                 rb.velocity = Vector3.zero;
