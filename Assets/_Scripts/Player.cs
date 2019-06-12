@@ -20,7 +20,7 @@ public class Player : MonoBehaviour {
     private float animationDuration = 1.0f;
 
     //Android Control
-    private Vector3 touchPosition;
+    private Vector3 mousePosition;
     private Vector3 direction;
 
     Rigidbody rb;
@@ -46,7 +46,7 @@ public class Player : MonoBehaviour {
     // Update is called once per frame
     void Update () {
 
-
+        /*
         if(Input.touchCount > 0 )
         {
             Touch touch = Input.GetTouch(0);
@@ -60,6 +60,20 @@ public class Player : MonoBehaviour {
                 rb.velocity = Vector3.zero;
 
         }
+        */
+
+        if(Input.GetMouseButton(0))
+        {
+            mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            direction = (mousePosition - transform.position).normalized;
+            rb.velocity = new Vector3(0f, 0f, direction.z * MoveSpeed);
+        }
+        else
+        {
+            rb.velocity = Vector3.zero;
+        }
+
+
 
         if(Time.time < animationDuration)
         {
