@@ -212,3 +212,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MoveSpeed: 10
   moveVector: {x: 0, y: 0, z: 0}
+  SpeedIncreaseRate: 0.1
+  MaxSpeed: 50
+  Bullet: {fileID: 1683975068331910, guid: 1337fc570f39fa445bb4de95a58cc077, type: 2}
+  BulletForce: 1

@@ -7,8 +7,14 @@
 - Sky Rusher
 - Crashy Cats
 
-## Controls
-- Soon...
+## Controlling
+### Keyboard
+- A, S, Left arrow, Right arrow - Move left and right
+- Space - Jump
+- Left click - Shoot the bullets
+### Touch screen (Uncompleted)
+- Swipe left, Swipe right - Move left and right
+- soon...
 
 ## Prototype
 - Soon...
