@@ -12,6 +12,7 @@ public class Player : MonoBehaviour {
     public Vector3 moveVector;
     public double SpeedIncreaseRate = 0.05;
     public float MaxSpeed = 25;
+    public float SwipeSpeedLimit = 0.75f;
 
     //Jumping
     private float fall = 2.5f;
@@ -115,13 +116,13 @@ public class Player : MonoBehaviour {
             // Get movement of the finger since last frame
             Vector2 touchDeltaPosition = Input.GetTouch(0).deltaPosition;
             float toGo = touchDeltaPosition.x / 10;
-            if (toGo > 0.5f)
+            if (toGo > SwipeSpeedLimit)
             {
-                toGo = 0.5f;
+                toGo = SwipeSpeedLimit;
             }
-            else if (toGo < -0.5f)
+            else if (toGo < -SwipeSpeedLimit)
             {
-                toGo = -0.5f;
+                toGo = -SwipeSpeedLimit;
             }
 
             // Move object across XY plane
