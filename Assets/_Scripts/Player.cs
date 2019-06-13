@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 
@@ -121,7 +122,27 @@ public class Player : MonoBehaviour {
             isGrounded = true;
         }
         
-    } 
+    }
+
+    public void OnEndDrag(PointerEventData eventData)
+    {
+        Debug.Log("Dragging event end detected");
+        Vector3 dragVectorDirection = (eventData.position - eventData.pressPosition).normalized;
+        DetectJump(dragVectorDirection);
+    }
+
+    void DetectJump(Vector3 dragVector)
+    {
+        float positiveX = Mathf.Abs(dragVector.x);
+        float positiveY = Mathf.Abs(dragVector.y);
+        if (positiveX < positiveY)
+        {
+            Debug.Log("Drag vector: " + dragVector.y);
+            if (dragVector.y > 1) {
+                Jump();
+            }
+        }
+    }
 
     void addTimeScore()
     {
