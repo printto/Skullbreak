@@ -8,24 +8,25 @@ public class Monster : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        var rand = Random.Range(0,1);
+        var rand = Random.Range(0,2);
+        Debug.Log("MonRan : " + rand);
 		switch(rand)
         {
             case 0:
-                this.direction = -1;
+                direction = -1f;
                 break;
             case 1:
-                this.direction = 1;
+                direction = 1f;
                 break;
             default:
-                this.direction = 1;
+                direction = 1f;
                 break;
         }
 	}
 	
 	// Update is called once per frame
 	void Update () {
-        transform.Translate(0, 0, 6 * this.direction * Time.deltaTime);
+        transform.Translate(0, 0, 6 * direction * Time.deltaTime);
 	}
 
     private void OnCollisionEnter(Collision collision)
@@ -35,6 +36,7 @@ public class Monster : MonoBehaviour {
         } else if (collision.gameObject.tag.Equals("Player") || collision.gameObject.tag.Equals("PlayerFace")) {
             EndGame();
         } else {
+            Debug.Log("hit wall!!");
             ChangeDirection();
         }
     }
@@ -46,11 +48,11 @@ public class Monster : MonoBehaviour {
 
     void ChangeDirection()
     {
-        this.direction *= -1;
+        direction *= -1f;
     }
 
     void Dead()
     {
-        Destroy(gameObject, 1);
+        Destroy(gameObject);
     }
 }
