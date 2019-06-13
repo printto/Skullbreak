@@ -18,7 +18,7 @@ public class Obstacle : MonoBehaviour {
 
     private void DeadScene()
     {
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(2);
     }
 
 }
