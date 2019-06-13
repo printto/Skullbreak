@@ -115,13 +115,13 @@ public class Player : MonoBehaviour {
             // Get movement of the finger since last frame
             Vector2 touchDeltaPosition = Input.GetTouch(0).deltaPosition;
             float toGo = touchDeltaPosition.x / 10;
-            if (toGo > 1)
+            if (toGo > 0.5f)
             {
-                toGo = 1;
+                toGo = 0.5f;
             }
-            else if (toGo < -1)
+            else if (toGo < -0.5f)
             {
-                toGo = -1;
+                toGo = -0.5f;
             }
 
             // Move object across XY plane
