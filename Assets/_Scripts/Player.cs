@@ -20,7 +20,7 @@ public class Player : MonoBehaviour{
     private float lowJump = 2f;
     private bool isGrounded;
     private float jumpSpeed = 7f;
-    private float touchJumpSpeed = 14f;
+    private float touchJumpSpeed = 10f;
 
     //Bullet asset
     public GameObject Bullet;
