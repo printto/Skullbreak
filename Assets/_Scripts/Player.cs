@@ -164,6 +164,7 @@ public class Player : MonoBehaviour{
                         {
                             //Up swipe
                             Debug.Log("Up Swipe");
+                            Jump();
                         }
                         else
                         {
