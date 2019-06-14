@@ -32,7 +32,7 @@ public class Player : MonoBehaviour{
     //Android jumping control
     private Vector3 fp;   //First touch position
     private Vector3 lp;   //Last touch position
-    private float dragDistance = Screen.height * 10 / 100;
+    private float dragDistance = Screen.height * 5 / 100;
 
     Rigidbody rb;
 
