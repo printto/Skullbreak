@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 
@@ -12,6 +13,7 @@ public class Player : MonoBehaviour {
     public Vector3 moveVector;
     public double SpeedIncreaseRate = 0.05;
     public float MaxSpeed = 25;
+    public float SwipeSpeedLimit = 0.75f;
 
     //Jumping
     private float fall = 2.5f;
@@ -94,42 +96,18 @@ public class Player : MonoBehaviour {
         }
 
         //Jumping
-        if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
+        if (Input.GetButton("Jump") && isGrounded)
         {
-            rb.AddForce(new Vector3(0, 1, 0) * jumpSpeed, ForceMode.Impulse);
-            isGrounded = false;
+            Jump();
         }
 
         //Shooty bits
         if (Input.GetMouseButtonDown(0)) //button 0 is left click and 1 is right click
         {
-            GameObject temp = Instantiate(Bullet, new Vector3(transform.position.x - 3, transform.position.y, transform.position.z), playerCam.transform.rotation);
-            temp.GetComponent<Rigidbody>().velocity = playerCam.transform.forward * BulletForce * 100;
+            ShootBullet();
         }
 
-        //Touch screen
-        if (Input.touchCount > 0 &&
-       Input.GetTouch(0).phase == TouchPhase.Moved)
-        {
-
-            // Get movement of the finger since last frame
-            Vector2 touchDeltaPosition = Input.GetTouch(0).deltaPosition;
-            float toGo = touchDeltaPosition.x / 10;
-            if (toGo > 1)
-            {
-                toGo = 1;
-            }
-            else if (toGo < -1)
-            {
-                toGo = -1;
-            }
-
-            // Move object across XY plane
-            transform.Translate(new Vector3(0f , 0f, toGo) * MoveSpeed * Time.deltaTime, Space.Self);
-        }
-
-        //Keyboard move
-        transform.Translate(new Vector3(-1, 0f, Input.GetAxis("Horizontal")) * MoveSpeed * Time.deltaTime, Space.Self);
+        MovePlayerFromInputs();
 
         addTimeScore();
 
@@ -144,11 +122,75 @@ public class Player : MonoBehaviour {
             isGrounded = true;
         }
         
-    } 
+    }
+
+    public void OnEndDrag(PointerEventData eventData)
+    {
+        Debug.Log("Dragging event end detected");
+        Vector3 dragVectorDirection = (eventData.position - eventData.pressPosition).normalized;
+        DetectJump(dragVectorDirection);
+    }
+
+    void DetectJump(Vector3 dragVector)
+    {
+        float positiveX = Mathf.Abs(dragVector.x);
+        float positiveY = Mathf.Abs(dragVector.y);
+        if (positiveX < positiveY)
+        {
+            Debug.Log("Drag vector: " + dragVector.y);
+            if (dragVector.y > 1) {
+                Jump();
+            }
+        }
+    }
 
     void addTimeScore()
     {
         ScoreManager.AddScore(Time.deltaTime);
+    }
+
+
+    /*
+     * Controlling functions 
+     */
+
+    void ShootBullet()
+    {
+        GameObject temp = Instantiate(Bullet, new Vector3(transform.position.x - 3, transform.position.y, transform.position.z), playerCam.transform.rotation);
+        temp.GetComponent<Rigidbody>().velocity = playerCam.transform.forward * BulletForce * 100;
+    }
+
+    void MovePlayerFromInputs()
+    {
+        //Touch screen
+        if (Input.touchCount > 0 &&
+       Input.GetTouch(0).phase == TouchPhase.Moved)
+        {
+
+            // Get movement of the finger since last frame
+            Vector2 touchDeltaPosition = Input.GetTouch(0).deltaPosition;
+            float toGo = touchDeltaPosition.x / 10;
+            if (toGo > SwipeSpeedLimit)
+            {
+                toGo = SwipeSpeedLimit;
+            }
+            else if (toGo < -SwipeSpeedLimit)
+            {
+                toGo = -SwipeSpeedLimit;
+            }
+
+            // Move object across XY plane
+            transform.Translate(new Vector3(0f, 0f, toGo) * MoveSpeed * Time.deltaTime, Space.Self);
+        }
+
+        //Keyboard move
+        transform.Translate(new Vector3(-1, 0f, Input.GetAxis("Horizontal")) * MoveSpeed * Time.deltaTime, Space.Self);
+    }
+
+    void Jump()
+    {
+        rb.AddForce(new Vector3(0, 1, 0) * jumpSpeed, ForceMode.Impulse);
+        isGrounded = false;
     }
 
 }
