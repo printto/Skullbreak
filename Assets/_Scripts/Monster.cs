@@ -43,7 +43,7 @@ public class Monster : MonoBehaviour {
 
     void EndGame()
     {
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(2);
     }
 
     void ChangeDirection()
