@@ -99,15 +99,12 @@ public class Player : MonoBehaviour{
             Jump();
         }
 
-        /*
-         * //Moved to jumping check
-         * 
+        
         //Shooty bits
-        if (Input.GetMouseButtonDown(0)) //button 0 is left click and 1 is right click
+        if (Input.GetButtonDown("Fire1")) //button 0 is left click and 1 is right click
         {
             ShootBullet();
         }
-        */
 
         checkJump();
 
