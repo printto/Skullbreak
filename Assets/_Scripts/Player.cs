@@ -20,26 +20,19 @@ public class Player : MonoBehaviour{
     private float lowJump = 2f;
     private bool isGrounded;
     private float jumpSpeed = 7f;
+    private float touchJumpSpeed = 14f;
 
     //Bullet asset
     public GameObject Bullet;
     public float BulletForce = 100000;
     public Camera playerCam;
 
-
     private float animationDuration = 1.0f;
-
-    //Android moving control
-    Touch initTouch;
-    bool swiping = false;
-    public GameObject cube;
-    Plane objPlane;
-    Vector3 m0;
 
     //Android jumping control
     private Vector3 fp;   //First touch position
     private Vector3 lp;   //Last touch position
-    public float dragDistance = Screen.height * 15 / 100;
+    private float dragDistance = Screen.height * 10 / 100;
 
     Rigidbody rb;
 
@@ -164,7 +157,7 @@ public class Player : MonoBehaviour{
                         {
                             //Up swipe
                             Debug.Log("Up Swipe");
-                            Jump();
+                            TouchJump();
                         }
                         else
                         {
@@ -252,6 +245,12 @@ public class Player : MonoBehaviour{
     void Jump()
     {
         rb.AddForce(new Vector3(0, 1, 0) * jumpSpeed, ForceMode.Impulse);
+        isGrounded = false;
+    }
+
+    void TouchJump()
+    {
+        rb.AddForce(new Vector3(0, 1, 0) * touchJumpSpeed, ForceMode.Impulse);
         isGrounded = false;
     }
 
