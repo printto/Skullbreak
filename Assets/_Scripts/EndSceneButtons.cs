@@ -10,7 +10,12 @@ public class EndSceneButtons : MonoBehaviour {
         Cursor.lockState = CursorLockMode.None;
     }
 
-    public void RestartGame()
+    public void RetryGame()
+    {
+        SceneManager.LoadScene(1);
+    }
+
+    public void Mainmenu()
     {
         SceneManager.LoadScene(0);
     }

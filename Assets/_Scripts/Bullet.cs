@@ -42,7 +42,7 @@ public class Bullet : MonoBehaviour
     private void destroyBullet()
     {
         gameObject.transform.position = new Vector3(0, -99999, 0);
-        Destroy(gameObject, 3);
+        Destroy(gameObject, 1.5f);
     }
 
 }
