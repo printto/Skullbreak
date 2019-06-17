@@ -103,13 +103,11 @@ public class Player : MonoBehaviour{
             Jump(jumpSpeed);
         }
 
-        /*
-        //Shooty bits
-        if (Input.GetButtonDown("Fire1")) //button 0 is left click and 1 is right click
+        //For debugging
+        if (Input.GetMouseButtonDown(0)) //button 0 is left click and 1 is right click
         {
-            ShootBullet();
+            Dash();
         }
-        */
 
         checkJump();
 
@@ -230,6 +228,10 @@ public class Player : MonoBehaviour{
         if (isGrounded)
         {
             rb.AddForce(new Vector3(0, 1, 0) * speed, ForceMode.Impulse);
+            if (isDashing)
+            {
+                CancelDash();
+            }
             isGrounded = false;
         }
     }
@@ -237,12 +239,12 @@ public class Player : MonoBehaviour{
     void Dash()
     {
         Debug.Log("Dashing called");
-        if (isGrounded)
+        if (isGrounded && !isDashing)
         {
             Debug.Log("Dashing started");
-            isGrounded = false;
             isDashing = true;
             //TODO: Animations??
+            transform.localScale += new Vector3(0, -0.5f, 0);
             Invoke("CancelDash", 1);
         }
     }
@@ -250,8 +252,11 @@ public class Player : MonoBehaviour{
     void CancelDash()
     {
         Debug.Log("Dashing ended");
+        if (isDashing)
+        {
+            transform.localScale += new Vector3(0, +0.5f, 0);
+        }
         isDashing = false;
-        isGrounded = true;
     }
 
 }
