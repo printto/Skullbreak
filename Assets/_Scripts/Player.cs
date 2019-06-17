@@ -94,7 +94,7 @@ public class Player : MonoBehaviour{
         }
 
         //Jumping
-        if (Input.GetButton("Jump") && isGrounded)
+        if (Input.GetButton("Jump"))
         {
             Jump();
         }
@@ -242,8 +242,11 @@ public class Player : MonoBehaviour{
 
     void Jump()
     {
-        rb.AddForce(new Vector3(0, 1, 0) * jumpSpeed, ForceMode.Impulse);
-        isGrounded = false;
+        if (isGrounded)
+        {
+            rb.AddForce(new Vector3(0, 1, 0) * jumpSpeed, ForceMode.Impulse);
+            isGrounded = false;
+        }
     }
 
     void TouchJump()
