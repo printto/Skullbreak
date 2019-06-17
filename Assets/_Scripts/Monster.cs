@@ -32,9 +32,10 @@ public class Monster : MonoBehaviour {
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.tag.Equals("Bullet")) {
-            Dead();
+            //Dead();
         } else if (collision.gameObject.tag.Equals("Player") || collision.gameObject.tag.Equals("PlayerFace")) {
-            EndGame();
+            //EndGame();
+            Dead();
         } else {
             Debug.Log("hit wall!!");
             ChangeDirection();

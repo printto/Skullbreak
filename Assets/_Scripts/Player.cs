@@ -236,8 +236,10 @@ public class Player : MonoBehaviour{
 
     void Dash()
     {
+        Debug.Log("Dashing called");
         if (isGrounded)
         {
+            Debug.Log("Dashing started");
             isGrounded = false;
             isDashing = true;
             //TODO: Animations??
@@ -247,6 +249,7 @@ public class Player : MonoBehaviour{
 
     void CancelDash()
     {
+        Debug.Log("Dashing ended");
         isDashing = false;
         isGrounded = true;
     }
