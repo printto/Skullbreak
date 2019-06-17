@@ -5,7 +5,7 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 
-public class Player : MonoBehaviour {
+public class Player : MonoBehaviour{
 
     //Movement
     public float MoveSpeed = 10;
@@ -20,21 +20,19 @@ public class Player : MonoBehaviour {
     private float lowJump = 2f;
     private bool isGrounded;
     private float jumpSpeed = 7f;
+    private float touchJumpSpeed = 10f;
 
     //Bullet asset
     public GameObject Bullet;
     public float BulletForce = 100000;
     public Camera playerCam;
 
-
     private float animationDuration = 1.0f;
 
-    //Android Control
-    Touch initTouch;
-    bool swiping = false;
-    public GameObject cube;
-    Plane objPlane;
-    Vector3 m0;
+    //Android jumping control
+    private Vector3 fp;   //First touch position
+    private Vector3 lp;   //Last touch position
+    private float dragDistance = Screen.height * 5 / 100;
 
     Rigidbody rb;
 
@@ -96,16 +94,20 @@ public class Player : MonoBehaviour {
         }
 
         //Jumping
-        if (Input.GetButton("Jump") && isGrounded)
+        if (Input.GetButton("Jump"))
         {
-            Jump();
+            Jump(jumpSpeed);
         }
 
+        /*
         //Shooty bits
-        if (Input.GetMouseButtonDown(0)) //button 0 is left click and 1 is right click
+        if (Input.GetButtonDown("Fire1")) //button 0 is left click and 1 is right click
         {
             ShootBullet();
         }
+        */
+
+        checkJump();
 
         MovePlayerFromInputs();
 
@@ -124,6 +126,56 @@ public class Player : MonoBehaviour {
         
     }
 
+    void checkJump()
+    {
+        if (Input.touchCount == 1) // user is touching the screen with a single touch
+        {
+            Touch touch = Input.GetTouch(0); // get the touch
+            if (touch.phase == TouchPhase.Began) //check for the first touch
+            {
+                fp = touch.position;
+                lp = touch.position;
+            }
+            else if (touch.phase == TouchPhase.Moved) // update the last position based on where they moved
+            {
+                lp = touch.position;
+            }
+            else if (touch.phase == TouchPhase.Ended) //check if the finger is removed from the screen
+            {
+                lp = touch.position;  //last touch position. Ommitted if you use list
+
+                //Check if drag distance is greater than dragDistance of the screen height
+                if (Mathf.Abs(lp.x - fp.x) > dragDistance || Mathf.Abs(lp.y - fp.y) > dragDistance)
+                {
+                    //It's a drag
+                    //the vertical movement is greater than the horizontal movement
+                    if (Mathf.Abs(lp.x - fp.x) < Mathf.Abs(lp.y - fp.y))
+                    {
+                        if (lp.y > fp.y)
+                        {
+                            //Up swipe
+                            Debug.Log("Up Swipe");
+                            Jump(touchJumpSpeed);
+                        }
+                        else
+                        {
+                            //Down swipe
+                            //TODO: May have something to do with swipe down?
+                            Debug.Log("Down Swipe");
+                        }
+                    }
+                }
+                else
+                {   //It's a tap as the drag distance is less than 20% of the screen height
+                    ShootBullet();
+                }
+            }
+        }
+    }
+
+    /*
+     * //This code doesnt seems to work, but it is easy to understand na :(
+     * 
     public void OnEndDrag(PointerEventData eventData)
     {
         Debug.Log("Dragging event end detected");
@@ -143,6 +195,7 @@ public class Player : MonoBehaviour {
             }
         }
     }
+    */
 
     void addTimeScore()
     {
@@ -187,10 +240,13 @@ public class Player : MonoBehaviour {
         transform.Translate(new Vector3(-1, 0f, Input.GetAxis("Horizontal")) * MoveSpeed * Time.deltaTime, Space.Self);
     }
 
-    void Jump()
+    void Jump(float speed)
     {
-        rb.AddForce(new Vector3(0, 1, 0) * jumpSpeed, ForceMode.Impulse);
-        isGrounded = false;
+        if (isGrounded)
+        {
+            rb.AddForce(new Vector3(0, 1, 0) * speed, ForceMode.Impulse);
+            isGrounded = false;
+        }
     }
 
 }
