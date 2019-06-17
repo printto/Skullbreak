@@ -7,6 +7,9 @@ using UnityEngine.UI;
 
 public class Player : MonoBehaviour{
 
+    //Player Lifepoint
+    private int lifePoint =  2;
+
     //Movement
     public float MoveSpeed = 10;
     //public float TurnRate = 2f;
@@ -56,6 +59,7 @@ public class Player : MonoBehaviour{
 
     // Use this for initialization
     void Start () {
+        GameMaster.SetLife(3);
         ScoreManager.SetScore(0);
         rb = GetComponent<Rigidbody>();
         //Cursor.lockState = CursorLockMode.Locked;
@@ -120,12 +124,15 @@ public class Player : MonoBehaviour{
     private void OnCollisionEnter(Collision collision)
     {
         //Debug.Log("Hit something");
-  
-        if (collision.gameObject.tag.Equals("Ground") && isGrounded == false)
+        if (collision.gameObject.tag.Equals("Ground"))
         {
-            isGrounded = true;
+            if (!isGrounded)
+            {
+                isGrounded = true;
+            }
+            fallDamage.setSavePoint(transform.position.x, transform.position.y, transform.position.z);
         }
-        
+
     }
 
     void checkJump()
