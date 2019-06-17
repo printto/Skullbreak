@@ -13,11 +13,9 @@ public class Obstacle : MonoBehaviour {
          * 
         if (collision.gameObject.tag.Equals("PlayerFace"))
         {
-            DeadScene();
-            Debug.Log("Obstacle: Hit Player face");
+            //DeadScene();
         }
         */
-
     }
 
     private void DeadScene()

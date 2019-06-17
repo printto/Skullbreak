@@ -7,6 +7,9 @@ using UnityEngine.UI;
 
 public class Player : MonoBehaviour{
 
+    //Player Lifepoint
+    private int lifePoint =  2;
+
     //Movement
     public float MoveSpeed = 10;
     //public float TurnRate = 2f;
@@ -56,6 +59,7 @@ public class Player : MonoBehaviour{
 
     // Use this for initialization
     void Start () {
+        GameMaster.SetLife(3);
         ScoreManager.SetScore(0);
         rb = GetComponent<Rigidbody>();
         //Cursor.lockState = CursorLockMode.Locked;
@@ -103,13 +107,11 @@ public class Player : MonoBehaviour{
             Jump(jumpSpeed);
         }
 
-        /*
-        //Shooty bits
-        if (Input.GetButtonDown("Fire1")) //button 0 is left click and 1 is right click
+        //For debugging
+        if (Input.GetMouseButtonDown(0)) //button 0 is left click and 1 is right click
         {
-            ShootBullet();
+            Dash();
         }
-        */
 
         checkJump();
 
@@ -122,12 +124,15 @@ public class Player : MonoBehaviour{
     private void OnCollisionEnter(Collision collision)
     {
         //Debug.Log("Hit something");
-  
-        if (collision.gameObject.tag.Equals("Ground") && isGrounded == false)
+        if (collision.gameObject.tag.Equals("Ground"))
         {
-            isGrounded = true;
+            if (!isGrounded)
+            {
+                isGrounded = true;
+            }
+            fallDamage.setSavePoint(transform.position.x, transform.position.y, transform.position.z);
         }
-        
+
     }
 
     void checkJump()
@@ -230,6 +235,10 @@ public class Player : MonoBehaviour{
         if (isGrounded)
         {
             rb.AddForce(new Vector3(0, 1, 0) * speed, ForceMode.Impulse);
+            if (isDashing)
+            {
+                CancelDash();
+            }
             isGrounded = false;
         }
     }
@@ -237,12 +246,12 @@ public class Player : MonoBehaviour{
     void Dash()
     {
         Debug.Log("Dashing called");
-        if (isGrounded)
+        if (isGrounded && !isDashing)
         {
             Debug.Log("Dashing started");
-            isGrounded = false;
             isDashing = true;
             //TODO: Animations??
+            transform.localScale += new Vector3(0, -0.5f, 0);
             Invoke("CancelDash", 1);
         }
     }
@@ -250,8 +259,11 @@ public class Player : MonoBehaviour{
     void CancelDash()
     {
         Debug.Log("Dashing ended");
+        if (isDashing)
+        {
+            transform.localScale += new Vector3(0, +0.5f, 0);
+        }
         isDashing = false;
-        isGrounded = true;
     }
 
 }
