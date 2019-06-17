@@ -204,14 +204,22 @@ public class Player : MonoBehaviour{
 
 
     /*
-     * Controlling functions 
+     * 
+     * Codes under this comment are
+     * for input controlling functions
+     * 
      */
 
+
+    /*
+     * //Ignore this for now.
+     * 
     void ShootBullet()
     {
         GameObject temp = Instantiate(Bullet, new Vector3(transform.position.x - 3, transform.position.y, transform.position.z), playerCam.transform.rotation);
         temp.GetComponent<Rigidbody>().velocity = playerCam.transform.forward * BulletForce * 100;
     }
+    */
 
     void MovePlayerFromInputs()
     {
