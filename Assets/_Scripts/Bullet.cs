@@ -33,6 +33,10 @@ public class Bullet : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
+        if (collision.gameObject.tag.Equals("Player") || collision.gameObject.tag.Equals("PlayerFace"))
+        {
+            Physics.IgnoreCollision(collision.collider, GetComponent<Collider>(), true);
+        }
         if (collision.gameObject.tag.Equals("Monster"))
         {
             destroyBullet();
