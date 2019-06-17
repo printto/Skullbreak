@@ -96,7 +96,7 @@ public class Player : MonoBehaviour{
         //Jumping
         if (Input.GetButton("Jump"))
         {
-            Jump();
+            Jump(jumpSpeed);
         }
 
         /*
@@ -155,7 +155,7 @@ public class Player : MonoBehaviour{
                         {
                             //Up swipe
                             Debug.Log("Up Swipe");
-                            TouchJump();
+                            Jump(touchJumpSpeed);
                         }
                         else
                         {
@@ -240,19 +240,13 @@ public class Player : MonoBehaviour{
         transform.Translate(new Vector3(-1, 0f, Input.GetAxis("Horizontal")) * MoveSpeed * Time.deltaTime, Space.Self);
     }
 
-    void Jump()
+    void Jump(float speed)
     {
         if (isGrounded)
         {
-            rb.AddForce(new Vector3(0, 1, 0) * jumpSpeed, ForceMode.Impulse);
+            rb.AddForce(new Vector3(0, 1, 0) * speed, ForceMode.Impulse);
             isGrounded = false;
         }
-    }
-
-    void TouchJump()
-    {
-        rb.AddForce(new Vector3(0, 1, 0) * touchJumpSpeed, ForceMode.Impulse);
-        isGrounded = false;
     }
 
 }
