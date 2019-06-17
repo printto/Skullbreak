@@ -31,15 +31,28 @@ public class Monster : MonoBehaviour {
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.tag.Equals("Bullet")) {
+        if (collision.gameObject.tag.Equals("Bullet"))
+        {
             Dead();
-        } else if (collision.gameObject.tag.Equals("Player") || collision.gameObject.tag.Equals("PlayerFace")) {
+        }
+        else if (collision.gameObject.tag.Equals("Player") || collision.gameObject.tag.Equals("PlayerFace") && GameMaster.lifePoint > 0)
+        {
+            GameMaster.removeLife(1);
+            Dead();
+        }
+        else if (collision.gameObject.tag.Equals("Player") || collision.gameObject.tag.Equals("PlayerFace") && GameMaster.lifePoint <= 0)
+        {
             EndGame();
-        } else {
+            Dead();
+        }
+        else
+        {
             Debug.Log("hit wall!!");
             ChangeDirection();
         }
     }
+
+    
 
     void EndGame()
     {
