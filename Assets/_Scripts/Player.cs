@@ -34,6 +34,10 @@ public class Player : MonoBehaviour{
     private Vector3 lp;   //Last touch position
     private float dragDistance = Screen.height * 5 / 100;
 
+    //Buffs
+    private bool isSlowedDown = false;
+    private bool isDashing = false;
+
     Rigidbody rb;
 
     private Ray GenerateMouseRay(Vector3 touchPos)
@@ -160,42 +164,19 @@ public class Player : MonoBehaviour{
                         else
                         {
                             //Down swipe
-                            //TODO: May have something to do with swipe down?
+                            //TODO: Dashing
                             Debug.Log("Down Swipe");
                         }
                     }
                 }
                 else
-                {   //It's a tap as the drag distance is less than 20% of the screen height
-                    ShootBullet();
+                {   //It's a tap as the drag distance is less than dragDistance of the screen height
+
+                    //ShootBullet();
                 }
             }
         }
     }
-
-    /*
-     * //This code doesnt seems to work, but it is easy to understand na :(
-     * 
-    public void OnEndDrag(PointerEventData eventData)
-    {
-        Debug.Log("Dragging event end detected");
-        Vector3 dragVectorDirection = (eventData.position - eventData.pressPosition).normalized;
-        DetectJump(dragVectorDirection);
-    }
-
-    void DetectJump(Vector3 dragVector)
-    {
-        float positiveX = Mathf.Abs(dragVector.x);
-        float positiveY = Mathf.Abs(dragVector.y);
-        if (positiveX < positiveY)
-        {
-            Debug.Log("Drag vector: " + dragVector.y);
-            if (dragVector.y > 1) {
-                Jump();
-            }
-        }
-    }
-    */
 
     void addTimeScore()
     {
@@ -204,8 +185,12 @@ public class Player : MonoBehaviour{
 
 
     /*
-     * Controlling functions 
+     * 
+     * Codes under this comment are
+     * for input controlling functions
+     * 
      */
+
 
     void ShootBullet()
     {
@@ -247,6 +232,26 @@ public class Player : MonoBehaviour{
             rb.AddForce(new Vector3(0, 1, 0) * speed, ForceMode.Impulse);
             isGrounded = false;
         }
+    }
+
+    void Dash()
+    {
+        Debug.Log("Dashing called");
+        if (isGrounded)
+        {
+            Debug.Log("Dashing started");
+            isGrounded = false;
+            isDashing = true;
+            //TODO: Animations??
+            Invoke("CancelDash", 1);
+        }
+    }
+
+    void CancelDash()
+    {
+        Debug.Log("Dashing ended");
+        isDashing = false;
+        isGrounded = true;
     }
 
 }

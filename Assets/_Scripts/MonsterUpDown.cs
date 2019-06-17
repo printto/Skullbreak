@@ -2,7 +2,7 @@
 using UnityEngine.SceneManagement;
 
 
-public class Monster : MonoBehaviour {
+public class MonsterUpDown : MonoBehaviour {
 
     private float direction;
 
@@ -26,16 +26,15 @@ public class Monster : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        transform.Translate(0, 0, 6 * direction * Time.deltaTime);
+        transform.Translate(0, 6 * direction * Time.deltaTime, 0 );
 	}
 
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.tag.Equals("Bullet")) {
-            //Dead();
-        } else if (collision.gameObject.tag.Equals("Player") || collision.gameObject.tag.Equals("PlayerFace")) {
-            //EndGame();
             Dead();
+        } else if (collision.gameObject.tag.Equals("Player") || collision.gameObject.tag.Equals("PlayerFace")) {
+            EndGame();
         } else {
             Debug.Log("hit wall!!");
             ChangeDirection();
