@@ -218,10 +218,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 7
       objectReference: {fileID: 0}
-    - target: {fileID: 1088214271616168, guid: 3a3aae9d2e7575547adfeb1239bcffc6, type: 2}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c4e3525bcce63a94399305ba3f42bac1, type: 2}
   m_IsPrefabAsset: 0
@@ -429,10 +425,6 @@ Prefab:
       propertyPath: m_Name
       value: Map4 (1)
       objectReference: {fileID: 0}
-    - target: {fileID: 4614519412122192, guid: c5b247b928509ec42a221b2f3ef5e290, type: 2}
-      propertyPath: m_LocalScale.x
-      value: 3
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c5b247b928509ec42a221b2f3ef5e290, type: 2}
   m_IsPrefabAsset: 0
@@ -520,6 +512,26 @@ Prefab:
     - target: {fileID: 1771244492606170, guid: c5b247b928509ec42a221b2f3ef5e290, type: 2}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1714063750348324, guid: c5b247b928509ec42a221b2f3ef5e290, type: 2}
+      propertyPath: m_TagString
+      value: Obstacle
+      objectReference: {fileID: 0}
+    - target: {fileID: 1468447505462160, guid: c5b247b928509ec42a221b2f3ef5e290, type: 2}
+      propertyPath: m_TagString
+      value: Ground
+      objectReference: {fileID: 0}
+    - target: {fileID: 1290379958004866, guid: c5b247b928509ec42a221b2f3ef5e290, type: 2}
+      propertyPath: m_TagString
+      value: Ground
+      objectReference: {fileID: 0}
+    - target: {fileID: 1972119427300742, guid: c5b247b928509ec42a221b2f3ef5e290, type: 2}
+      propertyPath: m_TagString
+      value: Ground
+      objectReference: {fileID: 0}
+    - target: {fileID: 1756113882676346, guid: c5b247b928509ec42a221b2f3ef5e290, type: 2}
+      propertyPath: m_TagString
+      value: Ground
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c5b247b928509ec42a221b2f3ef5e290, type: 2}

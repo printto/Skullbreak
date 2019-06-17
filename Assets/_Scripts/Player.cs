@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 
@@ -131,9 +132,11 @@ public class Player : MonoBehaviour{
                 isGrounded = true;
             }
             fallDamage.setSavePoint(transform.position.x, transform.position.y, transform.position.z);
-        }
+        }   
 
     }
+
+  
 
     void checkJump()
     {
