@@ -434,11 +434,6 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 114462039578628502, guid: 3a3aae9d2e7575547adfeb1239bcffc6,
-        type: 2}
-      propertyPath: RoadSegments.Array.size
-      value: 4
-      objectReference: {fileID: 0}
     - target: {fileID: 4726419646421972, guid: 3a3aae9d2e7575547adfeb1239bcffc6, type: 2}
       propertyPath: m_LocalPosition.x
       value: -13.64
@@ -471,16 +466,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 4
       objectReference: {fileID: 0}
-    - target: {fileID: 4100250148060612, guid: 3a3aae9d2e7575547adfeb1239bcffc6, type: 2}
-      propertyPath: m_RootOrder
-      value: 13
-      objectReference: {fileID: 0}
-    - target: {fileID: 114462039578628502, guid: 3a3aae9d2e7575547adfeb1239bcffc6,
-        type: 2}
-      propertyPath: RoadSegments.Array.data[3]
-      value: 
-      objectReference: {fileID: 1771244492606170, guid: 033725a9d1b904c4ba09336596da3c88,
-        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3a3aae9d2e7575547adfeb1239bcffc6, type: 2}
   m_IsPrefabAsset: 0
