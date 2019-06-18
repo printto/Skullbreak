@@ -5,9 +5,9 @@ using UnityEngine.UI;
 
 public class ScoreManager : MonoBehaviour
 {
+    
     private static float scorePoints = 0;
-
-    public Text ScoreText;
+    private static int coins = 0;
 
     public static float GetScore()
     {
@@ -24,9 +24,19 @@ public class ScoreManager : MonoBehaviour
         scorePoints += score;
     }
 
-    public void Update()
+    public static int GetCoin()
     {
-        ScoreText.text = ((int)scorePoints).ToString();
+        return coins;
+    }
+
+    public static void SetCoin(int coin)
+    {
+        coins = coin;
+    }
+
+    public static void AddCoin(int coin)
+    {
+        coins += coin;
     }
 
 }
