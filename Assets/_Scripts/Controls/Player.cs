@@ -115,7 +115,7 @@ public class Player : MonoBehaviour{
         //For debugging
         if (Input.GetMouseButtonDown(0)) //button 0 is left click and 1 is right click
         {
-            Dash();
+            //Dash();
         }
 
         checkJump();
