@@ -13,6 +13,8 @@ public class Player : MonoBehaviour{
 
     //Movement
     public float MoveSpeed = 10;
+    float CurrentMoveSpeed = 0;
+    public float SlowdownMoveSpeed = 5;
     //public float TurnRate = 2f;
     public Vector3 moveVector;
     public double SpeedIncreaseRate = 0.05;
@@ -251,6 +253,30 @@ public class Player : MonoBehaviour{
             transform.localScale += new Vector3(0, +0.5f, 0);
         }
         isDashing = false;
+    }
+
+    public void Slowdown()
+    {
+
+        Debug.Log("Slowdown called");
+        if (isGrounded && !isSlowedDown)
+        {
+            CurrentMoveSpeed = MoveSpeed;
+            MoveSpeed = SlowdownMoveSpeed;
+            Debug.Log("Slowdown started");
+            isSlowedDown = true;
+            Invoke("CancelSlowdown", 1);
+        }
+    }
+
+    void CancelSlowdown()
+    {
+        Debug.Log("Slowdown ended");
+        if (isSlowedDown)
+        {
+            MoveSpeed = CurrentMoveSpeed;
+        }
+        isSlowedDown = false;
     }
 
 

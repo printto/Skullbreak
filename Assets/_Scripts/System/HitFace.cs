@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class HitFace : MonoBehaviour {
 
-    string[] obstacleTags = { "Obstacle", "Dashable" };
+    string[] obstacleTags = { "Obstacle", "Dashable", "Monster"};
 
       private void OnCollisionEnter(Collision collision)
     {
@@ -14,7 +14,12 @@ public class HitFace : MonoBehaviour {
 
         if (collision.gameObject.tag.Equals("Dashable") && Player.isDashing)
         {
-
+            //Do nothing
+        }
+        else if (collision.gameObject.tag.Equals("Monster") && GameMaster.lifePoint > 0)
+        {
+            transform.parent.gameObject.GetComponent<Player>().Slowdown();
+            GameMaster.removeLife(1);
         }
         else if (Array.IndexOf(obstacleTags, collision.gameObject.tag) > -1 && GameMaster.lifePoint > 0)
         {
@@ -29,7 +34,7 @@ public class HitFace : MonoBehaviour {
             StartCoroutine(Stop());
 
         }
-        else if (Array.IndexOf(obstacleTags, collision.gameObject.tag) > -1 && GameMaster.lifePoint == 0)
+        else if (Array.IndexOf(obstacleTags, collision.gameObject.tag) > -1 && GameMaster.lifePoint <= 0)
         {
             DeadScene();
         }

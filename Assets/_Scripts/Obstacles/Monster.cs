@@ -37,12 +37,12 @@ public class Monster : MonoBehaviour {
         }
         else if (collision.gameObject.tag.Equals("Player") || collision.gameObject.tag.Equals("PlayerFace") && GameMaster.lifePoint > 0)
         {
-            GameMaster.removeLife(1);
+            //GameMaster.removeLife(1);
             Dead();
         }
         else if (collision.gameObject.tag.Equals("Player") || collision.gameObject.tag.Equals("PlayerFace") && GameMaster.lifePoint <= 0)
         {
-            EndGame();
+            //EndGame();
             Dead();
         }
         else
