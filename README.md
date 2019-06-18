@@ -15,7 +15,7 @@
 ### Touch screen
 - Swipe left, Swipe right - Move left and right
 - Swipe up - Jump
-- Swipe down - dash
+- Swipe down - Dash
 
 ## Software that will be used
 - Unity
