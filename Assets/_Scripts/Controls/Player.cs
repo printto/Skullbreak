@@ -77,7 +77,7 @@ public class Player : MonoBehaviour{
         {
             //Increase speed as the time goes by
             MoveSpeed += (float) SpeedIncreaseRate;
-            Debug.Log("Current movespeed:" + MoveSpeed);
+            //Debug.Log("Current movespeed:" + MoveSpeed);
         }
         countFrame++;
     }
@@ -298,11 +298,13 @@ public class Player : MonoBehaviour{
                 isGrounded = true;
             }
         }
+
         if (collision.gameObject.tag.Equals("Monster"))
         {
+            Debug.Log("Hit Monster : Player Body");
             Slowdown();
-            GameMaster.removeLife(1);
         }
+
         fallDamage.setSavePoint(transform.position.x, transform.position.y, transform.position.z);
 
     }

@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 public class Monster : MonoBehaviour {
 
     private float direction;
+    bool isHit = false;
 
 	// Use this for initialization
 	void Start () {
@@ -31,14 +32,19 @@ public class Monster : MonoBehaviour {
 
     private void OnCollisionEnter(Collision collision)
     {
-        
+
         if (collision.gameObject.tag.Equals("Bullet"))
         {
             Dead();
         }
         else if ((collision.gameObject.tag.Equals("Player") || collision.gameObject.tag.Equals("PlayerFace")) && GameMaster.lifePoint > 0)
         {
-            GameMaster.removeLife(1);
+            if (!isHit)
+            {
+                isHit = true;
+                GameMaster.removeLife(1);
+                Debug.Log("Hit Monster : Monster removeLife");
+            }
             Dead();
         }
         else if ((collision.gameObject.tag.Equals("Player") || collision.gameObject.tag.Equals("PlayerFace")) && GameMaster.lifePoint <= 0)
