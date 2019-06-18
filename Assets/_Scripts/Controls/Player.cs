@@ -160,7 +160,7 @@ public class Player : MonoBehaviour{
                         else
                         {
                             //Down swipe
-                            //TODO: Dashing
+                            Dash();
                             Debug.Log("Down Swipe");
                         }
                     }
