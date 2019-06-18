@@ -52,8 +52,6 @@ public class Monster : MonoBehaviour {
         }
     }
 
-    
-
     void EndGame()
     {
         SceneManager.LoadScene(2);

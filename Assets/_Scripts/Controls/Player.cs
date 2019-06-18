@@ -39,8 +39,8 @@ public class Player : MonoBehaviour{
     private float dragDistance = Screen.height * 5 / 100;
 
     //Buffs
-    private bool isSlowedDown = false;
-    private bool isDashing = false;
+    public static bool isSlowedDown = false;
+    public static bool isDashing = false;
 
     Rigidbody rb;
 
@@ -121,24 +121,6 @@ public class Player : MonoBehaviour{
         addTimeScore();
 
     }
-
-    private void OnCollisionEnter(Collision collision)
-    {
-        //Debug.Log("Hit something");
-        if (collision.gameObject.tag.Equals("Ground"))
-        {
-            if (!isGrounded)
-            {
-                isGrounded = true;
-            }
-            fallDamage.setSavePoint(transform.position.x, transform.position.y, transform.position.z);
-        }
-   
-
-    }
-
- 
-
 
     void checkJump()
     {
@@ -269,6 +251,27 @@ public class Player : MonoBehaviour{
             transform.localScale += new Vector3(0, +0.5f, 0);
         }
         isDashing = false;
+    }
+
+
+    /*
+     * 
+     * These are for collision detection
+     * 
+     */
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        //Debug.Log("Hit something");
+        if (collision.gameObject.tag.Equals("Ground"))
+        {
+            if (!isGrounded)
+            {
+                isGrounded = true;
+            }
+            fallDamage.setSavePoint(transform.position.x, transform.position.y, transform.position.z);
+        }
+
     }
 
 }

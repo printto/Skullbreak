@@ -81,6 +81,7 @@ GameObject:
   - component: {fileID: 33080846452850928}
   - component: {fileID: 23414383826141006}
   - component: {fileID: 65574686838833056}
+  - component: {fileID: 114402771655990266}
   m_Layer: 0
   m_Name: Dashable
   m_TagString: Dashable
@@ -1205,6 +1206,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: dbff3ced29c47bd49bf3d35368f6940f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &114402771655990266
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1277778008717000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb58daf3d5151bc41b5d2e3e5481cdbe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &114411570632824274
