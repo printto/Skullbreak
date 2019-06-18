@@ -24,7 +24,7 @@ public class ScoreManager : MonoBehaviour
         scorePoints += score;
     }
 
-    public static float GetCoin()
+    public static int GetCoin()
     {
         return coins;
     }
