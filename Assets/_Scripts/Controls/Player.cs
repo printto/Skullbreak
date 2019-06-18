@@ -124,22 +124,7 @@ public class Player : MonoBehaviour{
 
         addTimeScore();
 
-    }
-
-
-    private void OnCollisionEnter(Collision collision)
-    {
-        //Debug.Log("Hit something");
-        if (collision.gameObject.tag.Equals("Ground"))
-        {
-            if (!isGrounded)
-            {
-                isGrounded = true;
-            }
-            fallDamage.setSavePoint(transform.position.x, transform.position.y, transform.position.z);
-        }
-    }
-  
+    }  
   
     void checkJump()
     {

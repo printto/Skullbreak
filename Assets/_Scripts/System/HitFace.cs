@@ -19,7 +19,7 @@ public class HitFace : MonoBehaviour {
         else if (collision.gameObject.tag.Equals("Monster") && GameMaster.lifePoint > 0)
         {
             transform.parent.gameObject.GetComponent<Player>().Slowdown();
-            GameMaster.removeLife(1);
+            //GameMaster.removeLife(1);
         }
         else if (Array.IndexOf(obstacleTags, collision.gameObject.tag) > -1 && GameMaster.lifePoint > 0)
         {
