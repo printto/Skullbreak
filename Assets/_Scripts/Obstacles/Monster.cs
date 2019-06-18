@@ -31,6 +31,7 @@ public class Monster : MonoBehaviour {
 
     private void OnCollisionEnter(Collision collision)
     {
+        
         if (collision.gameObject.tag.Equals("Bullet"))
         {
             Dead();
@@ -50,6 +51,13 @@ public class Monster : MonoBehaviour {
             Debug.Log("hit wall!!");
             ChangeDirection();
         }
+        
+        /*
+        if (!collision.gameObject.tag.Equals("Player") && !collision.gameObject.tag.Equals("PlayerFace"))
+        {
+            ChangeDirection();
+        }
+        */
     }
 
     void EndGame()
