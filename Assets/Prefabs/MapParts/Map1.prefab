@@ -64,7 +64,7 @@ GameObject:
   - component: {fileID: 54973141234591336}
   m_Layer: 0
   m_Name: Cube (1)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -122,7 +122,7 @@ GameObject:
   - component: {fileID: 54888608946037046}
   m_Layer: 0
   m_Name: Cube (4)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -142,7 +142,7 @@ GameObject:
   - component: {fileID: 54052756201734414}
   m_Layer: 0
   m_Name: Cube (5)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -200,7 +200,7 @@ GameObject:
   - component: {fileID: 54887248032430974}
   m_Layer: 0
   m_Name: Cube (3)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -240,7 +240,7 @@ GameObject:
   - component: {fileID: 54462303784913804}
   m_Layer: 0
   m_Name: Cube
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -260,7 +260,7 @@ GameObject:
   - component: {fileID: 54420425078560786}
   m_Layer: 0
   m_Name: Cube (2)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1432,7 +1432,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: edbeb48b59ff0bd4fa67851db5c400ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
 --- !u!114 &114278541858089498
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1444,7 +1443,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 902249f4f45075f44a38e7ed1cc7859e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ScoreToAdd: 5
+  ScoreToAdd: 1
   WalletValue: 1
 --- !u!114 &114386630503601786
 MonoBehaviour:
@@ -1457,7 +1456,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 902249f4f45075f44a38e7ed1cc7859e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ScoreToAdd: 5
+  ScoreToAdd: 1
   WalletValue: 1
 --- !u!114 &114462039578628502
 MonoBehaviour:
@@ -1477,6 +1476,7 @@ MonoBehaviour:
   - {fileID: 1771244492606170, guid: 033725a9d1b904c4ba09336596da3c88, type: 2}
   - {fileID: 1771244492606170, guid: c5b247b928509ec42a221b2f3ef5e290, type: 2}
   - {fileID: 1225938689571132, guid: 6d26c2ea45e1b9d4cbd8fed17b5aedc6, type: 2}
+  createdNext: 0
 --- !u!114 &114479292893108388
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1488,7 +1488,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 902249f4f45075f44a38e7ed1cc7859e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ScoreToAdd: 5
+  ScoreToAdd: 1
   WalletValue: 1
 --- !u!114 &114589640302567044
 MonoBehaviour:
@@ -1534,7 +1534,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 902249f4f45075f44a38e7ed1cc7859e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ScoreToAdd: 5
+  ScoreToAdd: 1
   WalletValue: 1
 --- !u!114 &114774291938015686
 MonoBehaviour:
@@ -1558,7 +1558,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 902249f4f45075f44a38e7ed1cc7859e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ScoreToAdd: 5
+  ScoreToAdd: 1
   WalletValue: 1
 --- !u!135 &135219593942168340
 SphereCollider:

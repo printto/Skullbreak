@@ -6,7 +6,7 @@ public class MapGenerator : MonoBehaviour {
 
     public GameObject CurrentSegment;
     public GameObject[] RoadSegments;
-    bool createdNext;
+    public bool createdNext;
 
     // Use this for initialization
     void Start () {
@@ -33,7 +33,7 @@ public class MapGenerator : MonoBehaviour {
     }
 
     // Spawn new map
-    void SpawnMap()
+    public void SpawnMap()
     {
 
         int randomed = Random.Range(0, RoadSegments.Length);
