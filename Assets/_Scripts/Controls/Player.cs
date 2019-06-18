@@ -13,6 +13,8 @@ public class Player : MonoBehaviour{
 
     //Movement
     public float MoveSpeed = 10;
+    float CurrentMoveSpeed = 0;
+    public float SlowdownMoveSpeed = 5;
     //public float TurnRate = 2f;
     public Vector3 moveVector;
     public double SpeedIncreaseRate = 0.05;
@@ -39,8 +41,8 @@ public class Player : MonoBehaviour{
     private float dragDistance = Screen.height * 5 / 100;
 
     //Buffs
-    private bool isSlowedDown = false;
-    private bool isDashing = false;
+    public static bool isSlowedDown = false;
+    public static bool isDashing = false;
 
     Rigidbody rb;
 
@@ -122,6 +124,7 @@ public class Player : MonoBehaviour{
 
     }
 
+
     private void OnCollisionEnter(Collision collision)
     {
         //Debug.Log("Hit something");
@@ -134,10 +137,8 @@ public class Player : MonoBehaviour{
             fallDamage.setSavePoint(transform.position.x, transform.position.y, transform.position.z);
         }
     }
-
- 
-
-
+  
+  
     void checkJump()
     {
         if (Input.touchCount == 1) // user is touching the screen with a single touch
@@ -267,6 +268,51 @@ public class Player : MonoBehaviour{
             transform.localScale += new Vector3(0, +0.5f, 0);
         }
         isDashing = false;
+    }
+
+    public void Slowdown()
+    {
+
+        Debug.Log("Slowdown called");
+        if (isGrounded && !isSlowedDown)
+        {
+            CurrentMoveSpeed = MoveSpeed;
+            MoveSpeed = SlowdownMoveSpeed;
+            Debug.Log("Slowdown started");
+            isSlowedDown = true;
+            Invoke("CancelSlowdown", 1);
+        }
+    }
+
+    void CancelSlowdown()
+    {
+        Debug.Log("Slowdown ended");
+        if (isSlowedDown)
+        {
+            MoveSpeed = CurrentMoveSpeed;
+        }
+        isSlowedDown = false;
+    }
+
+
+    /*
+     * 
+     * These are for collision detection
+     * 
+     */
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        //Debug.Log("Hit something");
+        if (collision.gameObject.tag.Equals("Ground"))
+        {
+            if (!isGrounded)
+            {
+                isGrounded = true;
+            }
+            fallDamage.setSavePoint(transform.position.x, transform.position.y, transform.position.z);
+        }
+
     }
 
 }
