@@ -18,10 +18,16 @@ public class HitFace : MonoBehaviour {
         }
         else if (Array.IndexOf(obstacleTags, collision.gameObject.tag) > -1 && GameMaster.lifePoint > 0)
         {
-           
+
+            //Bounce();
+            //GameMaster.removeLife(1);
+            //Invoke("Bounce", 0.5f);
+
+            //StartCoroutine(BounceRoutine());
             Bounce();
-            Invoke("Bounce", 0.5f);
             GameMaster.removeLife(1);
+            StartCoroutine(Stop());
+
         }
         else if (Array.IndexOf(obstacleTags, collision.gameObject.tag) > -1 && GameMaster.lifePoint == 0)
         {
@@ -30,12 +36,27 @@ public class HitFace : MonoBehaviour {
     }
 
     private void Bounce()
-    {
+    { 
         transform.parent.gameObject.GetComponent<Player>().MoveSpeed = -transform.parent.gameObject.GetComponent<Player>().MoveSpeed;
     }
+
+ 
 
     private void DeadScene()
     {
         SceneManager.LoadScene(2);
+    }
+
+   
+
+    //not yet implemented
+    //For when crashing, it will pause for a seconds then move forward.
+    IEnumerator Stop()
+    {
+        float forward = -transform.parent.gameObject.GetComponent<Player>().MoveSpeed;
+        yield return new WaitForSeconds(0.75f);
+        transform.parent.gameObject.GetComponent<Player>().MoveSpeed = 0;
+        yield return new WaitForSeconds(2);
+        transform.parent.gameObject.GetComponent<Player>().MoveSpeed = forward;
     }
 }
