@@ -12,12 +12,10 @@
 - A, S, Left arrow, Right arrow - Move left and right
 - Space - Jump
 - Left click - Shoot the bullets
-### Touch screen (Uncompleted)
+### Touch screen
 - Swipe left, Swipe right - Move left and right
-- soon...
-
-## Prototype
-- Soon...
+- Swipe up - Jump
+- Swipe down - dash
 
 ## Software that will be used
 - Unity
