@@ -47,7 +47,7 @@ public class HitFace : MonoBehaviour {
     IEnumerator Stop()
     {
         float forward = -transform.parent.gameObject.GetComponent<Player>().MoveSpeed;
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(0.75f);
         transform.parent.gameObject.GetComponent<Player>().MoveSpeed = 0;
         yield return new WaitForSeconds(2);
         transform.parent.gameObject.GetComponent<Player>().MoveSpeed = forward;
