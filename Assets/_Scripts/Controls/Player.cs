@@ -133,8 +133,6 @@ public class Player : MonoBehaviour{
             }
             fallDamage.setSavePoint(transform.position.x, transform.position.y, transform.position.z);
         }
-   
-
     }
 
  

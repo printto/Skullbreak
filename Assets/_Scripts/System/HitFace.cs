@@ -12,11 +12,6 @@ public class HitFace : MonoBehaviour {
         if (collision.gameObject.tag.Equals("Obstacle") && GameMaster.lifePoint > 0)
         {
 
-            //Bounce();
-            //GameMaster.removeLife(1);
-            //Invoke("Bounce", 0.5f);
-
-            //StartCoroutine(BounceRoutine());
             Bounce();
             GameMaster.removeLife(1);
             StartCoroutine(Stop());
