@@ -132,11 +132,13 @@ public class Player : MonoBehaviour{
                 isGrounded = true;
             }
             fallDamage.setSavePoint(transform.position.x, transform.position.y, transform.position.z);
-        }   
+        }
+   
 
     }
 
-  
+ 
+
 
     void checkJump()
     {
