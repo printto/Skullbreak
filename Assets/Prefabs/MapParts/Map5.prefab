@@ -139,12 +139,11 @@ GameObject:
   - component: {fileID: 33738170551450978}
   - component: {fileID: 23380549077287296}
   - component: {fileID: 65825445913111252}
-  - component: {fileID: 114618028327277432}
   - component: {fileID: 54648323125236150}
   - component: {fileID: 114601673205193610}
   m_Layer: 0
   m_Name: Mwall2
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -179,12 +178,11 @@ GameObject:
   - component: {fileID: 33218951114923800}
   - component: {fileID: 23750480392251726}
   - component: {fileID: 65757196263184086}
-  - component: {fileID: 114552147006013966}
   - component: {fileID: 54608322452972616}
   - component: {fileID: 114594278518087700}
   m_Layer: 0
   m_Name: Mwall1
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1424,7 +1422,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ScoreToAdd: 1
-  WalletValue: 1
 --- !u!114 &114273689380927436
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1467,7 +1464,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ScoreToAdd: 1
-  WalletValue: 1
 --- !u!114 &114539666988278526
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1477,17 +1473,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: edbeb48b59ff0bd4fa67851db5c400ed, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &114552147006013966
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1465576150389964}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dbff3ced29c47bd49bf3d35368f6940f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &114592835460401212
@@ -1502,7 +1487,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ScoreToAdd: 1
-  WalletValue: 1
 --- !u!114 &114594278518087700
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1525,17 +1509,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f9b1eea5754f044e9a53cace8282294, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &114618028327277432
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1303070766741498}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dbff3ced29c47bd49bf3d35368f6940f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &114627527187692246
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1548,7 +1521,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ScoreToAdd: 1
-  WalletValue: 1
 --- !u!114 &114728916587626902
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1572,7 +1544,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ScoreToAdd: 1
-  WalletValue: 1
 --- !u!114 &114951725724324258
 MonoBehaviour:
   m_ObjectHideFlags: 1
