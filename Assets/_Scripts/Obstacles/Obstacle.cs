@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class Obstacle : MonoBehaviour {
 
-    private void OnCollisionStay(Collision collision)
+    private void OnCollisionEnter(Collision collision)
     {
         Debug.Log("Obstacle: Hit something");
         /*
@@ -16,11 +16,6 @@ public class Obstacle : MonoBehaviour {
             //DeadScene();
         }
         */
-    }
-
-    private void DeadScene()
-    {
-        SceneManager.LoadScene(2);
     }
 
 }
