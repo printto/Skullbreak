@@ -11,7 +11,7 @@
 ### Keyboard
 - A, S, Left arrow, Right arrow - Move left and right
 - Space - Jump
-- Left click - Shoot the bullets
+- Left click - Dash
 ### Touch screen
 - Swipe left, Swipe right - Move left and right
 - Swipe up - Jump
