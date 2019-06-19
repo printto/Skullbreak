@@ -12,12 +12,24 @@ public class MenuSceneButtons : MonoBehaviour {
             Cursor.lockState = CursorLockMode.None;
         }
 
-        public void PlayGame()
+        public void StageMode()
+        {
+            //SceneManager.LoadScene(1);
+        }
+
+        public void EndlessMode()
+        {
+            SceneManager.LoadScene(3);
+        }
+
+        public void BetaMap()
         {
             SceneManager.LoadScene(1);
         }
 
-        public void Mainmenu()
+
+
+    public void Mainmenu()
         {
             SceneManager.LoadScene(0);
         }

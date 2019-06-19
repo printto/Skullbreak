@@ -49,8 +49,15 @@ public class Player : MonoBehaviour{
 
     // Use this for initialization
     void Start()
-    {
-        GameMaster.SetLife(3);
+    {   if(SceneManager.GetActiveScene().name.Equals("EndlessMode"))
+        {
+            GameMaster.SetLife(0);
+        }
+        else
+        {
+            GameMaster.SetLife(3);
+        }
+
         ScoreManager.SetScore(0);
         ScoreManager.SetCoin(0);
         rb = GetComponent<Rigidbody>();
