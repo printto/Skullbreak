@@ -42,6 +42,8 @@ public class TurnPad : MonoBehaviour {
         Vector3 temp = collision.gameObject.transform.eulerAngles + new Vector3(0, DegreeToTurn, 0);
         collision.gameObject.GetComponent<Rigidbody>().angularVelocity = new Vector3(0, 0, 0);
         collision.gameObject.GetComponent<Transform>().eulerAngles = temp;
+        Vector3 temp2 = GameObject.FindGameObjectWithTag("MainCamera").gameObject.GetComponent<Transform>().eulerAngles + new Vector3(0, DegreeToTurn, 0);
+        GameObject.FindGameObjectWithTag("MainCamera").gameObject.GetComponent<Transform>().eulerAngles = temp2 ;
     }
 
 }
