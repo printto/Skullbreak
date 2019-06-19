@@ -123,8 +123,8 @@ public class Player : MonoBehaviour{
         MovePlayerFromInputs();
 
         addTimeScore();
+    }
 
-    }  
   
     void checkJump()
     {
