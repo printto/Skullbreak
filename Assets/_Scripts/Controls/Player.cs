@@ -10,6 +10,7 @@ public class Player : MonoBehaviour{
 
     //Player Lifepoint
     private int lifePoint =  2;
+    private int coin = 0;
 
     //Movement
     public float MoveSpeed = 10;
@@ -51,6 +52,7 @@ public class Player : MonoBehaviour{
     {
         GameMaster.SetLife(3);
         ScoreManager.SetScore(0);
+        ScoreManager.SetCoin(0);
         rb = GetComponent<Rigidbody>();
         //Cursor.lockState = CursorLockMode.Locked;
         isSlowedDown = false;
