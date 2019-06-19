@@ -12,7 +12,8 @@ public class EndSceneButtons : MonoBehaviour {
 
     public void RetryGame()
     {
-        SceneManager.LoadScene(1);
+        // SceneManager.LoadScene(1);
+        LoadPrevScene.changeToPreviousLvl();
     }
 
     public void Mainmenu()

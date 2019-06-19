@@ -47,6 +47,13 @@ public class Player : MonoBehaviour{
 
     Rigidbody rb;
 
+    void Awake()
+    {
+        // Call the LevelManager and set the last level.
+        LoadPrevScene.setLastLevel(SceneManager.GetActiveScene().name);
+        Debug.Log(SceneManager.GetActiveScene().name.ToString());
+    }
+
     // Use this for initialization
     void Start()
     {   if(SceneManager.GetActiveScene().name.Equals("EndlessMode"))
