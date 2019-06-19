@@ -290,7 +290,6 @@ public class Player : MonoBehaviour{
 
     private void OnCollisionEnter(Collision collision)
     {
-        //Debug.Log("Hit something");
         if (collision.gameObject.tag.Equals("Ground"))
         {
             if (!isGrounded)
