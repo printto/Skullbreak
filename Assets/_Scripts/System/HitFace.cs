@@ -10,8 +10,7 @@ public class HitFace : MonoBehaviour {
 
       private void OnCollisionEnter(Collision collision)
     {
-        Debug.Log("Obstacle: Hit something");
-
+        //Debug.Log("Obstacle: Hit something");
         if (collision.gameObject.tag.Equals("Dashable") && Player.isDashing)
         {
             //Do nothing
@@ -19,11 +18,12 @@ public class HitFace : MonoBehaviour {
         else if (collision.gameObject.tag.Equals("Monster") && GameMaster.lifePoint > 0)
         {
             transform.parent.gameObject.GetComponent<Player>().Slowdown();
-            GameMaster.removeLife(1);
+            Debug.Log("Hit Monster : Player Face");
+            //GameMaster.removeLife(1);
         }
         else if (Array.IndexOf(obstacleTags, collision.gameObject.tag) > -1 && GameMaster.lifePoint > 0)
         {
-
+            Debug.Log("Hit obstacle");
             Bounce();
             GameMaster.removeLife(1);
             StartCoroutine(Stop());

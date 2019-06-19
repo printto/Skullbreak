@@ -46,6 +46,17 @@ public class Player : MonoBehaviour{
 
     Rigidbody rb;
 
+    // Use this for initialization
+    void Start()
+    {
+        GameMaster.SetLife(3);
+        ScoreManager.SetScore(0);
+        rb = GetComponent<Rigidbody>();
+        //Cursor.lockState = CursorLockMode.Locked;
+        isSlowedDown = false;
+        isDashing = false;
+    }
+
     private Ray GenerateMouseRay(Vector3 touchPos)
     {
         Vector3 mousePosFar = new Vector3(touchPos.x, touchPos.y, Camera.main.farClipPlane);
@@ -54,19 +65,10 @@ public class Player : MonoBehaviour{
         Vector3 mousePosF = Camera.main.ScreenToWorldPoint(mousePosFar);
         Vector3 mousePosN = Camera.main.ScreenToWorldPoint(mousePosNear);
 
-
         Ray mr = new Ray(mousePosN, mousePosF - mousePosN);
         return mr;
 
     }
-
-    // Use this for initialization
-    void Start () {
-        GameMaster.SetLife(3);
-        ScoreManager.SetScore(0);
-        rb = GetComponent<Rigidbody>();
-        //Cursor.lockState = CursorLockMode.Locked;
-	}
 
     int countFrame = 0;
     private void FixedUpdate()
@@ -75,7 +77,7 @@ public class Player : MonoBehaviour{
         {
             //Increase speed as the time goes by
             MoveSpeed += (float) SpeedIncreaseRate;
-            Debug.Log("Current movespeed:" + MoveSpeed);
+            //Debug.Log("Current movespeed:" + MoveSpeed);
         }
         countFrame++;
     }
@@ -113,7 +115,7 @@ public class Player : MonoBehaviour{
         //For debugging
         if (Input.GetMouseButtonDown(0)) //button 0 is left click and 1 is right click
         {
-            Dash();
+            //Dash();
         }
 
         checkJump();
@@ -121,10 +123,8 @@ public class Player : MonoBehaviour{
         MovePlayerFromInputs();
 
         addTimeScore();
-
     }
 
- 
   
     void checkJump()
     {
@@ -160,7 +160,7 @@ public class Player : MonoBehaviour{
                         else
                         {
                             //Down swipe
-                            //TODO: Dashing
+                            Dash();
                             Debug.Log("Down Swipe");
                         }
                     }
@@ -261,7 +261,7 @@ public class Player : MonoBehaviour{
     {
 
         Debug.Log("Slowdown called");
-        if (isGrounded && !isSlowedDown)
+        if (!isSlowedDown)
         {
             CurrentMoveSpeed = MoveSpeed;
             MoveSpeed = SlowdownMoveSpeed;
@@ -297,8 +297,15 @@ public class Player : MonoBehaviour{
             {
                 isGrounded = true;
             }
-            fallDamage.setSavePoint(transform.position.x, transform.position.y, transform.position.z);
         }
+
+        if (collision.gameObject.tag.Equals("Monster"))
+        {
+            Debug.Log("Hit Monster : Player Body");
+            Slowdown();
+        }
+
+        fallDamage.setSavePoint(transform.position.x, transform.position.y, transform.position.z);
 
     }
 
