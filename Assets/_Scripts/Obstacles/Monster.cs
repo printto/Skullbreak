@@ -54,7 +54,6 @@ public class Monster : MonoBehaviour {
         }
         else
         {
-            Debug.Log("hit wall!!");
             ChangeDirection();
         }
         
