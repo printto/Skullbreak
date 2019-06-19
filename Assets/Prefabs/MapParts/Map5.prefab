@@ -121,6 +121,7 @@ GameObject:
   - component: {fileID: 23036869846312768}
   - component: {fileID: 64294455969394050}
   - component: {fileID: 114273689380927436}
+  - component: {fileID: 95746279902944812}
   m_Layer: 0
   m_Name: Map5
   m_TagString: Ground
@@ -140,7 +141,6 @@ GameObject:
   - component: {fileID: 23380549077287296}
   - component: {fileID: 65825445913111252}
   - component: {fileID: 54648323125236150}
-  - component: {fileID: 114601673205193610}
   m_Layer: 0
   m_Name: Mwall2
   m_TagString: Obstacle
@@ -198,7 +198,6 @@ GameObject:
   - component: {fileID: 23750480392251726}
   - component: {fileID: 65757196263184086}
   - component: {fileID: 54608322452972616}
-  - component: {fileID: 114594278518087700}
   m_Layer: 0
   m_Name: Mwall1
   m_TagString: Obstacle
@@ -1486,6 +1485,24 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 10, y: 1.25, z: 10.000002}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!95 &95746279902944812
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1225938689571132}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: f043b928688e2ef478a06da8ee632f6d, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!114 &114252373285686286
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1575,28 +1592,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ScoreToAdd: 1
---- !u!114 &114594278518087700
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1465576150389964}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7f9b1eea5754f044e9a53cace8282294, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &114601673205193610
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1303070766741498}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7f9b1eea5754f044e9a53cace8282294, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &114627527187692246
 MonoBehaviour:
   m_ObjectHideFlags: 1
