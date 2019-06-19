@@ -979,7 +979,7 @@ GameObject:
   - component: {fileID: 64301941458696594}
   - component: {fileID: 114245397811905600}
   m_Layer: 0
-  m_Name: turn90
+  m_Name: turn90base
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2305,8 +2305,8 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1370489782888464}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -20, z: 0}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
+  m_LocalPosition: {x: -24.17, y: -20.68, z: 0}
   m_LocalScale: {x: 200, y: 1, z: 200}
   m_Children:
   - {fileID: 4546876283350604}
@@ -2321,7 +2321,7 @@ Transform:
   - {fileID: 4821705365261184}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!4 &4769383926003094
 Transform:
   m_ObjectHideFlags: 1
@@ -7333,6 +7333,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DegreeToTurn: -45
+  Delay: 0
 --- !u!114 &114079265893003458
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -7460,6 +7461,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DegreeToTurn: 90
+  Delay: 0.3
 --- !u!114 &114249103739010980
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -7707,6 +7709,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DegreeToTurn: 45
+  Delay: 0
 --- !u!114 &114619029209711178
 MonoBehaviour:
   m_ObjectHideFlags: 1
