@@ -14,7 +14,7 @@ public class MenuSceneButtons : MonoBehaviour {
 
         public void StageMode()
         {
-            //SceneManager.LoadScene(1);
+            SceneManager.LoadScene(4);
         }
 
         public void EndlessMode()
