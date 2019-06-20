@@ -25,7 +25,8 @@ public class fallDamage : MonoBehaviour
         if (collision.gameObject.tag.Equals("Player") && GameMaster.lifePoint >= 0)
         {
             Debug.Log("Respawned");
-            collision.gameObject.transform.SetPositionAndRotation(new Vector3(x,y,z) , collision.gameObject.transform.rotation);
+            //collision.gameObject.transform.SetPositionAndRotation(new Vector3(x,y,z) , collision.gameObject.transform.rotation);
+            checkPoint.respawnPlayerAtCheckPoint();
             GameMaster.removeLife(1);
         }
         else if (collision.gameObject.tag.Equals("Player") && GameMaster.lifePoint < 0)
