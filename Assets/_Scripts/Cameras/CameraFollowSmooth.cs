@@ -11,16 +11,6 @@ public class CameraFollowSmooth : MonoBehaviour
     public float yPosRestriction = -1;
     public Vector3 offset;
 
-    private RotationWay currentRotation = RotationWay.STOP;
-    public float cameraYOffset = -0.7070175f;
-
-    enum RotationWay
-    {
-        STOP,
-        LEFT,
-        RIGHT
-    }
-
     void Update()
     {
         Vector3 desiredPosition = holder.position;
