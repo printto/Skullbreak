@@ -8,7 +8,7 @@ public class TurnPad : MonoBehaviour {
     public float DegreeToTurn = 0;
     public float Delay = 1;
 
-    bool turned = false;
+    //bool turned = false;
 
     void Update()
     {
@@ -27,21 +27,31 @@ public class TurnPad : MonoBehaviour {
         */
     }
 
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.tag.Equals("Player") && !turned)
-        {
-            turned = true;
-            StartCoroutine(TurnPlayer(collision));
-        }
-    }
+    /*
+   private void OnCollisionEnter(Collision collision)
+   {
+       if (collision.gameObject.tag.Equals("Player") && !turned)
+       {
+           turned = true;
+           StartCoroutine(TurnPlayer(collision));
+       }
+   }
+   */
 
-    IEnumerator TurnPlayer(Collision collision)
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag.Equals("Player"))
+        {
+            StartCoroutine(TurnPlayer(other));
+        }
+
+    }
+    IEnumerator TurnPlayer(Collider collider)
     {
         yield return new WaitForSeconds(Delay);
-        Vector3 temp = collision.gameObject.transform.eulerAngles + new Vector3(0, DegreeToTurn, 0);
-        collision.gameObject.GetComponent<Rigidbody>().angularVelocity = new Vector3(0, 0, 0);
-        collision.gameObject.GetComponent<Transform>().eulerAngles = temp;
+        Vector3 temp = collider.gameObject.transform.eulerAngles + new Vector3(0, DegreeToTurn, 0);
+        collider.gameObject.GetComponent<Rigidbody>().angularVelocity = new Vector3(0, 0, 0);
+        collider.gameObject.GetComponent<Transform>().eulerAngles = temp;
         Vector3 temp2 = GameObject.FindGameObjectWithTag("MainCamera").gameObject.GetComponent<Transform>().eulerAngles + new Vector3(0, DegreeToTurn, 0);
         GameObject.FindGameObjectWithTag("MainCamera").gameObject.GetComponent<Transform>().eulerAngles = temp2 ;
     }
