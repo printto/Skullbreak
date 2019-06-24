@@ -22,7 +22,14 @@
 - Visual Code
 
 ## Compiling the code
-- To compile code, edit ``Environment.cs`` in ``Assets`` folder according to your Firebase project.
+- To compile code, create ``Environment.cs`` in ``Assets`` folder according to your Firebase project.
+```cs
+public class Environment {
+
+    public static string DatabaseURL = "YOUR_URL_HERE";
+
+}
+```
 
 ## External links
 - [Github Repository](https://github.com/printto/Zzzprint)
