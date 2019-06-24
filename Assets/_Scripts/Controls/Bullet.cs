@@ -21,7 +21,6 @@ public class Bullet : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        ParticleSystem system = GetComponent<ParticleSystem>();
         audio = GetComponent<AudioSource>();
         if(ShootSounds.Length != 0)
         {
