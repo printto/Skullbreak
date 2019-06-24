@@ -22,7 +22,7 @@
 - Visual Code
 
 ## Compiling the code
-No special environment required at the moment
+- To compile code, edit ``Environment.cs`` in ``Assets`` folder according to your Firebase project.
 
 ## External links
 - [Github Repository](https://github.com/printto/Zzzprint)
