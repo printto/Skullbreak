@@ -28,5 +28,4 @@ No special environment required at the moment
 - [Github Repository](https://github.com/printto/Zzzprint)
 - [Prototype Development Presentation (.pptx)](https://cdn.discordapp.com/attachments/588698894532345886/590825081035554816/Prototype_Development.pptx)
 - [Development's Google Drive](https://drive.google.com/drive/folders/1x1CGor69j8aDGON0jWjLoON9usODwUpd)
-- [Programmer's Prototype Google Drive](https://drive.google.com/drive/folders/1PuOcTmSGXSQyfSzojNbPIvL4A9Tq0Lni?usp=sharing)
-- [Artist's Prototype Google Drive](https://drive.google.com/drive/folders/1x1CGor69j8aDGON0jWjLoON9usODwUpd?usp=sharing)
+- [Early-prototype Screenshots](https://drive.google.com/drive/folders/1PuOcTmSGXSQyfSzojNbPIvL4A9Tq0Lni?usp=sharing)
