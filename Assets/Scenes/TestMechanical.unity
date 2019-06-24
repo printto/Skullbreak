@@ -834,11 +834,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 489180647}
-  holder: {fileID: 0}
+  holder: {fileID: 1522224195}
   smoothSpeed: 0.05
   yPosRestriction: -1
   offset: {x: 5, y: 2, z: 0}
-  cameraYOffset: -0.7070175
 --- !u!1001 &807261141
 Prefab:
   m_ObjectHideFlags: 0
@@ -992,25 +991,6 @@ Prefab:
     - target: {fileID: 4726419646421972, guid: 3a3aae9d2e7575547adfeb1239bcffc6, type: 2}
       propertyPath: m_RootOrder
       value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 4100250148060612, guid: 3a3aae9d2e7575547adfeb1239bcffc6, type: 2}
-      propertyPath: m_RootOrder
-      value: 13
-      objectReference: {fileID: 0}
-    - target: {fileID: 114462039578628502, guid: 3a3aae9d2e7575547adfeb1239bcffc6,
-        type: 2}
-      propertyPath: RoadSegments.Array.data[3]
-      value: 
-      objectReference: {fileID: 1771244492606170, guid: 033725a9d1b904c4ba09336596da3c88,
-        type: 2}
-    - target: {fileID: 114159370746148240, guid: 3a3aae9d2e7575547adfeb1239bcffc6,
-        type: 2}
-      propertyPath: player
-      value: 
-      objectReference: {fileID: 1522224193}
-    - target: {fileID: 4100250148060612, guid: 3a3aae9d2e7575547adfeb1239bcffc6, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: -3.61
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3a3aae9d2e7575547adfeb1239bcffc6, type: 2}
@@ -1272,6 +1252,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DegreeToTurn: 0
   Delay: 1
+--- !u!4 &1522224195 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4509375303536686, guid: ebae15917358f7a48a80b2f3525d94d8,
+    type: 2}
+  m_PrefabInternal: {fileID: 1522224192}
 --- !u!1 &1990245408
 GameObject:
   m_ObjectHideFlags: 0
