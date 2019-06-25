@@ -9,6 +9,7 @@ public class MenuSceneButtons : MonoBehaviour
     private void Start()
     {
         Cursor.lockState = CursorLockMode.None;
+        
     }
 
     public void StageMode()
@@ -25,8 +26,6 @@ public class MenuSceneButtons : MonoBehaviour
     {
         SceneManager.LoadScene(1);
     }
-
-
 
     public void Mainmenu()
     {

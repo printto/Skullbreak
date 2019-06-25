@@ -15,11 +15,6 @@ public class User {
         userscore = score;
     }
 
-    public virtual void OnLoad(GameObject gameObject)
-    {
-
-    }
-
     public void SetName (string name)
     {
         username = name;
