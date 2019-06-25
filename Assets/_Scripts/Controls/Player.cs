@@ -44,6 +44,7 @@ public class Player : MonoBehaviour{
     //Buffs
     public static bool isSlowedDown = false;
     public static bool isDashing = false;
+    public static bool isTeleporting = false;
 
     Rigidbody rb;
 
@@ -233,6 +234,11 @@ public class Player : MonoBehaviour{
             transform.Translate(new Vector3(0f, 0f, toGo) * MoveSpeed * Time.deltaTime, Space.Self);
         }
 
+        if (Input.GetAxis("Vertical") < 0)
+        {
+            Teleport();
+        }
+
         //Keyboard move
         transform.Translate(new Vector3(-1, 0f, Input.GetAxis("Horizontal")) * MoveSpeed * Time.deltaTime, Space.Self);
     }
@@ -247,6 +253,23 @@ public class Player : MonoBehaviour{
                 CancelDash();
             }
             isGrounded = false;
+        }
+    }
+
+    void Teleport()
+    {
+        if (isGrounded && !isTeleporting)
+        {
+            isTeleporting = true;
+            Invoke("CancelTeleport", 2);
+        }
+    }
+    
+    void CancelTeleport()
+    {
+        if (isTeleporting)
+        {
+            isTeleporting = false;
         }
     }
 
@@ -306,6 +329,14 @@ public class Player : MonoBehaviour{
 
     private void OnCollisionEnter(Collision collision)
     {
+        if (isTeleporting)
+        {
+            if (!collision.gameObject.tag.Equals("Ground"))
+            {
+                Physics.IgnoreCollision(collision.collider, GetComponent<Collider>());
+            }
+        }
+
         if (collision.gameObject.tag.Equals("Ground"))
         {
             if (!isGrounded)
