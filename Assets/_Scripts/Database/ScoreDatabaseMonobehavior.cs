@@ -8,29 +8,22 @@ using System.Threading;
 using UnityEngine;
 using UnityEngine.Networking;
 
-public class ScoreDatabase
+public class ScoreDatabaseMonobehavior : MonoBehaviour
 {
 
-    static UnityWebRequest www;
-
-    public static void save(string name, float score)
+    public void save(string name, float score)
     {
-        string url = Environment.DatabaseURL + name + ".json";
-        www = UnityWebRequest.Get(url);
-        www.SendWebRequest();
-        //new Thread(() => saveTask(name, score)).Start();
-        saveTask(name, score);
+        StartCoroutine(saveTask(name, score));
     }
 
-    static void saveTask(string name, float score)
+    IEnumerator saveTask(string name, float score)
     {
-        while (!www.isDone)
+        string url = Environment.DatabaseURL + name + ".json";
+        UnityWebRequest www = UnityWebRequest.Get(url);
+        yield return www.SendWebRequest();
+        if (www.isHttpError || www.isNetworkError)
         {
-            if(www.isHttpError || www.isNetworkError)
-            {
-                Debug.LogError("Network error here");
-                break;
-            }
+            Debug.LogError("Network error here");
         }
         try
         {

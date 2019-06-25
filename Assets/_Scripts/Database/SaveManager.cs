@@ -4,7 +4,7 @@ using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine;
 
-public class UserSaveManager : MonoBehaviour {
+public class SaveManager : MonoBehaviour {
 
     public void Save(User user)
     {
@@ -14,7 +14,7 @@ public class UserSaveManager : MonoBehaviour {
         file.Close();
     }
 
-    public User Load()
+    public bool Load()
     {
         if (File.Exists(Application.persistentDataPath + "/Zzzsave.dat"))
         {
@@ -24,21 +24,28 @@ public class UserSaveManager : MonoBehaviour {
             User user = (User) bf.Deserialize(file);
             Debug.Log("Save file: " + user.username + " " + user.userscore);
             file.Close();
-            return user;
+            return true;
         }
         else
         {
             Debug.Log("File does not exist!");
-            return null;
+            return false;
         }
     }
 
     public void CreateSave()
     {
-        if (Load() == null)
+        if (!Load())
         {
-            Debug.Log("Trying to create the new save file");
-            Save(new User("Me test", 0));
+            if(UserManager.user != null)
+            {
+                Debug.Log("Trying to create the new save file");
+                Save(new User("Me test", 0));
+            }
+            else
+            {
+                Debug.Log("User is null");
+            }
         }
     }
 
