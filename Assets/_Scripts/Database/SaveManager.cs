@@ -21,8 +21,8 @@ public class SaveManager : MonoBehaviour {
             Debug.Log("File does exist!");
             BinaryFormatter bf = new BinaryFormatter();
             FileStream file = File.Open(Application.persistentDataPath + "/Zzzsave.dat", FileMode.Open);
-            User user = (User) bf.Deserialize(file);
-            Debug.Log("Save file: " + user.username + " " + user.userscore);
+            UserManager.user = (User) bf.Deserialize(file);
+            Debug.Log("Save file: " + UserManager.user.username + " " + UserManager.user.userscore);
             file.Close();
             return true;
         }
@@ -40,7 +40,7 @@ public class SaveManager : MonoBehaviour {
             if(UserManager.user != null)
             {
                 Debug.Log("Trying to create the new save file");
-                Save(new User("Me test", 0));
+                Save(UserManager.user);
             }
             else
             {
