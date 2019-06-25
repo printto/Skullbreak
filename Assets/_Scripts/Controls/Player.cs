@@ -48,6 +48,7 @@ public class Player : MonoBehaviour{
     public static bool isSlowedDown = false;
     public static bool isDashing = false;
     public static bool isTeleporting = false;
+    public static float speedUp = 20;
 
     Rigidbody rb;
 
@@ -263,9 +264,10 @@ public class Player : MonoBehaviour{
     {
         if (isGrounded && !isTeleporting)
         {
-            Debug.Log("Teleporting");
             isTeleporting = true;
-            Invoke("CancelTeleport", 2);
+            MoveSpeed += speedUp;
+            GetComponent<MeshRenderer>().enabled = false;
+            Invoke("CancelTeleport", 1);
         }
     }
     
@@ -273,8 +275,9 @@ public class Player : MonoBehaviour{
     {
         if (isTeleporting)
         {
-            Debug.Log("Teleporting ended");
             isTeleporting = false;
+            MoveSpeed -= speedUp;
+            GetComponent<MeshRenderer>().enabled = true;
         }
     }
 
@@ -337,9 +340,9 @@ public class Player : MonoBehaviour{
         if (isTeleporting)
         {
             if (!collision.gameObject.tag.Equals("Ground"))
-            {
-                
-                Physics.IgnoreCollision(collision.collider, GetComponent<Collider>());
+            {            
+                Physics.IgnoreCollision(GetComponent<Collider>(), collision.collider);
+                Physics.IgnoreCollision(GetComponentInChildren<Collider>(), collision.collider);
             }
         }
 
@@ -351,7 +354,7 @@ public class Player : MonoBehaviour{
             }
         }
 
-        if (collision.gameObject.tag.Equals("Monster"))
+        if (collision.gameObject.tag.Equals("Monster") && !isTeleporting)
         {
             Debug.Log("Hit Monster : Player Body");
             Slowdown();
