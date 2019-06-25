@@ -9,7 +9,7 @@ public class HitFace : MonoBehaviour {
     string[] obstacleTags = { "Obstacle", "Dashable", "Monster"};
 
       private void OnCollisionEnter(Collision collision)
-    {   
+    { 
         //Debug.Log("Obstacle: Hit something");
         if (collision.gameObject.tag.Equals("Dashable") && Player.isDashing)
         {

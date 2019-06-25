@@ -263,6 +263,7 @@ public class Player : MonoBehaviour{
     {
         if (isGrounded && !isTeleporting)
         {
+            Debug.Log("Teleporting");
             isTeleporting = true;
             Invoke("CancelTeleport", 2);
         }
@@ -272,6 +273,7 @@ public class Player : MonoBehaviour{
     {
         if (isTeleporting)
         {
+            Debug.Log("Teleporting ended");
             isTeleporting = false;
         }
     }
@@ -336,6 +338,7 @@ public class Player : MonoBehaviour{
         {
             if (!collision.gameObject.tag.Equals("Ground"))
             {
+                
                 Physics.IgnoreCollision(collision.collider, GetComponent<Collider>());
             }
         }
