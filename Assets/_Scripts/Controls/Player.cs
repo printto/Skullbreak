@@ -12,6 +12,9 @@ public class Player : MonoBehaviour{
     private int lifePoint =  2;
     private int coin = 0;
 
+    //Tutorial checkpoint count;
+    private int counts = 0;
+
     //Movement
     public float MoveSpeed = 10;
     float CurrentMoveSpeed = 0;
@@ -64,7 +67,7 @@ public class Player : MonoBehaviour{
         {
             GameMaster.SetLife(3);
         }
-
+        counts = 0;
         ScoreManager.SetScore(0);
         ScoreManager.SetCoin(0);
         rb = GetComponent<Rigidbody>();
@@ -322,6 +325,23 @@ public class Player : MonoBehaviour{
 
         fallDamage.setSavePoint(transform.position.x, transform.position.y, transform.position.z);
 
+    }
+
+    //Tutorial Area
+
+    public  int getTutorialCount()
+    {
+        return counts;
+    }
+
+    public  void SetCount(int count)
+    {
+        counts = count;
+    }
+
+    public  void AddCount(int count)
+    {
+        counts += count;
     }
 
 }

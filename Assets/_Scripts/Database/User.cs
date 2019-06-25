@@ -7,12 +7,27 @@ using UnityEngine;
 public class User {
 
     public string username;
-    public float userscore;
+    public float userscore = 0;
 
     public User(string name, float score)
     {
         username = name;
         userscore = score;
+    }
+
+    public void SetName (string name)
+    {
+        username = name;
+    }
+
+    public bool CommitScore (float score)
+    {
+        if (userscore < score)
+        {
+            userscore = score;
+            return true;
+        }
+        return false;
     }
 
 }
