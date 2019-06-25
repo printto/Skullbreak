@@ -22,10 +22,18 @@
 - Visual Code
 
 ## Compiling the code
-- To compile code, edit ``Environment.cs`` in ``Assets`` folder according to your Firebase project.
+- To compile code, create ``Environment.cs`` in ``Assets`` folder according to your Firebase project.
+```cs
+public class Environment {
+
+    public static string DatabaseURL = "YOUR_URL_HERE";
+
+}
+```
 
 ## External links
 - [Github Repository](https://github.com/printto/Zzzprint)
-- [Prototype Development Presentation (.pptx)](https://cdn.discordapp.com/attachments/588698894532345886/590825081035554816/Prototype_Development.pptx)
+- [Prototype Development Presentation (Early)](https://cdn.discordapp.com/attachments/588698894532345886/590825081035554816/Prototype_Development.pptx)
+- [Prototype Development Presentation (25/6/2019)](https://drive.google.com/file/d/1s4xoBempg3VoIfzhScVr9wwRxkhOYjQr/view?usp=sharing)
 - [Development's Google Drive](https://drive.google.com/drive/folders/1x1CGor69j8aDGON0jWjLoON9usODwUpd)
 - [Early-prototype Screenshots](https://drive.google.com/drive/folders/1PuOcTmSGXSQyfSzojNbPIvL4A9Tq0Lni?usp=sharing)
