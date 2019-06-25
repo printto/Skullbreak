@@ -4,28 +4,30 @@ using Proyecto26;
 using System.Collections;
 using System.Collections.Generic;
 using System.Security.Policy;
+using System.Threading;
 using UnityEngine;
 using UnityEngine.Networking;
 
-public class ScoreDatabase
+public class ScoreDatabaseMonobehavior : MonoBehaviour
 {
 
-    public static void save(string name, float score)
+    public void save(string name, float score)
     {
-        saveTask(name, score);
+        StartCoroutine(saveTask(name, score));
     }
 
-    static void saveTask(string name, float score)
+    IEnumerator saveTask(string name, float score)
     {
         string url = Environment.DatabaseURL + name + ".json";
-        WWW www = new WWW(url);
-        while (!www.isDone)
+        UnityWebRequest www = UnityWebRequest.Get(url);
+        yield return www.SendWebRequest();
+        if (www.isHttpError || www.isNetworkError)
         {
-            //Do nothing
+            Debug.LogError("Network error here");
         }
         try
         {
-            User dluser = JsonUtility.FromJson<User>(www.text);
+            User dluser = JsonUtility.FromJson<User>(www.downloadHandler.text);
             if (dluser.userscore < score)
             {
                 RestClient.Put(Environment.DatabaseURL + name + ".json", new User(name, score));

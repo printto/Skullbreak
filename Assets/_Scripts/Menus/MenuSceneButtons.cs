@@ -5,13 +5,10 @@ using UnityEngine.SceneManagement;
 
 public class MenuSceneButtons : MonoBehaviour
 {
-
-
-
+    
     private void Start()
     {
         Cursor.lockState = CursorLockMode.None;
-        ScoreDatabase.save("Test", 12);
     }
 
     public void StageMode()
