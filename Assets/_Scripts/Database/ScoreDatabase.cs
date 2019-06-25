@@ -4,28 +4,37 @@ using Proyecto26;
 using System.Collections;
 using System.Collections.Generic;
 using System.Security.Policy;
+using System.Threading;
 using UnityEngine;
 using UnityEngine.Networking;
 
 public class ScoreDatabase
 {
 
+    static UnityWebRequest www;
+
     public static void save(string name, float score)
     {
+        string url = Environment.DatabaseURL + name + ".json";
+        www = UnityWebRequest.Get(url);
+        www.SendWebRequest();
+        //new Thread(() => saveTask(name, score)).Start();
         saveTask(name, score);
     }
 
     static void saveTask(string name, float score)
     {
-        string url = Environment.DatabaseURL + name + ".json";
-        WWW www = new WWW(url);
         while (!www.isDone)
         {
-            //Do nothing
+            if(www.isHttpError || www.isNetworkError)
+            {
+                Debug.LogError("Network error here");
+                break;
+            }
         }
         try
         {
-            User dluser = JsonUtility.FromJson<User>(www.text);
+            User dluser = JsonUtility.FromJson<User>(www.downloadHandler.text);
             if (dluser.userscore < score)
             {
                 RestClient.Put(Environment.DatabaseURL + name + ".json", new User(name, score));
