@@ -10,7 +10,9 @@ public class showInstructions : MonoBehaviour {
     public Text instruction;
     static Transform checkPointTransform;
     static Transform playerTransform;
-    
+
+    float duration = 5;
+
 
     private static float x = 0;
     private static float y = 0;
@@ -21,6 +23,8 @@ public class showInstructions : MonoBehaviour {
     
         playerTransform = player;
         checkPointTransform = DragTransform;
+       
+
     }
 
     public static void setSavePoint(float x, float y, float z)
@@ -103,9 +107,8 @@ public class showInstructions : MonoBehaviour {
     IEnumerator displayText()
     {
         instruction.text = "GOOD STUFF! NOW USE WHAT YOU LEARN AND TRY COLLECTING THESE COINS";
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(3f);
         instruction.text = "";
-
     }
 
 
@@ -115,5 +118,9 @@ public class showInstructions : MonoBehaviour {
         Debug.Log("Respawned!");
         Debug.Log(showInstructions.x.ToString() + ", " + showInstructions.x.ToString() + ", " + showInstructions.z.ToString());
     }
+
+
+
+
 
 }
