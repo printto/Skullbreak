@@ -1,4 +1,4 @@
-# Zzzprint
+# Project Dogwalk
 ### Endless runner project
 
 ## Concept Inspiration
