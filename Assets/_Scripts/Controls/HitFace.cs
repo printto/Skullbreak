@@ -35,7 +35,7 @@ public class HitFace : MonoBehaviour {
             StartCoroutine(Stop());
 
         }
-        else if (Array.IndexOf(obstacleTags, collision.gameObject.tag) > -1 && GameMaster.lifePoint <= 0)
+        else if (Array.IndexOf(obstacleTags, collision.gameObject.tag) > -1 && GameMaster.lifePoint <= 0 && !Player.isTeleporting)
         {
             DeadScene();
         }

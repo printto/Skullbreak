@@ -61,7 +61,8 @@ public class Player : MonoBehaviour{
 
     // Use this for initialization
     void Start()
-    {   if(SceneManager.GetActiveScene().name.Equals("EndlessMode"))
+    {
+        if (SceneManager.GetActiveScene().name.Equals("EndlessMode"))
         {
             GameMaster.SetLife(0);
         }
@@ -76,6 +77,7 @@ public class Player : MonoBehaviour{
         //Cursor.lockState = CursorLockMode.Locked;
         isSlowedDown = false;
         isDashing = false;
+        isTeleporting = false;
     }
 
     private Ray GenerateMouseRay(Vector3 touchPos)
@@ -339,7 +341,7 @@ public class Player : MonoBehaviour{
     {
         if (isTeleporting)
         {
-            if (!collision.gameObject.tag.Equals("Ground"))
+            if (!collision.gameObject.tag.Equals("Ground") || !collision.gameObject.tag.Equals("Wall"))
             {            
                 Physics.IgnoreCollision(GetComponent<Collider>(), collision.collider);
                 Physics.IgnoreCollision(GetComponentInChildren<Collider>(), collision.collider);
