@@ -37,19 +37,26 @@ public class Monster : MonoBehaviour {
         {
             Dead();
         }
-        else if ((collision.gameObject.tag.Equals("Player") || collision.gameObject.tag.Equals("PlayerFace")) && GameMaster.lifePoint > 0)
+
+        if ((collision.gameObject.tag.Equals("Player") || collision.gameObject.tag.Equals("PlayerFace")) && GameMaster.lifePoint > 0)
         {
             if (!isHit)
             {
                 isHit = true;
-                GameMaster.removeLife(1);
-                Debug.Log("Hit Monster : Monster removeLife");
+                if (!Player.isTeleporting)
+                {
+                    GameMaster.removeLife(1);
+                    Debug.Log("Hit Monster : Monster removeLife");
+                }
             }
             Dead();
         }
         else if ((collision.gameObject.tag.Equals("Player") || collision.gameObject.tag.Equals("PlayerFace")) && GameMaster.lifePoint <= 0)
         {
-            EndGame();
+            if(!Player.isTeleporting)
+            {
+                EndGame();
+            }
             Dead();
         }
         else
