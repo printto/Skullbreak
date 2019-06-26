@@ -44,7 +44,7 @@ GameObject:
   - component: {fileID: 65979520102951836}
   m_Layer: 0
   m_Name: wall1
-  m_TagString: Wall
+  m_TagString: LWall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -239,7 +239,7 @@ GameObject:
   - component: {fileID: 65725035603236976}
   m_Layer: 0
   m_Name: wall2
-  m_TagString: Wall
+  m_TagString: RWall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1230,7 +1230,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 126
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!54 &54143695308745012
 Rigidbody:
   m_ObjectHideFlags: 1
@@ -1245,7 +1245,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 126
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!54 &54145658522368624
 Rigidbody:
   m_ObjectHideFlags: 1
@@ -1435,8 +1435,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 10, y: 1.25, z: 10.000002}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 10, y: 0.6136706, z: 10.000002}
+  m_Center: {x: 0, y: -0.31816477, z: 1.9373643e-15}
 --- !u!65 &65749913473443598
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -1483,8 +1483,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 10, y: 1.25, z: 10.000002}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 10, y: 0.6226543, z: 10.000002}
+  m_Center: {x: 0, y: -0.3136729, z: -1.8096978e-15}
 --- !u!95 &95746279902944812
 Animator:
   serializedVersion: 3
