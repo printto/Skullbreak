@@ -50,10 +50,11 @@ public class HitFace : MonoBehaviour {
 
     private void DeadScene()
     {
-        SceneManager.LoadScene(2);
+        //SceneManager.LoadScene(2);
+        Initiate.Fade("DeadScene", Color.black, 1.5f);
     }
 
-   
+
 
     //not yet implemented
     //For when crashing, it will pause for a seconds then move forward.
