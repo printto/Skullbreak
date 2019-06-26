@@ -4,9 +4,9 @@ using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine;
 
-public class SaveManager : MonoBehaviour {
+public class SaveManager {
 
-    public void Save(User user)
+    public static void Save(User user)
     {
         BinaryFormatter bf = new BinaryFormatter();
         FileStream file = File.Open(Application.persistentDataPath + "/Zzzsave.dat", FileMode.OpenOrCreate);
@@ -14,7 +14,7 @@ public class SaveManager : MonoBehaviour {
         file.Close();
     }
 
-    public bool Load()
+    public static bool Load()
     {
         if (File.Exists(Application.persistentDataPath + "/Zzzsave.dat"))
         {
@@ -33,6 +33,7 @@ public class SaveManager : MonoBehaviour {
         }
     }
 
+    //This one is null until UserManager.cs created the user. Currently unused for now.
     public void CreateSave()
     {
         if (!Load())
