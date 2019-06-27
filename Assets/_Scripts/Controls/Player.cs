@@ -179,7 +179,7 @@ public class Player : MonoBehaviour{
                     {
                         TeleportSwipeTest();
                     }
-                    else if (isTeleporting)
+                    else if (lp.y > fp.y && isTeleporting)
                     {
                         CancelTeleportSwipeTest();
                     }
