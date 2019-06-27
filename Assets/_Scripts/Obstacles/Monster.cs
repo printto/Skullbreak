@@ -45,7 +45,6 @@ public class Monster : MonoBehaviour {
                 if (!Player.isTeleporting)
                 {
                     GameMaster.removeLife(1);
-                    Debug.Log("Hit Monster : Monster removeLife");
                 }
             }
             Dead();
@@ -58,8 +57,9 @@ public class Monster : MonoBehaviour {
             }
             Dead();
         }
-        else
+        else if (collision.collider.tag.Equals("LWall") || collision.collider.tag.Equals("RWall"))
         {
+            Debug.Log("Monster hit wall!!");
             ChangeDirection();
         }
         
