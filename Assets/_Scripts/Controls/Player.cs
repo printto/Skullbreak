@@ -86,7 +86,6 @@ public class Player : MonoBehaviour{
 
         Ray mr = new Ray(mousePosN, mousePosF - mousePosN);
         return mr;
-
     }
 
     int countFrame = 0;
@@ -201,7 +200,7 @@ public class Player : MonoBehaviour{
 
     /*
      * 
-     * Codes under this comment are
+     * Codes below this comment are
      * for input controlling functions
      * 
      */
