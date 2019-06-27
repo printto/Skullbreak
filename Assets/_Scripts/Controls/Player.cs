@@ -186,42 +186,42 @@ public class Player : MonoBehaviour{
                     }
                     */
                 }
-                else if (touch.phase == TouchPhase.Ended) //check if the finger is removed from the screen
+            }
+            else if (touch.phase == TouchPhase.Ended) //check if the finger is removed from the screen
+            {
+                lp = touch.position;  //last touch position. Ommitted if you use list
+
+                if (isTeleporting)
                 {
-                    lp = touch.position;  //last touch position. Ommitted if you use list
+                    CancelTeleportSwipeTest();
+                }
 
-                    if (isTeleporting)
+                //Check if drag distance is greater than dragDistance of the screen height
+                if (Mathf.Abs(lp.x - fp.x) > dragDistance || Mathf.Abs(lp.y - fp.y) > dragDistance)
+                {
+                    //It's a drag
+                    //the vertical movement is greater than the horizontal movement
+                    if (Mathf.Abs(lp.x - fp.x) < Mathf.Abs(lp.y - fp.y))
                     {
-                        CancelTeleportSwipeTest();
-                    }
-
-                    //Check if drag distance is greater than dragDistance of the screen height
-                    if (Mathf.Abs(lp.x - fp.x) > dragDistance || Mathf.Abs(lp.y - fp.y) > dragDistance)
-                    {
-                        //It's a drag
-                        //the vertical movement is greater than the horizontal movement
-                        if (Mathf.Abs(lp.x - fp.x) < Mathf.Abs(lp.y - fp.y))
+                        if (lp.y > fp.y)
                         {
-                            if (lp.y > fp.y)
-                            {
-                                //Up swipe
-                                Debug.Log("Up Swipe");
-                                Jump(touchJumpSpeed);
-                            }
-                            else
-                            {
-                                //Down swipe
-                                //Dashing is unused
-                                //Dash();
-                                Debug.Log("Down Swipe");
-                            }
+                            //Up swipe
+                            Debug.Log("Up Swipe");
+                            Jump(touchJumpSpeed);
+                        }
+                        else
+                        {
+                            //Down swipe
+                            //Dashing is unused
+                            //Dash();
+                            Debug.Log("Down Swipe");
                         }
                     }
-                    else
-                    {   //It's a tap as the drag distance is less than dragDistance of the screen height
+                }
+                else
+                {   //It's a tap as the drag distance is less than dragDistance of the screen height
 
-                        //ShootBullet();
-                    }
+                    //ShootBullet();
                 }
             }
         }
