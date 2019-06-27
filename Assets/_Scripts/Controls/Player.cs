@@ -101,7 +101,6 @@ public class Player : MonoBehaviour{
 
         Ray mr = new Ray(mousePosN, mousePosF - mousePosN);
         return mr;
-
     }
 
     int countFrame = 0;
@@ -173,36 +172,56 @@ public class Player : MonoBehaviour{
             else if (touch.phase == TouchPhase.Moved) // update the last position based on where they moved
             {
                 lp = touch.position;
-            }
-            else if (touch.phase == TouchPhase.Ended) //check if the finger is removed from the screen
-            {
-                lp = touch.position;  //last touch position. Ommitted if you use list
-
-                //Check if drag distance is greater than dragDistance of the screen height
+                //This can do the teleport things I think. Check for swipe down and detect ending in TouchPhase.Ended
                 if (Mathf.Abs(lp.x - fp.x) > dragDistance || Mathf.Abs(lp.y - fp.y) > dragDistance)
                 {
-                    //It's a drag
-                    //the vertical movement is greater than the horizontal movement
-                    if (Mathf.Abs(lp.x - fp.x) < Mathf.Abs(lp.y - fp.y))
+                    if (lp.y < fp.y && !isTeleporting)
                     {
-                        if (lp.y > fp.y)
+                        TeleportSwipeTest();
+                    }
+                    /*
+                    else if (lp.y > fp.y && isTeleporting)
+                    {
+                        CancelTeleportSwipeTest();
+                    }
+                    */
+                }
+                else if (touch.phase == TouchPhase.Ended) //check if the finger is removed from the screen
+                {
+                    lp = touch.position;  //last touch position. Ommitted if you use list
+
+                    if (isTeleporting)
+                    {
+                        CancelTeleportSwipeTest();
+                    }
+
+                    //Check if drag distance is greater than dragDistance of the screen height
+                    if (Mathf.Abs(lp.x - fp.x) > dragDistance || Mathf.Abs(lp.y - fp.y) > dragDistance)
+                    {
+                        //It's a drag
+                        //the vertical movement is greater than the horizontal movement
+                        if (Mathf.Abs(lp.x - fp.x) < Mathf.Abs(lp.y - fp.y))
                         {
-                            //Up swipe
-                            Debug.Log("Up Swipe");
-                            Jump(touchJumpSpeed);
-                        }
-                        else
-                        {
-                            //Down swipe
-                            Dash();
-                            Debug.Log("Down Swipe");
+                            if (lp.y > fp.y)
+                            {
+                                //Up swipe
+                                Debug.Log("Up Swipe");
+                                Jump(touchJumpSpeed);
+                            }
+                            else
+                            {
+                                //Down swipe
+                                //Dashing is unused
+                                //Dash();
+                                Debug.Log("Down Swipe");
+                            }
                         }
                     }
-                }
-                else
-                {   //It's a tap as the drag distance is less than dragDistance of the screen height
+                    else
+                    {   //It's a tap as the drag distance is less than dragDistance of the screen height
 
-                    //ShootBullet();
+                        //ShootBullet();
+                    }
                 }
             }
         }
@@ -216,7 +235,7 @@ public class Player : MonoBehaviour{
 
     /*
      * 
-     * Codes under this comment are
+     * Codes below this comment are
      * for input controlling functions
      * 
      */
@@ -320,7 +339,28 @@ public class Player : MonoBehaviour{
         }
     }
 
-    void Dash()
+            void TeleportSwipeTest()
+            {
+                if (isGrounded && !isTeleporting)
+                {
+                    isTeleporting = true;
+                    MoveSpeed += speedUp;
+                    GetComponent<MeshRenderer>().enabled = false;
+                    //Invoke("CancelTeleport", 1);
+                }
+            }
+
+            void CancelTeleportSwipeTest()
+            {
+                if (isTeleporting)
+                {
+                    isTeleporting = false;
+                    MoveSpeed -= speedUp;
+                    GetComponent<MeshRenderer>().enabled = true;
+                }
+            }
+
+            void Dash()
     {
         Debug.Log("Dashing called");
         if (isGrounded && !isDashing)
