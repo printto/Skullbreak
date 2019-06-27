@@ -179,10 +179,12 @@ public class Player : MonoBehaviour{
                     {
                         TeleportSwipeTest();
                     }
+                    /*
                     else if (lp.y > fp.y && isTeleporting)
                     {
                         CancelTeleportSwipeTest();
                     }
+                    */
                 }
                 else if (touch.phase == TouchPhase.Ended) //check if the finger is removed from the screen
                 {
