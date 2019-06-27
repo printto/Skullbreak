@@ -46,9 +46,9 @@ public class Player : MonoBehaviour{
     private float dragDistance = Screen.height * 5 / 100;
 
     //Buffs
-    public static bool isSlowedDown = false;
     public static bool isDashing = false;
     public static bool isTeleporting = false;
+    public static bool isDamaged = false;
     public static float speedUp = 20;
 
     // Detect if player has a contact with the wall
@@ -84,9 +84,9 @@ public class Player : MonoBehaviour{
         ScoreManager.SetCoin(0);
         rb = GetComponent<Rigidbody>();
         //Cursor.lockState = CursorLockMode.Locked;
-        isSlowedDown = false;
         isDashing = false;
         isTeleporting = false;
+        isDamaged = false;
         hasContactWithLWall = false;
         hasContactWithRWall = false;
 }
@@ -283,7 +283,6 @@ public class Player : MonoBehaviour{
         {
             if (Input.GetAxis("Horizontal") > 0f)
             {
-                Debug.Log("Axis : "+Input.GetAxis("Horizontal"));
                 transform.Translate(new Vector3(-1, 0f, 0f) * MoveSpeed * Time.deltaTime, Space.Self);
             }
             else
@@ -386,28 +385,18 @@ public class Player : MonoBehaviour{
 
     public void Slowdown()
     {
-
-        Debug.Log("Slowdown called");
-        if (!isSlowedDown)
-        {
-            CurrentMoveSpeed = MoveSpeed;
-            MoveSpeed = SlowdownMoveSpeed;
-            Debug.Log("Slowdown started");
-            isSlowedDown = true;
-            Invoke("CancelSlowdown", 1);
-        }
+        Debug.Log("Slowdowned");
+        isDamaged = true;
+        CurrentMoveSpeed = MoveSpeed;
+        MoveSpeed = SlowdownMoveSpeed;
+        Invoke("CancelSlowdown", 1);
     }
 
     void CancelSlowdown()
     {
-        Debug.Log("Slowdown ended");
-        if (isSlowedDown)
-        {
-            MoveSpeed = CurrentMoveSpeed;
-        }
-        isSlowedDown = false;
+        isDamaged = false;
+        MoveSpeed = CurrentMoveSpeed;
     }
-
 
     /*
      * 
@@ -432,9 +421,7 @@ public class Player : MonoBehaviour{
                 {
                     isGrounded = true;
                 }
-            }
-
-            if (collision.gameObject.tag.Equals("Monster") && !isTeleporting)
+            } else if (collision.gameObject.tag.Equals("Monster"))
             {
                 Slowdown();
             }
