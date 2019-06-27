@@ -12,7 +12,9 @@ public class pauseMenu : MonoBehaviour {
 
     public GameObject settingUI;
 
- 
+    public Animator animator;
+
+
 
     public void openPauseMenu()
     {
@@ -43,13 +45,15 @@ public class pauseMenu : MonoBehaviour {
     public void Menu()
     {
         SceneManager.LoadScene(0);
+        animator.SetTrigger("fadeSceneOut");
         pauseMenuUI.SetActive(false);
         Time.timeScale = 1f;
         GameIsPaused = false;
     }
 
     public void Exit()
-    {
+    {   
+        
         Application.Quit();
         //pauseMenuUI.SetActive(false);
        // Time.timeScale = 1f;
@@ -70,5 +74,11 @@ public class pauseMenu : MonoBehaviour {
         SettingIsOpened = false;
         settingUI.gameObject.SetActive(false);
         pauseMenuUI.gameObject.SetActive(true);
+    }
+
+
+    public void FadeToLevel(int levelIndex)
+    {
+        animator.SetTrigger("fadeSceneOut");
     }
 }
