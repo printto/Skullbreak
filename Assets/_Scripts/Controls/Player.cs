@@ -71,6 +71,10 @@ public class Player : MonoBehaviour{
         {
             GameMaster.SetLife(0);
         }
+        else if(SceneManager.GetActiveScene().name.Equals("TutorialLevel"))
+        {
+            GameMaster.SetLife(99);
+        }
         else
         {
             GameMaster.SetLife(3);
