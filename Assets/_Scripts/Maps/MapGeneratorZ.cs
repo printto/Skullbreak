@@ -13,7 +13,7 @@ public class MapGeneratorZ : MonoBehaviour {
         createdNext = false;
     }
 
-    int countDown = 60 * 5;
+    int countDown = 60 * 10;
 	// Update is called once per frame
 	void FixedUpdate () {
         if ( countDown-- <= 0)

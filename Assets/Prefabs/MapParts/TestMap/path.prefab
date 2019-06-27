@@ -40,8 +40,8 @@ GameObject:
   - component: {fileID: 4484458168411742}
   - component: {fileID: 33328786896014048}
   - component: {fileID: 23152785285404612}
-  - component: {fileID: 114345302722750900}
   - component: {fileID: 64302937311411200}
+  - component: {fileID: 114313315505414986}
   m_Layer: 0
   m_Name: path
   m_TagString: Ground
@@ -1042,7 +1042,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ScoreToAdd: 1
---- !u!114 &114345302722750900
+--- !u!114 &114313315505414986
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1050,7 +1050,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1026914512883616}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fb8207576bf4ca544891201d93924a73, type: 3}
+  m_Script: {fileID: 11500000, guid: 41310c2f6e1f7ee43b49ba93f127fe09, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   CurrentSegment: {fileID: 1026914512883616}
