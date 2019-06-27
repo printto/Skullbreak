@@ -7,7 +7,11 @@ public class LoadnewScene : MonoBehaviour {
 
     private void OnTriggerEnter(Collider other)
     {
-        SceneManager.LoadScene(0);
+        if(other.gameObject.tag.Equals("Player"))
+        {
+            Debug.Log(SceneManager.GetSceneAt(0).ToString());
+            SceneManager.LoadScene(0);
+        }       
     }
 
 }
