@@ -74,7 +74,7 @@ public class Monster : MonoBehaviour {
     void EndGame()
     {
         //SceneManager.LoadScene(2);
-        Initiate.Fade("DeadScene", Color.black, 1.5f);
+        Initiate.Fade("DeadScene", Color.black, 4f);
 
     }
 

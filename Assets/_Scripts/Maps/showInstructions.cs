@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class showInstructions : MonoBehaviour {
+public class showInstructions : MonoBehaviour
+{
 
     public Transform DragTransform;
     public Transform player;
@@ -19,11 +20,11 @@ public class showInstructions : MonoBehaviour {
     private static float z = 0;
 
     private void Start()
-    {   
-    
+    {
+
         playerTransform = player;
         checkPointTransform = DragTransform;
-       
+
 
     }
 
@@ -53,7 +54,7 @@ public class showInstructions : MonoBehaviour {
             saveCheckPoint();
         }
 
-        else if(other.gameObject.tag.Equals("Player") && other.GetComponent<Player>().getTutorialCount() == 2)
+        else if (other.gameObject.tag.Equals("Player") && other.GetComponent<Player>().getTutorialCount() == 2)
         {
             Debug.Log(other.GetComponent<Player>().getTutorialCount());
             instruction.text = "TO STEER \n DRAG MONSTER TO LEFT AND RIGHT!";
@@ -61,7 +62,7 @@ public class showInstructions : MonoBehaviour {
             saveCheckPoint();
         }
 
-        else if(other.gameObject.tag.Equals("Player") && other.GetComponent<Player>().getTutorialCount() == 3)
+        else if (other.gameObject.tag.Equals("Player") && other.GetComponent<Player>().getTutorialCount() == 3)
         {
             Debug.Log(other.GetComponent<Player>().getTutorialCount());
             instruction.text = "GOOD JOB!!";
@@ -113,8 +114,9 @@ public class showInstructions : MonoBehaviour {
 
 
     public static void respawnPlayerAtCheckPoint()
-    {
-        playerTransform.SetPositionAndRotation(new Vector3(checkPointTransform.transform.position.x, checkPointTransform.transform.position.y + 0.5f, checkPointTransform.transform.position.z), checkPointTransform.gameObject.transform.rotation);
+    {   
+
+        playerTransform.SetPositionAndRotation(new Vector3(checkPointTransform.transform.position.x - 3f, checkPointTransform.transform.position.y + 1f, checkPointTransform.transform.position.z + 1f), checkPointTransform.gameObject.transform.rotation);
         Debug.Log("Respawned!");
         Debug.Log(showInstructions.x.ToString() + ", " + showInstructions.x.ToString() + ", " + showInstructions.z.ToString());
     }
