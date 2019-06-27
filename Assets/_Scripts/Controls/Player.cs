@@ -263,18 +263,18 @@ public class Player : MonoBehaviour{
         {
             if (Input.GetAxis("Horizontal") > 0f)
             {
-                transform.Translate(new Vector3(-1, 0f, 0) * MoveSpeed * Time.deltaTime, Space.Self);
+                Debug.Log("Axis : "+Input.GetAxis("Horizontal"));
+                transform.Translate(new Vector3(-1, 0f, 0f) * MoveSpeed * Time.deltaTime, Space.Self);
             }
             else
             {
                 transform.Translate(new Vector3(-1, 0f, Input.GetAxis("Horizontal")) * MoveSpeed * Time.deltaTime, Space.Self);
             }
-        }
-        if (hasContactWithLWall)
+        } else if (hasContactWithLWall)
         {
             if (Input.GetAxis("Horizontal") < 0f)
             {
-                transform.Translate(new Vector3(-1, 0f, 0) * MoveSpeed * Time.deltaTime, Space.Self);
+                transform.Translate(new Vector3(-1, 0f, 0f) * MoveSpeed * Time.deltaTime, Space.Self);
             }
             else
             {
@@ -395,7 +395,6 @@ public class Player : MonoBehaviour{
 
             if (collision.gameObject.tag.Equals("Monster") && !isTeleporting)
             {
-                Debug.Log("Hit Monster : Player Body");
                 Slowdown();
             }
 
@@ -407,12 +406,12 @@ public class Player : MonoBehaviour{
     //Detect left or right wall that player touch.
     private void OnCollisionStay(Collision collision)
     {
-        if (collision.gameObject.tag.Equals("LWall"))
+        if (collision.gameObject.tag.Equals("LWall") && !hasContactWithLWall)
         {
             hasContactWithLWall = true;
         }
 
-        if (collision.gameObject.tag.Equals("RWall"))
+        if (collision.gameObject.tag.Equals("RWall") && !hasContactWithRWall)
         {
             hasContactWithRWall = true;
         }

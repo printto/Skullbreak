@@ -37,8 +37,7 @@ public class Monster : MonoBehaviour {
         {
             Dead();
         }
-
-        if ((collision.gameObject.tag.Equals("Player") || collision.gameObject.tag.Equals("PlayerFace")) && GameMaster.lifePoint > 0)
+        else if ((collision.gameObject.tag.Equals("Player") || collision.gameObject.tag.Equals("PlayerFace")) && GameMaster.lifePoint > 0)
         {
             if (!isHit)
             {
