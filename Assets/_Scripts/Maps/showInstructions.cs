@@ -115,7 +115,7 @@ public class showInstructions : MonoBehaviour
 
     public static void respawnPlayerAtCheckPoint()
     {
-        playerTransform.SetPositionAndRotation(new Vector3(checkPointTransform.transform.position.x, checkPointTransform.transform.position.y + 0.5f, checkPointTransform.transform.position.z), checkPointTransform.gameObject.transform.rotation);
+        playerTransform.SetPositionAndRotation(new Vector3(checkPointTransform.transform.position.x - 3f, checkPointTransform.transform.position.y + 1f, checkPointTransform.transform.position.z + 1f), checkPointTransform.gameObject.transform.rotation);
         Debug.Log("Respawned!");
         Debug.Log(showInstructions.x.ToString() + ", " + showInstructions.x.ToString() + ", " + showInstructions.z.ToString());
     }
