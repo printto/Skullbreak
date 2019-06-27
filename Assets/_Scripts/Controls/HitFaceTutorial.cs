@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class HitFace : MonoBehaviour {
+public class HitFaceTutorial : MonoBehaviour {
 
     public Animator animator;
 
@@ -17,23 +17,18 @@ public class HitFace : MonoBehaviour {
         {
             //Do nothing
         }
+        /*
         else if (collision.gameObject.tag.Equals("Monster") && GameMaster.lifePoint > 0)
         {
             transform.parent.gameObject.GetComponent<Player>().Slowdown();
             Debug.Log("Hit Monster : Player Face");
             //GameMaster.removeLife(1);
         }
-        else if (Array.IndexOf(obstacleTags, collision.gameObject.tag) > -1 && GameMaster.lifePoint > 0)
+        */
+        else if (Array.IndexOf(obstacleTags, collision.gameObject.tag) > -1 )
         {
             Debug.Log("Hit obstacle");
-            Bounce();
-            GameMaster.removeLife(1);
-            StartCoroutine(Stop());
-
-        }
-        else if (Array.IndexOf(obstacleTags, collision.gameObject.tag) > -1 && GameMaster.lifePoint <= 0)
-        {
-            DeadScene();
+            showInstructions.respawnPlayerAtCheckPoint();
         }
     }
 

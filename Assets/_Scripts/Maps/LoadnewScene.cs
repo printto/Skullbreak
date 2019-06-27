@@ -5,12 +5,15 @@ using UnityEngine.SceneManagement;
 
 public class LoadnewScene : MonoBehaviour {
 
+    public Animator animator;
     private void OnTriggerEnter(Collider other)
     {
         if(other.gameObject.tag.Equals("Player"))
         {
-            Debug.Log(SceneManager.GetSceneAt(0).ToString());
-            SceneManager.LoadScene(0);
+            SceneTransition.setAnimator(animator);
+            SceneTransition.setScene("Mainmenu");
+            SceneTransition.getScene();
+            StartCoroutine(SceneTransition.LoadScene());
         }       
     }
 

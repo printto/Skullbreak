@@ -14,8 +14,6 @@ public class pauseMenu : MonoBehaviour {
 
     public Animator animator;
 
-
-
     public void openPauseMenu()
     {
         if(GameIsPaused && SettingIsOpened)
@@ -44,10 +42,13 @@ public class pauseMenu : MonoBehaviour {
 
     public void Menu()
     {
-        SceneManager.LoadScene(0);
-        animator.SetTrigger("fadeSceneOut");
-        pauseMenuUI.SetActive(false);
         Time.timeScale = 1f;
+        SceneTransition.setAnimator(animator);
+        SceneTransition.setScene("Mainmenu");
+        SceneTransition.getScene();
+        StartCoroutine(SceneTransition.LoadScene());
+        //SceneManager.LoadScene(0);
+        pauseMenuUI.SetActive(false); 
         GameIsPaused = false;
     }
 
@@ -74,11 +75,5 @@ public class pauseMenu : MonoBehaviour {
         SettingIsOpened = false;
         settingUI.gameObject.SetActive(false);
         pauseMenuUI.gameObject.SetActive(true);
-    }
-
-
-    public void FadeToLevel(int levelIndex)
-    {
-        animator.SetTrigger("fadeSceneOut");
     }
 }
