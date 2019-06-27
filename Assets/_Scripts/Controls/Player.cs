@@ -190,6 +190,11 @@ public class Player : MonoBehaviour{
                 {
                     lp = touch.position;  //last touch position. Ommitted if you use list
 
+                    if (isTeleporting)
+                    {
+                        CancelTeleportSwipeTest();
+                    }
+
                     //Check if drag distance is greater than dragDistance of the screen height
                     if (Mathf.Abs(lp.x - fp.x) > dragDistance || Mathf.Abs(lp.y - fp.y) > dragDistance)
                     {
@@ -208,10 +213,6 @@ public class Player : MonoBehaviour{
                                 //Down swipe
                                 //Dashing is unused
                                 //Dash();
-                                if (isTeleporting)
-                                {
-                                    CancelTeleportSwipeTest();
-                                }
                                 Debug.Log("Down Swipe");
                             }
                         }
