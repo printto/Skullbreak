@@ -1,3 +1,4 @@
+![Zzzprint Team: Dogwalk Project](https://github.com/printto/Zzzprint/blob/master/project_cover.png)
 # Project Dogwalk
 ### Endless runner project
 
