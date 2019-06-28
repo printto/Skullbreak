@@ -182,7 +182,7 @@ public class Player : MonoBehaviour{
             {
                 lp = touch.position;
                 //This can do the teleport things I think. Check for swipe down and detect ending in TouchPhase.Ended
-                if (Mathf.Abs(lp.x - fp.x) > dragDistance || Mathf.Abs(lp.y - fp.y) > dragDistance*2)
+                if (Mathf.Abs(lp.x - fp.x) > dragDistance || Mathf.Abs(lp.y - fp.y) > dragDistance*4)
                 {
                     if (lp.y < fp.y && !isTeleporting)
                     {
