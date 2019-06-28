@@ -50,15 +50,16 @@ public class Monster : MonoBehaviour {
                     Dead();
                     EndGame();
                 }
+            } else
+            {
+                ChangeDirection();
             }
-        }
-    }
-
-    private void OnCollisionStay(Collision collision)
-    {
-        if (!collision.gameObject.tag.Equals("Player") && !collision.gameObject.tag.Equals("PlayerFace"))
+        } else
         {
-            ChangeDirection();
+            if (collision.gameObject.tag.Equals("Player") || collision.gameObject.tag.Equals("PlayerFace"))
+            {
+                Physics.IgnoreCollision(collision.collider, GetComponent<Collider>());
+            }
         }
     }
 

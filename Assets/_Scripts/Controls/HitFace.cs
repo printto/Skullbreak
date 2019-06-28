@@ -39,13 +39,13 @@ public class HitFace : MonoBehaviour {
 
         }
          */
-        if (Array.IndexOf(obstacleTags, collision.gameObject.tag) > -1 && GameMaster.lifePoint > 0 && !Player.isTeleporting)
+        if (Array.IndexOf(obstacleTags, collision.gameObject.tag) > -1 && GameMaster.lifePoint > 0 && !Player.isTeleporting && !Player.isDamaged)
         {
             Bounce();
             GameMaster.removeLife(1);
             StartCoroutine(Stop());
         }
-        else if (Array.IndexOf(obstacleTags, collision.gameObject.tag) > -1 && GameMaster.lifePoint <= 0 && !Player.isTeleporting)
+        else if (Array.IndexOf(obstacleTags, collision.gameObject.tag) > -1 && GameMaster.lifePoint <= 0 && !Player.isTeleporting && !Player.isDamaged)
         {
             DeadScene();
         }

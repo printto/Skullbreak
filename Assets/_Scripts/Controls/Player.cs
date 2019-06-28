@@ -385,12 +385,11 @@ public class Player : MonoBehaviour{
 
     public void Slowdown()
     {
-        Debug.Log("Slowdowned");
         if (!isDamaged)
         {
             isDamaged = true;
             CurrentMoveSpeed = MoveSpeed;
-            MoveSpeed = SlowdownMoveSpeed;
+            MoveSpeed = MoveSpeed/2;
             Invoke("CancelSlowdown", 1);
         }
     }
