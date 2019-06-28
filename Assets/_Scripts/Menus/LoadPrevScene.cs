@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public static class LoadPrevScene  {
 
-  
+
         private static string lastLevel;
 
         public static void setLastLevel(string level)
@@ -19,8 +19,10 @@ public static class LoadPrevScene  {
             return lastLevel;
         }
 
-        public static void changeToPreviousLvl()
-        {
-            SceneManager.LoadScene(lastLevel);
-        }
+    public static void changeToPreviousLvl()
+    {
+        //SceneManager.LoadScene(lastLevel);
+        Initiate.Fade(lastLevel, Color.black, 1.5f);
+    }
+    
 }
