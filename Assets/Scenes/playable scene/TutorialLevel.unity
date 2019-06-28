@@ -1876,6 +1876,16 @@ Prefab:
       propertyPath: m_LocalScale.z
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 114025460316484238, guid: b7ff085652394a84dad3486239e834d6,
+        type: 2}
+      propertyPath: TextToShow
+      value: TO STEER \n DRAG MONSTER TO LEFT AND RIGHT!
+      objectReference: {fileID: 0}
+    - target: {fileID: 114967406416207286, guid: b7ff085652394a84dad3486239e834d6,
+        type: 2}
+      propertyPath: TextToShow
+      value: GOOD JOB!!
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b7ff085652394a84dad3486239e834d6, type: 2}
   m_IsPrefabAsset: 0
@@ -2626,6 +2636,16 @@ Prefab:
         type: 2}
       propertyPath: m_LocalScale.z
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 114932016797267042, guid: 9512d26f94c35fd42b036e740dd917b0,
+        type: 2}
+      propertyPath: TextToShow
+      value: WELCOME TO DOGWALK!
+      objectReference: {fileID: 0}
+    - target: {fileID: 114754347518254782, guid: 9512d26f94c35fd42b036e740dd917b0,
+        type: 2}
+      propertyPath: TextToShow
+      value: LET US SHOW YOU HOW TO PLAY!
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9512d26f94c35fd42b036e740dd917b0, type: 2}
@@ -5013,6 +5033,21 @@ Prefab:
     - target: {fileID: 224829581291278956, guid: 53894c922fc81ec4fa1fd1bc1d159c04,
         type: 2}
       propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114141265971201528, guid: 53894c922fc81ec4fa1fd1bc1d159c04,
+        type: 2}
+      propertyPath: TextToShow
+      value: NOW LET'S TRY JUMPING!   SWIPE UP TO JUMP
+      objectReference: {fileID: 0}
+    - target: {fileID: 114090265934099590, guid: 53894c922fc81ec4fa1fd1bc1d159c04,
+        type: 2}
+      propertyPath: TextToShow
+      value: GOOD STUFF! NOW USE WHAT YOU LEARN AND TRY COLLECTING THESE COINS
+      objectReference: {fileID: 0}
+    - target: {fileID: 114090265934099590, guid: 53894c922fc81ec4fa1fd1bc1d159c04,
+        type: 2}
+      propertyPath: isCoroutine
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents:
@@ -8874,6 +8909,16 @@ Prefab:
     - target: {fileID: 4794273120773150, guid: 72e9c08b611b32748b6cc1c6f8281b64, type: 2}
       propertyPath: m_RootOrder
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114602562895731296, guid: 72e9c08b611b32748b6cc1c6f8281b64,
+        type: 2}
+      propertyPath: TextToShow
+      value: NOW YOU ARE READY!
+      objectReference: {fileID: 0}
+    - target: {fileID: 114602562895731296, guid: 72e9c08b611b32748b6cc1c6f8281b64,
+        type: 2}
+      propertyPath: isCoroutine
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 114703065576587284, guid: 72e9c08b611b32748b6cc1c6f8281b64, type: 2}
@@ -26022,7 +26067,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4046212820126384, guid: ebae15917358f7a48a80b2f3525d94d8, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -50
+      value: -45.2
       objectReference: {fileID: 0}
     - target: {fileID: 4046212820126384, guid: ebae15917358f7a48a80b2f3525d94d8, type: 2}
       propertyPath: m_LocalPosition.y
