@@ -111,8 +111,8 @@ public class Player : MonoBehaviour{
     // Update is called once per frame
     void Update () {
 
-        dirX = Input.acceleration.x * MoveSpeed;
-        transform.position = new Vector2(Mathf.Clamp (transform.position.x, 7.5f,5f), transform.position.y);
+       // dirX = Input.acceleration.x * MoveSpeed;
+       //  transform.position = new Vector2(Mathf.Clamp (transform.position.x, 7.5f,5f), transform.position.y);
 
         if (Time.time < animationDuration)
         {
