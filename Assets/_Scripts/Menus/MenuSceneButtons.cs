@@ -10,11 +10,12 @@ public class MenuSceneButtons : MonoBehaviour
 
     private void Start()
     {
-        Cursor.lockState = CursorLockMode.None;   
+        if (!SaveManager.Load())
+        {
+            SceneManager.LoadScene(5);
+        }
+        Cursor.lockState = CursorLockMode.None;
     }
-
-
-
 
     public void StageMode()
     {

@@ -9,8 +9,10 @@ public class showInstructions : MonoBehaviour
     public Transform DragTransform;
     public Transform player;
     public Text instruction;
+    public string TextToShow;
     static Transform checkPointTransform;
     static Transform playerTransform;
+    public bool isCoroutine = false;
 
     float duration = 5;
 
@@ -24,8 +26,6 @@ public class showInstructions : MonoBehaviour
 
         playerTransform = player;
         checkPointTransform = DragTransform;
-
-
     }
 
     public static void setSavePoint(float x, float y, float z)
@@ -37,63 +37,20 @@ public class showInstructions : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag.Equals("Player") && other.GetComponent<Player>().getTutorialCount() == 0)
+        if (other.gameObject.tag.Equals("Player"))
         {
-            Debug.Log(other.GetComponent<Player>().getTutorialCount());
-            instruction.text = "WELCOME TO DOGWALK!";
-            other.GetComponent<Player>().AddCount(1);
-            saveCheckPoint();
+            if (!isCoroutine)
+            {
+                instruction.text = TextToShow;
+                saveCheckPoint();
+            }
+            else
+            {
+                StartCoroutine(displayText());
+                saveCheckPoint();
+            }
         }
-
-        else if (other.gameObject.tag.Equals("Player") && other.GetComponent<Player>().getTutorialCount() == 1)
-        {
-            Debug.Log(other.GetComponent<Player>().getTutorialCount());
-            instruction.fontSize = 30;
-            instruction.text = "LET'S US SHOW YOU HOW TO PLAY!";
-            other.GetComponent<Player>().AddCount(1);
-            saveCheckPoint();
-        }
-
-        else if (other.gameObject.tag.Equals("Player") && other.GetComponent<Player>().getTutorialCount() == 2)
-        {
-            Debug.Log(other.GetComponent<Player>().getTutorialCount());
-            instruction.text = "TO STEER \n DRAG MONSTER TO LEFT AND RIGHT!";
-            other.GetComponent<Player>().AddCount(1);
-            saveCheckPoint();
-        }
-
-        else if (other.gameObject.tag.Equals("Player") && other.GetComponent<Player>().getTutorialCount() == 3)
-        {
-            Debug.Log(other.GetComponent<Player>().getTutorialCount());
-            instruction.text = "GOOD JOB!!";
-            other.GetComponent<Player>().AddCount(1);
-            saveCheckPoint();
-        }
-
-        else if (other.gameObject.tag.Equals("Player") && other.GetComponent<Player>().getTutorialCount() == 4)
-        {
-            Debug.Log(other.GetComponent<Player>().getTutorialCount());
-            instruction.text = "NOW LET'S TRY JUMPING!   SWIPE UP TO JUMP";
-            other.GetComponent<Player>().AddCount(1);
-            saveCheckPoint();
-        }
-
-        else if (other.gameObject.tag.Equals("Player") && other.GetComponent<Player>().getTutorialCount() == 5)
-        {
-            Debug.Log(other.GetComponent<Player>().getTutorialCount());
-            StartCoroutine(displayText());
-            other.GetComponent<Player>().AddCount(1);
-            saveCheckPoint();
-        }
-
-
-        else if (other.gameObject.tag.Equals("Player") && other.GetComponent<Player>().getTutorialCount() == 6)
-        {
-            Debug.Log(other.GetComponent<Player>().getTutorialCount());
-            instruction.text = "NOW YOU ARE READY!!";
-            other.GetComponent<Player>().AddCount(1);
-            saveCheckPoint();
-        }
+            
     }
 
     private void saveCheckPoint()
@@ -107,7 +64,7 @@ public class showInstructions : MonoBehaviour
 
     IEnumerator displayText()
     {
-        instruction.text = "GOOD STUFF! NOW USE WHAT YOU LEARN AND TRY COLLECTING THESE COINS";
+        instruction.text = TextToShow;
         yield return new WaitForSeconds(3f);
         instruction.text = "";
     }
@@ -120,9 +77,5 @@ public class showInstructions : MonoBehaviour
         Debug.Log("Respawned!");
         Debug.Log(showInstructions.x.ToString() + ", " + showInstructions.x.ToString() + ", " + showInstructions.z.ToString());
     }
-
-
-
-
 
 }
