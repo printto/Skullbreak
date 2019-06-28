@@ -320,7 +320,7 @@ public class Player : MonoBehaviour{
 
     void Teleport()
     {
-        if (isGrounded && !isTeleporting)
+        if (isGrounded && !isTeleporting && !isDamaged)
         {
             isTeleporting = true;
             MoveSpeed += speedUp;
@@ -386,16 +386,22 @@ public class Player : MonoBehaviour{
     public void Slowdown()
     {
         Debug.Log("Slowdowned");
-        isDamaged = true;
-        CurrentMoveSpeed = MoveSpeed;
-        MoveSpeed = SlowdownMoveSpeed;
-        Invoke("CancelSlowdown", 1);
+        if (!isDamaged)
+        {
+            isDamaged = true;
+            CurrentMoveSpeed = MoveSpeed;
+            MoveSpeed = SlowdownMoveSpeed;
+            Invoke("CancelSlowdown", 1);
+        }
     }
 
     void CancelSlowdown()
     {
-        isDamaged = false;
-        MoveSpeed = CurrentMoveSpeed;
+        if (isDamaged)
+        {
+            isDamaged = false;
+            MoveSpeed = CurrentMoveSpeed;
+        }
     }
 
     /*
