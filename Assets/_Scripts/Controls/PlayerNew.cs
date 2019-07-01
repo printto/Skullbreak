@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 
-public class Player : MonoBehaviour
+public class PlayerNew : MonoBehaviour
 {
 
     //Player Lifepoint
@@ -50,17 +50,6 @@ public class Player : MonoBehaviour
     public static bool isTeleporting = false;
     public static float speedUp = 20;
 
-    // Detect if player has a contact with the wall
-    public static bool hasContactWithLWall;
-    public static bool hasContactWithRWall;
-
-    // Cooldowns
-    //public float MaxTeleportDuration = 1.5f;
-    public float MaxTeleportCooldown = 1.5f;
-    //float teleportDuration = 0;
-    float teleportCooldown = 0;
-    bool isTeleportCooldown = false;
-
     Rigidbody rb;
 
     void Awake()
@@ -89,28 +78,10 @@ public class Player : MonoBehaviour
         ScoreManager.SetCoin(0);
         rb = GetComponent<Rigidbody>();
         //Cursor.lockState = CursorLockMode.Locked;
-        isSlowedDown = false;
-        isDashing = false;
-        //Gyro testing
-        Input.gyro.enabled = true;
-        isTeleporting = false;
-        hasContactWithLWall = false;
-        hasContactWithRWall = false;
-    }
-
-    private Ray GenerateMouseRay(Vector3 touchPos)
-    {
-        Vector3 mousePosFar = new Vector3(touchPos.x, touchPos.y, Camera.main.farClipPlane);
-        Vector3 mousePosNear = new Vector3(touchPos.x, touchPos.y, Camera.main.nearClipPlane);
-
-        Vector3 mousePosF = Camera.main.ScreenToWorldPoint(mousePosFar);
-        Vector3 mousePosN = Camera.main.ScreenToWorldPoint(mousePosNear);
-
-        Ray mr = new Ray(mousePosN, mousePosF - mousePosN);
-        return mr;
     }
 
     int countFrame = 0;
+
     private void FixedUpdate()
     {
         if (countFrame % 60 == 0 && MoveSpeed < MaxSpeed)
@@ -121,23 +92,9 @@ public class Player : MonoBehaviour
         }
         countFrame++;
     }
-    
+
     void Update()
     {
-        //  transform.position = new Vector2(Mathf.Clamp (transform.position.x, 7.5f,5f), transform.position.y);
-
-        /*
-        if (Time.time < animationDuration)
-        {
-            transform.Translate(new Vector3(-1, 0f, 0f) * MoveSpeed * Time.deltaTime, Space.Self);
-            return;
-        }
-
-        moveVector = Vector3.zero;
-
-        //X Forward and Backward
-        moveVector.x = MoveSpeed;
-        */
 
         // jump improve
         if (rb.velocity.y < 0)
@@ -161,10 +118,6 @@ public class Player : MonoBehaviour
             //Dash();
         }
 
-        //Tilt
-        float tilt = -Input.gyro.attitude.x*10;
-        transform.Translate(new Vector3(0f, 0f, tilt) * MoveSpeed * Time.deltaTime, Space.Self);
-
         checkJump();
 
         MovePlayerFromInputs();
@@ -186,25 +139,10 @@ public class Player : MonoBehaviour
             else if (touch.phase == TouchPhase.Moved) // update the last position based on where they moved
             {
                 lp = touch.position;
-                //This can do the teleport things I think. Check for swipe down and detect ending in TouchPhase.Ended
-                if (Mathf.Abs(lp.x - fp.x) > dragDistance || Mathf.Abs(lp.y - fp.y) > dragDistance * 4)
-                {
-                    if (lp.y < fp.y && !isTeleporting && teleportCooldown < MaxTeleportCooldown && !isTeleportCooldown)
-                    {
-                        TeleportSwipeTest();
-                        teleportCooldown += Time.deltaTime;
-                    }
-                }
             }
             else if (touch.phase == TouchPhase.Ended) //check if the finger is removed from the screen
             {
                 lp = touch.position;  //last touch position. Ommitted if you use list
-
-                if (isTeleporting)
-                {
-                    CancelTeleportSwipeTest();
-                    //teleportCooldown = MaxTeleportCooldown;
-                }
 
                 //Check if drag distance is greater than dragDistance of the screen height
                 if (Mathf.Abs(lp.x - fp.x) > dragDistance || Mathf.Abs(lp.y - fp.y) > dragDistance)
@@ -230,18 +168,9 @@ public class Player : MonoBehaviour
                 }
                 else
                 {   //It's a tap as the drag distance is less than dragDistance of the screen height
-
+                    //ShootBullet is unused.
                     //ShootBullet();
                 }
-            }
-            if (teleportCooldown > 0 && !isTeleporting)
-            {
-                isTeleportCooldown = true;
-                teleportCooldown -= Time.deltaTime;
-            }
-            else
-            {
-                isTeleportCooldown = false;
             }
         }
     }
@@ -269,56 +198,51 @@ public class Player : MonoBehaviour
     void MovePlayerFromInputs()
     {
         //Touch screen
-        if (Input.touchCount > 0 &&
-       Input.GetTouch(0).phase == TouchPhase.Moved)
+        if (Input.touchCount == 1) // user is touching the screen with a single touch
         {
-
-            // Get movement of the finger since last frame
-            Vector2 touchDeltaPosition = Input.GetTouch(0).deltaPosition;
-            float toGo = touchDeltaPosition.x / 10;
-            if (toGo > SwipeSpeedLimit)
+            Touch touch = Input.GetTouch(0); // get the touch
+            if (touch.phase == TouchPhase.Began) //check for the first touch
             {
-                toGo = SwipeSpeedLimit;
+                fp = touch.position;
+                lp = touch.position;
             }
-            else if (toGo < -SwipeSpeedLimit)
+            else if (touch.phase == TouchPhase.Moved) // update the last position based on where they moved
             {
-                toGo = -SwipeSpeedLimit;
+                lp = touch.position;
             }
+            else if (touch.phase == TouchPhase.Ended) //check if the finger is removed from the screen
+            {
+                lp = touch.position;  //last touch position. Ommitted if you use list
+                //Check if drag distance is greater than dragDistance of the screen height
+                if (Mathf.Abs(lp.x - fp.x) > dragDistance || Mathf.Abs(lp.y - fp.y) > dragDistance)
+                {
+                    //It's a drag
+                    //the vertical movement is greater than the horizontal movement
+                    if (Mathf.Abs(lp.x - fp.x) < Mathf.Abs(lp.y - fp.y))
+                    {
+                        if (lp.y > fp.y)
+                        {
+                            //Up swipe
+                            Debug.Log("Up Swipe");
+                            Jump(touchJumpSpeed);
+                        }
+                        else
+                        {
+                            //Down swipe
+                            //Dashing is unused
+                            //Dash();
+                            Debug.Log("Down Swipe");
+                        }
+                    }
+                }
 
-            // Move object across XY plane
-            transform.Translate(new Vector3(0f, 0f, toGo) * MoveSpeed * Time.deltaTime, Space.Self);
+            }
         }
-
+        //Keyboard move
         if (Input.GetAxis("Vertical") < 0)
         {
-            Teleport();
-        }
-
-        //Keyboard move
-        //Make player cannot move toward walls once they have already contacted them
-        //Still have a problem with right wall
-        if (hasContactWithRWall)
-        {
-            if (Input.GetAxis("Horizontal") > 0f)
-            {
-                Debug.Log("Axis : " + Input.GetAxis("Horizontal"));
-                transform.Translate(new Vector3(-1, 0f, 0f) * MoveSpeed * Time.deltaTime, Space.Self);
-            }
-            else
-            {
-                transform.Translate(new Vector3(-1, 0f, Input.GetAxis("Horizontal")) * MoveSpeed * Time.deltaTime, Space.Self);
-            }
-        }
-        else if (hasContactWithLWall)
-        {
-            if (Input.GetAxis("Horizontal") < 0f)
-            {
-                transform.Translate(new Vector3(-1, 0f, 0f) * MoveSpeed * Time.deltaTime, Space.Self);
-            }
-            else
-            {
-                transform.Translate(new Vector3(-1, 0f, Input.GetAxis("Horizontal")) * MoveSpeed * Time.deltaTime, Space.Self);
-            }
+            //TODO: Redo this teleport condition
+            //Teleport();
         }
         else
         {
@@ -339,48 +263,7 @@ public class Player : MonoBehaviour
         }
     }
 
-    void Teleport()
-    {
-        if (isGrounded && !isTeleporting)
-        {
-            isTeleporting = true;
-            MoveSpeed += speedUp;
-            GetComponent<MeshRenderer>().enabled = false;
-            Invoke("CancelTeleport", 1);
-        }
-    }
-
-    void CancelTeleport()
-    {
-        if (isTeleporting)
-        {
-            isTeleporting = false;
-            MoveSpeed -= speedUp;
-            GetComponent<MeshRenderer>().enabled = true;
-        }
-    }
-
-    void TeleportSwipeTest()
-    {
-        if (isGrounded && !isTeleporting)
-        {
-            isTeleporting = true;
-            MoveSpeed += speedUp;
-            GetComponent<MeshRenderer>().enabled = false;
-            //Invoke("CancelTeleport", 1);
-        }
-    }
-
-    void CancelTeleportSwipeTest()
-    {
-        if (isTeleporting)
-        {
-            isTeleporting = false;
-            MoveSpeed -= speedUp;
-            GetComponent<MeshRenderer>().enabled = true;
-        }
-    }
-
+    /*
     void Dash()
     {
         Debug.Log("Dashing called");
@@ -403,6 +286,7 @@ public class Player : MonoBehaviour
         }
         isDashing = false;
     }
+    */
 
     public void Slowdown()
     {
@@ -463,33 +347,6 @@ public class Player : MonoBehaviour
             fallDamage.setSavePoint(transform.position.x, transform.position.y, transform.position.z);
         }
 
-    }
-
-    //Detect left or right wall that player touch.
-    private void OnCollisionStay(Collision collision)
-    {
-        if (collision.gameObject.tag.Equals("LWall") && !hasContactWithLWall)
-        {
-            hasContactWithLWall = true;
-        }
-
-        if (collision.gameObject.tag.Equals("RWall") && !hasContactWithRWall)
-        {
-            hasContactWithRWall = true;
-        }
-    }
-
-    //For player leave wall detection
-    private void OnCollisionExit(Collision collision)
-    {
-        if (collision.gameObject.tag.Equals("LWall"))
-        {
-            hasContactWithLWall = false;
-        }
-        if (collision.gameObject.tag.Equals("RWall"))
-        {
-            hasContactWithRWall = false;
-        }
     }
 
 }
