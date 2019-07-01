@@ -91,9 +91,9 @@ public class Player : MonoBehaviour
         //Cursor.lockState = CursorLockMode.Locked;
         isSlowedDown = false;
         isDashing = false;
-        isTeleporting = false;
-        hasContactWithLWall = false;
-        hasContactWithRWall = false;
+        
+        //Gyro testing
+        Input.gyro.enabled = true;
     }
 
     private Ray GenerateMouseRay(Vector3 touchPos)
@@ -122,9 +122,8 @@ public class Player : MonoBehaviour
     
     void Update()
     {
-
         //  transform.position = new Vector2(Mathf.Clamp (transform.position.x, 7.5f,5f), transform.position.y);
-
+        
         /*
         if (Time.time < animationDuration)
         {
@@ -159,6 +158,10 @@ public class Player : MonoBehaviour
         {
             //Dash();
         }
+        
+        //Tilt
+        float tilt = -Input.gyro.attitude.x*10;
+        transform.Translate(new Vector3(0f, 0f, tilt) * MoveSpeed * Time.deltaTime, Space.Self);
 
         checkJump();
 
