@@ -50,6 +50,10 @@ public class PlayerNew : MonoBehaviour
     public static bool isTeleporting = false;
     public static float speedUp = 20;
 
+    //Lanes
+    public GameObject[] Lanes;
+    int currentLane = 1;
+
     Rigidbody rb;
 
     void Awake()
@@ -125,7 +129,6 @@ public class PlayerNew : MonoBehaviour
         addTimeScore();
     }
 
-
     void checkJump()
     {
         if (Input.touchCount == 1) // user is touching the screen with a single touch
@@ -154,14 +157,13 @@ public class PlayerNew : MonoBehaviour
                         if (lp.y > fp.y)
                         {
                             //Up swipe
-                            Debug.Log("Up Swipe");
                             Jump(touchJumpSpeed);
+                            Debug.Log("Up Swipe");
                         }
                         else
                         {
                             //Down swipe
-                            //Dashing is unused
-                            //Dash();
+                            //TODO: Teleport
                             Debug.Log("Down Swipe");
                         }
                     }
@@ -194,7 +196,7 @@ public class PlayerNew : MonoBehaviour
         GameObject temp = Instantiate(Bullet, new Vector3(transform.position.x - 3, transform.position.y, transform.position.z), playerCam.transform.rotation);
         temp.GetComponent<Rigidbody>().velocity = playerCam.transform.forward * BulletForce * 100;
     }
-
+    
     void MovePlayerFromInputs()
     {
         //Touch screen
@@ -218,20 +220,19 @@ public class PlayerNew : MonoBehaviour
                 {
                     //It's a drag
                     //the vertical movement is greater than the horizontal movement
-                    if (Mathf.Abs(lp.x - fp.x) < Mathf.Abs(lp.y - fp.y))
+                    if (Mathf.Abs(lp.x - fp.x) > Mathf.Abs(lp.y - fp.y))
                     {
-                        if (lp.y > fp.y)
+                        if (lp.x > fp.x)
                         {
-                            //Up swipe
-                            Debug.Log("Up Swipe");
-                            Jump(touchJumpSpeed);
+                            //Right swipe
+                            ChangeLane(ChangeLaneDirection.RIGHT);
+                            Debug.Log("Right Swipe");
                         }
                         else
                         {
-                            //Down swipe
-                            //Dashing is unused
-                            //Dash();
-                            Debug.Log("Down Swipe");
+                            //Left swipe
+                            ChangeLane(ChangeLaneDirection.LEFT);
+                            Debug.Log("Left Swipe");
                         }
                     }
                 }
@@ -246,8 +247,32 @@ public class PlayerNew : MonoBehaviour
         }
         else
         {
-            transform.Translate(new Vector3(-1, 0f, Input.GetAxis("Horizontal")) * MoveSpeed * Time.deltaTime, Space.Self);
+            if (Input.GetButtonDown("Horizontal"))
+            {
+                if (Input.GetAxisRaw("Horizontal") > 0) ChangeLane(ChangeLaneDirection.RIGHT);
+                else if (Input.GetAxisRaw("Horizontal") < 0) ChangeLane(ChangeLaneDirection.LEFT);
+            }
         }
+    }
+
+    enum ChangeLaneDirection
+    {
+        LEFT,
+        RIGHT
+    }
+    void ChangeLane(ChangeLaneDirection direction)
+    {
+        if(direction == ChangeLaneDirection.LEFT && currentLane > 0)
+        {
+            currentLane -= 1;
+        }
+        else if (direction == ChangeLaneDirection.RIGHT && currentLane < Lanes.Length -1)
+        {
+            currentLane += 1;
+        }
+        Vector3 newPosition = transform.localPosition;
+        newPosition.z = Mathf.Lerp(transform.localPosition.z, Lanes[currentLane].transform.localPosition.z, Time.deltaTime * 1);
+        transform.localPosition = newPosition;
     }
 
     void Jump(float speed)
@@ -255,38 +280,9 @@ public class PlayerNew : MonoBehaviour
         if (isGrounded)
         {
             rb.AddForce(new Vector3(0, 1, 0) * speed, ForceMode.Impulse);
-            if (isDashing)
-            {
-                CancelDash();
-            }
             isGrounded = false;
         }
     }
-
-    /*
-    void Dash()
-    {
-        Debug.Log("Dashing called");
-        if (isGrounded && !isDashing)
-        {
-            Debug.Log("Dashing started");
-            isDashing = true;
-            //TODO: Animations??
-            transform.localScale += new Vector3(0, -0.5f, 0);
-            Invoke("CancelDash", 1);
-        }
-    }
-
-    void CancelDash()
-    {
-        Debug.Log("Dashing ended");
-        if (isDashing)
-        {
-            transform.localScale += new Vector3(0, +0.5f, 0);
-        }
-        isDashing = false;
-    }
-    */
 
     public void Slowdown()
     {
