@@ -51,8 +51,10 @@ public class PlayerNew : MonoBehaviour
     public static float speedUp = 20;
 
     //Lanes
-    public GameObject[] Lanes;
-    int currentLane = 1;
+    public float[] LaneZs;
+    public int currentLane = 0;
+    float nextZPosition = 0;
+    ChangeLaneDirection currentDirection;
 
     Rigidbody rb;
 
@@ -82,6 +84,7 @@ public class PlayerNew : MonoBehaviour
         ScoreManager.SetCoin(0);
         rb = GetComponent<Rigidbody>();
         //Cursor.lockState = CursorLockMode.Locked;
+        currentDirection = ChangeLaneDirection.STILL;
     }
 
     int countFrame = 0;
@@ -99,6 +102,20 @@ public class PlayerNew : MonoBehaviour
 
     void Update()
     {
+
+        if(currentDirection == ChangeLaneDirection.RIGHT && transform.position.z < nextZPosition)
+        {
+            transform.Translate(new Vector3(-1, 0f, 1) * MoveSpeed * Time.deltaTime, Space.Self);
+        }
+        else if (currentDirection == ChangeLaneDirection.LEFT && transform.position.z > nextZPosition)
+        {
+            transform.Translate(new Vector3(-1, 0f, -1) * MoveSpeed * Time.deltaTime, Space.Self);
+        }
+        else
+        {
+            transform.Translate(new Vector3(-1, 0f, 0f) * MoveSpeed * Time.deltaTime, Space.Self);
+            currentDirection = ChangeLaneDirection.STILL;
+        }
 
         // jump improve
         if (rb.velocity.y < 0)
@@ -258,21 +275,27 @@ public class PlayerNew : MonoBehaviour
     enum ChangeLaneDirection
     {
         LEFT,
-        RIGHT
+        RIGHT,
+        STILL
     }
     void ChangeLane(ChangeLaneDirection direction)
     {
         if(direction == ChangeLaneDirection.LEFT && currentLane > 0)
         {
             currentLane -= 1;
+            currentDirection = ChangeLaneDirection.LEFT;
+            nextZPosition = LaneZs[currentLane];
         }
-        else if (direction == ChangeLaneDirection.RIGHT && currentLane < Lanes.Length -1)
+        else if (direction == ChangeLaneDirection.RIGHT && currentLane < LaneZs.Length -1)
         {
             currentLane += 1;
+            currentDirection = ChangeLaneDirection.RIGHT;
+            nextZPosition = LaneZs[currentLane];
         }
-        Vector3 newPosition = transform.localPosition;
-        newPosition.z = Mathf.Lerp(transform.localPosition.z, Lanes[currentLane].transform.localPosition.z, Time.deltaTime * 1);
+        /*
+        Vector3 newPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, Lanes[currentLane].transform.localPosition.z);
         transform.localPosition = newPosition;
+        */
     }
 
     void Jump(float speed)
