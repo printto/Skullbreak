@@ -81,6 +81,9 @@ public class Player : MonoBehaviour{
         //Cursor.lockState = CursorLockMode.Locked;
         isSlowedDown = false;
         isDashing = false;
+
+        //Gyro testing
+        Input.gyro.enabled = true;
     }
 
     private Ray GenerateMouseRay(Vector3 touchPos)
@@ -110,9 +113,6 @@ public class Player : MonoBehaviour{
 
     // Update is called once per frame
     void Update () {
-
-       // dirX = Input.acceleration.x * MoveSpeed;
-       //  transform.position = new Vector2(Mathf.Clamp (transform.position.x, 7.5f,5f), transform.position.y);
 
         if (Time.time < animationDuration)
         {
@@ -146,8 +146,10 @@ public class Player : MonoBehaviour{
         {
             //Dash();
         }
-        
+
         //Tilt
+        transform.rotation = Input.gyro.attitude;
+         
 
 
         checkJump();
