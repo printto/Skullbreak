@@ -32,11 +32,6 @@ public class PlayerNew : MonoBehaviour
     private float jumpSpeed = 7f;
     private float touchJumpSpeed = 10f;
 
-    //Bullet asset
-    public GameObject Bullet;
-    public float BulletForce = 100000;
-    public Camera playerCam;
-
     private float animationDuration = 1.0f;
 
     //Android jumping control
@@ -44,11 +39,13 @@ public class PlayerNew : MonoBehaviour
     private Vector3 lp;   //Last touch position
     private float dragDistance = Screen.height * 5 / 100;
 
-    //Buffs
+    //Slowdown
     public static bool isSlowedDown = false;
-    public static bool isDashing = false;
+
+    //Teleportation
+    private float energy;
+    private float speedUp = 20;
     public static bool isTeleporting = false;
-    public static float speedUp = 20;
 
     //Lanes
     public float[] LaneZs;
@@ -80,6 +77,11 @@ public class PlayerNew : MonoBehaviour
         {
             GameMaster.SetLife(3);
         }
+
+        isSlowedDown = false;
+        isTeleporting = false;
+        energy = 4f;
+
         ScoreManager.SetScore(0);
         ScoreManager.SetCoin(0);
         rb = GetComponent<Rigidbody>();
@@ -206,13 +208,6 @@ public class PlayerNew : MonoBehaviour
      * for input controlling functions
      * 
      */
-
-
-    void ShootBullet()
-    {
-        GameObject temp = Instantiate(Bullet, new Vector3(transform.position.x - 3, transform.position.y, transform.position.z), playerCam.transform.rotation);
-        temp.GetComponent<Rigidbody>().velocity = playerCam.transform.forward * BulletForce * 100;
-    }
     
     void MovePlayerFromInputs()
     {
@@ -305,6 +300,43 @@ public class PlayerNew : MonoBehaviour
             rb.AddForce(new Vector3(0, 1, 0) * speed, ForceMode.Impulse);
             isGrounded = false;
         }
+    }
+
+    // Restore player's teleport energy every second if not teleporitng
+    void RestoreEnergy()
+    {
+        if (energy < 4f)
+        {
+            energy += Time.deltaTime;
+        }
+    }
+
+    // Reduce player's teleport energy every second when they use teleport
+    void ReduceEnergy()
+    {
+        if (energy > 0f)
+        {
+            energy -= Time.deltaTime;
+        }
+    }
+
+    // Start the teleportation if not run out of energy
+    void Teleport()
+    {
+        if (energy != 0f)
+        {
+            isTeleporting = true;
+            MoveSpeed += speedUp;
+            GetComponent<MeshRenderer>().enabled = false;
+        }
+    }
+
+    // Stop the teleportation
+    void StopTeleport()
+    {
+        isTeleporting = false;
+        MoveSpeed -= speedUp;
+        GetComponent<MeshRenderer>().enabled = true;
     }
 
     public void Slowdown()
