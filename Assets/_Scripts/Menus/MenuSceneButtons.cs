@@ -41,6 +41,20 @@ public class MenuSceneButtons : MonoBehaviour
 
     }
 
+    public void GridMode()
+    {
+
+        SceneTransition.setAnimator(animator);
+        SceneTransition.setScene("GridMode");
+        SceneTransition.getScene();
+        StartCoroutine(SceneTransition.LoadScene());
+
+
+        //SceneManager.LoadScene(3);
+        //Initiate.Fade("EndlessMode", Color.black, 1.5f);
+
+    }
+
     public void BetaMap()
     {
         SceneTransition.setAnimator(animator);
