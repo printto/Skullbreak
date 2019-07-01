@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerTeleportation : MonoBehaviour {
-    bool isTeleporting;
-    float energy;
-    Player player;
+    private bool isTeleporting;
+    private float energy;
+    private Player player;
     
 
 	// Use this for initialization
@@ -22,6 +22,7 @@ public class PlayerTeleportation : MonoBehaviour {
         }
 	}
 
+    // Restore player's teleport energy every second if not teleporitng
     void RestoreEnergy()
     {
         if (energy < 4f)
@@ -30,6 +31,7 @@ public class PlayerTeleportation : MonoBehaviour {
         }
     }
 
+    // Start the teleportation if not run out of energy
     void StartTeleport ()
     {
         if (energy != 0f)
@@ -38,6 +40,7 @@ public class PlayerTeleportation : MonoBehaviour {
         }
     }
 
+    // Stop the teleportation
     void StopTeleport ()
     {
         isTeleporting = false;
