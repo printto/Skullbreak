@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MapGenerator : MonoBehaviour {
+public class MapGeneratorZ : MonoBehaviour {
 
     public GameObject CurrentSegment;
     public GameObject[] RoadSegments;
@@ -42,7 +42,7 @@ public class MapGenerator : MonoBehaviour {
         var lastTileBounds = GetComponent<MeshFilter>().mesh.bounds;
 
         Instantiate(RoadSegments[randomed],
-            new Vector3(transform.position.x - lastTileBounds.size.x * transform.localScale.x,
+            new Vector3(transform.position.x - lastTileBounds.size.z * transform.localScale.z,
             transform.position.y,
             transform.position.z),
             transform.rotation

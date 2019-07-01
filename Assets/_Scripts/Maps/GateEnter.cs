@@ -23,15 +23,4 @@ public class GateEnter : MonoBehaviour {
             }
         }
     }
-
-    // Spawn new map
-    void SpawnMap()
-    {
-
-        if (!transform.parent.gameObject.GetComponent<MapGenerator>().createdNext)
-        {
-            transform.parent.gameObject.GetComponent<MapGenerator>().SpawnMap();
-        }
-
-    }
 }

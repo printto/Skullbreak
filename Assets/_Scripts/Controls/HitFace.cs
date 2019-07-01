@@ -10,20 +10,26 @@ public class HitFace : MonoBehaviour {
 
     string[] obstacleTags = { "Obstacle", "Dashable", "Monster"};
 
-      private void OnCollisionEnter(Collision collision)
-    {   
+    private void Update()
+    {
+        // Make this playerface vanish when player is teleporting 
+        GetComponent<MeshRenderer>().enabled = !Player.isTeleporting;
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    { 
         //Debug.Log("Obstacle: Hit something");
-        if (collision.gameObject.tag.Equals("Dashable") && Player.isDashing)
+        if (collision.gameObject.tag.Equals("Dashable") && Player.isDashing && !Player.isTeleporting)
         {
             //Do nothing
         }
-        else if (collision.gameObject.tag.Equals("Monster") && GameMaster.lifePoint > 0)
+        if (collision.gameObject.tag.Equals("Monster") && GameMaster.lifePoint > 0 && !Player.isTeleporting)
         {
             transform.parent.gameObject.GetComponent<Player>().Slowdown();
             Debug.Log("Hit Monster : Player Face");
             //GameMaster.removeLife(1);
         }
-        else if (Array.IndexOf(obstacleTags, collision.gameObject.tag) > -1 && GameMaster.lifePoint > 0)
+        else if (Array.IndexOf(obstacleTags, collision.gameObject.tag) > -1 && GameMaster.lifePoint > 0 && !Player.isTeleporting)
         {
             Debug.Log("Hit obstacle");
             Bounce();
@@ -31,7 +37,7 @@ public class HitFace : MonoBehaviour {
             StartCoroutine(Stop());
 
         }
-        else if (Array.IndexOf(obstacleTags, collision.gameObject.tag) > -1 && GameMaster.lifePoint <= 0)
+        else if (Array.IndexOf(obstacleTags, collision.gameObject.tag) > -1 && GameMaster.lifePoint <= 0 && !Player.isTeleporting)
         {
             DeadScene();
         }
