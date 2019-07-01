@@ -148,8 +148,11 @@ public class Player : MonoBehaviour{
         }
 
         //Tilt
-        transform.rotation = Input.gyro.attitude;
-         
+        float tilt = Input.gyro.attitude.x;
+        transform.Translate(new Vector3(0f, 0f, tilt) * MoveSpeed * Time.deltaTime, Space.Self);
+
+
+
 
 
         checkJump();
