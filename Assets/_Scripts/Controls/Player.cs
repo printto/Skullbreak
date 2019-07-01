@@ -15,6 +15,8 @@ public class Player : MonoBehaviour{
     //Tutorial checkpoint count;
     private int counts = 0;
 
+
+
     //Movement
     public float MoveSpeed = 10;
     float CurrentMoveSpeed = 0;
@@ -25,6 +27,7 @@ public class Player : MonoBehaviour{
     public double SpeedIncreaseRate = 0.05;
     public float MaxSpeed = 25;
     public float SwipeSpeedLimit = 0.75f;
+    float dirX;
 
     //Jumping
     private float fall = 2.5f;
@@ -118,6 +121,9 @@ public class Player : MonoBehaviour{
     // Update is called once per frame
     void Update () {
 
+       // dirX = Input.acceleration.x * MoveSpeed;
+       //  transform.position = new Vector2(Mathf.Clamp (transform.position.x, 7.5f,5f), transform.position.y);
+
         if (Time.time < animationDuration)
         {
             transform.Translate(new Vector3(-1, 0f, 0f) * MoveSpeed * Time.deltaTime, Space.Self);
@@ -150,6 +156,9 @@ public class Player : MonoBehaviour{
         {
             //Dash();
         }
+        
+        //Tilt
+
 
         checkJump();
 
@@ -173,7 +182,7 @@ public class Player : MonoBehaviour{
             {
                 lp = touch.position;
                 //This can do the teleport things I think. Check for swipe down and detect ending in TouchPhase.Ended
-                if (Mathf.Abs(lp.x - fp.x) > dragDistance || Mathf.Abs(lp.y - fp.y) > dragDistance)
+                if (Mathf.Abs(lp.x - fp.x) > dragDistance || Mathf.Abs(lp.y - fp.y) > dragDistance*4)
                 {
                     if (lp.y < fp.y && !isTeleporting)
                     {
