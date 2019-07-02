@@ -6,16 +6,12 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 
-public class Player : MonoBehaviour{
+public class Player : MonoBehaviour
+{
 
     //Player Lifepoint
-    private int lifePoint =  2;
+    private int lifePoint = 2;
     private int coin = 0;
-
-    //Tutorial checkpoint count;
-    private int counts = 0;
-
-
 
     //Movement
     public float MoveSpeed = 10;
@@ -58,6 +54,13 @@ public class Player : MonoBehaviour{
     public static bool hasContactWithLWall;
     public static bool hasContactWithRWall;
 
+    // Cooldowns
+    //public float MaxTeleportDuration = 1.5f;
+    public float MaxTeleportCooldown = 1.5f;
+    //float teleportDuration = 0;
+    float teleportCooldown = 0;
+    bool isTeleportCooldown = false;
+
     Rigidbody rb;
 
     void Awake()
@@ -74,7 +77,7 @@ public class Player : MonoBehaviour{
         {
             GameMaster.SetLife(0);
         }
-        else if(SceneManager.GetActiveScene().name.Equals("TutorialLevel"))
+        else if (SceneManager.GetActiveScene().name.Equals("TutorialLevel"))
         {
             GameMaster.SetLife(99);
         }
@@ -82,17 +85,17 @@ public class Player : MonoBehaviour{
         {
             GameMaster.SetLife(3);
         }
-        counts = 0;
         ScoreManager.SetScore(0);
         ScoreManager.SetCoin(0);
         rb = GetComponent<Rigidbody>();
         //Cursor.lockState = CursorLockMode.Locked;
         isDashing = false;
+        //Input.gyro.enabled = true;
         isTeleporting = false;
         isDamaged = false;
         hasContactWithLWall = false;
         hasContactWithRWall = false;
-}
+    }
 
     private Ray GenerateMouseRay(Vector3 touchPos)
     {
@@ -109,21 +112,20 @@ public class Player : MonoBehaviour{
     int countFrame = 0;
     private void FixedUpdate()
     {
-        if(countFrame % 60 == 0 && MoveSpeed < MaxSpeed)
+        if (countFrame % 60 == 0 && MoveSpeed < MaxSpeed)
         {
             //Increase speed as the time goes by
-            MoveSpeed += (float) SpeedIncreaseRate;
+            MoveSpeed += (float)SpeedIncreaseRate;
             //Debug.Log("Current movespeed:" + MoveSpeed);
         }
         countFrame++;
     }
-
-    // Update is called once per frame
-    void Update () {
-
-       // dirX = Input.acceleration.x * MoveSpeed;
-       //  transform.position = new Vector2(Mathf.Clamp (transform.position.x, 7.5f,5f), transform.position.y);
-
+    
+    void Update()
+    {
+        //  transform.position = new Vector2(Mathf.Clamp (transform.position.x, 7.5f,5f), transform.position.y);
+        
+        /*
         if (Time.time < animationDuration)
         {
             transform.Translate(new Vector3(-1, 0f, 0f) * MoveSpeed * Time.deltaTime, Space.Self);
@@ -134,6 +136,7 @@ public class Player : MonoBehaviour{
 
         //X Forward and Backward
         moveVector.x = MoveSpeed;
+        */
 
         // jump improve
         if (rb.velocity.y < 0)
@@ -156,9 +159,9 @@ public class Player : MonoBehaviour{
         {
             //Dash();
         }
-        
         //Tilt
-
+        //float tilt = -Input.gyro.attitude.x*10;
+        //transform.Translate(new Vector3(0f, 0f, tilt) * MoveSpeed * Time.deltaTime, Space.Self);
 
         checkJump();
 
@@ -167,7 +170,7 @@ public class Player : MonoBehaviour{
         addTimeScore();
     }
 
-  
+
     void checkJump()
     {
         if (Input.touchCount == 1) // user is touching the screen with a single touch
@@ -182,19 +185,13 @@ public class Player : MonoBehaviour{
             {
                 lp = touch.position;
                 //This can do the teleport things I think. Check for swipe down and detect ending in TouchPhase.Ended
-                if (Mathf.Abs(lp.x - fp.x) > dragDistance || Mathf.Abs(lp.y - fp.y) > dragDistance*4)
+                if (Mathf.Abs(lp.x - fp.x) > dragDistance || Mathf.Abs(lp.y - fp.y) > dragDistance * 4)
                 {
-                    if (lp.y < fp.y && !isTeleporting)
+                    if (lp.y < fp.y && !isTeleporting && teleportCooldown < MaxTeleportCooldown && !isTeleportCooldown)
                     {
                         TeleportSwipeTest();
+                        teleportCooldown += Time.deltaTime;
                     }
-                    /*
-                    else if (lp.y > fp.y && isTeleporting)
-                    {
-                        CancelTeleportSwipeTest();
-                    }
-
-                    */
                 }
             }
             else if (touch.phase == TouchPhase.Ended) //check if the finger is removed from the screen
@@ -204,6 +201,7 @@ public class Player : MonoBehaviour{
                 if (isTeleporting)
                 {
                     CancelTeleportSwipeTest();
+                    //teleportCooldown = MaxTeleportCooldown;
                 }
 
                 //Check if drag distance is greater than dragDistance of the screen height
@@ -233,6 +231,15 @@ public class Player : MonoBehaviour{
 
                     //ShootBullet();
                 }
+            }
+            if (teleportCooldown > 0 && !isTeleporting)
+            {
+                isTeleportCooldown = true;
+                teleportCooldown -= Time.deltaTime;
+            }
+            else
+            {
+                isTeleportCooldown = false;
             }
         }
     }
@@ -292,13 +299,15 @@ public class Player : MonoBehaviour{
         {
             if (Input.GetAxis("Horizontal") > 0f)
             {
+                Debug.Log("Axis : " + Input.GetAxis("Horizontal"));
                 transform.Translate(new Vector3(-1, 0f, 0f) * MoveSpeed * Time.deltaTime, Space.Self);
             }
             else
             {
                 transform.Translate(new Vector3(-1, 0f, Input.GetAxis("Horizontal")) * MoveSpeed * Time.deltaTime, Space.Self);
             }
-        } else if (hasContactWithLWall)
+        }
+        else if (hasContactWithLWall)
         {
             if (Input.GetAxis("Horizontal") < 0f)
             {
@@ -308,7 +317,8 @@ public class Player : MonoBehaviour{
             {
                 transform.Translate(new Vector3(-1, 0f, Input.GetAxis("Horizontal")) * MoveSpeed * Time.deltaTime, Space.Self);
             }
-        } else
+        }
+        else
         {
             transform.Translate(new Vector3(-1, 0f, Input.GetAxis("Horizontal")) * MoveSpeed * Time.deltaTime, Space.Self);
         }
@@ -337,7 +347,7 @@ public class Player : MonoBehaviour{
             Invoke("CancelTeleport", 1);
         }
     }
-    
+
     void CancelTeleport()
     {
         if (isTeleporting)
@@ -348,28 +358,28 @@ public class Player : MonoBehaviour{
         }
     }
 
-            void TeleportSwipeTest()
-            {
-                if (isGrounded && !isTeleporting)
-                {
-                    isTeleporting = true;
-                    MoveSpeed += speedUp;
-                    GetComponent<MeshRenderer>().enabled = false;
-                    //Invoke("CancelTeleport", 1);
-                }
-            }
+    void TeleportSwipeTest()
+    {
+        if (isGrounded && !isTeleporting)
+        {
+            isTeleporting = true;
+            MoveSpeed += speedUp;
+            GetComponent<MeshRenderer>().enabled = false;
+            //Invoke("CancelTeleport", 1);
+        }
+    }
 
-            void CancelTeleportSwipeTest()
-            {
-                if (isTeleporting)
-                {
-                    isTeleporting = false;
-                    MoveSpeed -= speedUp;
-                    GetComponent<MeshRenderer>().enabled = true;
-                }
-            }
+    void CancelTeleportSwipeTest()
+    {
+        if (isTeleporting)
+        {
+            isTeleporting = false;
+            MoveSpeed -= speedUp;
+            GetComponent<MeshRenderer>().enabled = true;
+        }
+    }
 
-            void Dash()
+    void Dash()
     {
         Debug.Log("Dashing called");
         if (isGrounded && !isDashing)
@@ -423,11 +433,12 @@ public class Player : MonoBehaviour{
         if (isTeleporting)
         {
             if (!collision.gameObject.tag.Equals("Ground") && !collision.gameObject.tag.Equals("LWall") && !collision.gameObject.tag.Equals("RWall"))
-            {            
+            {
                 Physics.IgnoreCollision(GetComponent<Collider>(), collision.collider);
                 Physics.IgnoreCollision(GetComponentInChildren<Collider>(), collision.collider);
-            } 
-        } else
+            }
+        }
+        else
         {
             if (collision.gameObject.tag.Equals("Ground"))
             {
@@ -441,7 +452,7 @@ public class Player : MonoBehaviour{
             }
 
             fallDamage.setSavePoint(transform.position.x, transform.position.y, transform.position.z);
-        } 
+        }
 
     }
 
@@ -470,23 +481,6 @@ public class Player : MonoBehaviour{
         {
             hasContactWithRWall = false;
         }
-    }
-
-    //Tutorial Area
-
-    public  int getTutorialCount()
-    {
-        return counts;
-    }
-
-    public  void SetCount(int count)
-    {
-        counts = count;
-    }
-
-    public  void AddCount(int count)
-    {
-        counts += count;
     }
 
 }
