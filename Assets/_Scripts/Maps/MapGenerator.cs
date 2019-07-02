@@ -37,7 +37,6 @@ public class MapGenerator : MonoBehaviour {
     {
 
         int randomed = Random.Range(0, RoadSegments.Length);
-        Debug.Log(randomed);
 
         var lastTileBounds = GetComponent<MeshFilter>().mesh.bounds;
 
