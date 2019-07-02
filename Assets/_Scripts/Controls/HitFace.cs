@@ -6,9 +6,10 @@ using UnityEngine.SceneManagement;
 
 public class HitFace : MonoBehaviour {
 
+    string[] obstacleTags = { "Obstacle", "Dashable"};
+
     public Animator animator;
 
-    string[] obstacleTags = { "Obstacle", "Dashable", "Monster"};
 
     private void Update()
     {
@@ -17,9 +18,9 @@ public class HitFace : MonoBehaviour {
     }
 
     private void OnCollisionEnter(Collision collision)
-    { 
-        //Debug.Log("Obstacle: Hit something");
-        if (collision.gameObject.tag.Equals("Dashable") && Player.isDashing && !Player.isTeleporting)
+    {
+        /*
+         * if (collision.gameObject.tag.Equals("Dashable") && Player.isDashing && !Player.isTeleporting)
         {
             //Do nothing
         }
@@ -37,14 +38,22 @@ public class HitFace : MonoBehaviour {
             StartCoroutine(Stop());
 
         }
-        else if (Array.IndexOf(obstacleTags, collision.gameObject.tag) > -1 && GameMaster.lifePoint <= 0 && !Player.isTeleporting)
+         */
+        if (Array.IndexOf(obstacleTags, collision.gameObject.tag) > -1 && GameMaster.lifePoint > 0 && !Player.isTeleporting && !Player.isDamaged)
+        {
+            Bounce();
+            GameMaster.removeLife(1);
+            StartCoroutine(Stop());
+        }
+        else if (Array.IndexOf(obstacleTags, collision.gameObject.tag) > -1 && GameMaster.lifePoint <= 0 && !Player.isTeleporting && !Player.isDamaged)
         {
             DeadScene();
         }
     }
 
     private void Bounce()
-    { 
+    {
+        Player.isDamaged = true;
         transform.parent.gameObject.GetComponent<Player>().MoveSpeed = -transform.parent.gameObject.GetComponent<Player>().MoveSpeed;
     }
 
@@ -69,7 +78,8 @@ public class HitFace : MonoBehaviour {
         float forward = -transform.parent.gameObject.GetComponent<Player>().MoveSpeed;
         yield return new WaitForSeconds(0.75f);
         transform.parent.gameObject.GetComponent<Player>().MoveSpeed = 0;
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(0.75f);
+        Player.isDamaged = false;
         transform.parent.gameObject.GetComponent<Player>().MoveSpeed = forward;
     }
 }
