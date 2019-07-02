@@ -298,6 +298,7 @@ public class Player : MonoBehaviour
         {
             if (Input.GetAxis("Horizontal") > 0f)
             {
+                Debug.Log("Axis : " + Input.GetAxis("Horizontal"));
                 transform.Translate(new Vector3(-1, 0f, 0f) * MoveSpeed * Time.deltaTime, Space.Self);
             }
             else
