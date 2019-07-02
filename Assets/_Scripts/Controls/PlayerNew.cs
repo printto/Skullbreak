@@ -43,7 +43,7 @@ public class PlayerNew : MonoBehaviour
     public static bool isSlowedDown = false;
 
     //Teleportation
-    private float speedUp = 120f;
+    private float speedUp = 100f;
     public static bool teleportable = false;
     public static bool isTeleporting = false;
 
@@ -362,12 +362,10 @@ public class PlayerNew : MonoBehaviour
             if (!(collision.gameObject.tag.Equals("Ground") || collision.gameObject.tag.Equals("TeleportEnd")))
             {
                 Physics.IgnoreCollision(GetComponent<Collider>(), collision.collider);
-                Physics.IgnoreCollision(GetComponentInChildren<Collider>(), collision.collider);
             }
             else if (collision.collider.tag.Equals("TeleportEnd"))
             {
                 Physics.IgnoreCollision(GetComponent<Collider>(), collision.collider);
-                Physics.IgnoreCollision(GetComponentInChildren<Collider>(), collision.collider);
                 CancelTeleport();
             }
         } else 
