@@ -73,6 +73,10 @@ public class PlayerNew : MonoBehaviour
         {
             GameMaster.SetLife(99);
         }
+        else if (SceneManager.GetActiveScene().name.Equals("GridMode"))
+        {
+            GameMaster.SetLife(0);
+        }
         else
         {
             GameMaster.SetLife(3);
