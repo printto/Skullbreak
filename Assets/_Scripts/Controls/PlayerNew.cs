@@ -43,8 +43,8 @@ public class PlayerNew : MonoBehaviour
     public static bool isSlowedDown = false;
 
     //Teleportation
-    private float energy;
-    private float speedUp = 20;
+    private float speedUp = 50;
+    public static bool teleportable = false;
     public static bool isTeleporting = false;
 
     //Lanes
@@ -79,8 +79,8 @@ public class PlayerNew : MonoBehaviour
         }
 
         isSlowedDown = false;
+        teleportable = false;
         isTeleporting = false;
-        energy = 4f;
 
         ScoreManager.SetScore(0);
         ScoreManager.SetCoin(0);
@@ -150,7 +150,7 @@ public class PlayerNew : MonoBehaviour
 
     void checkJump()
     {
-        if (Input.touchCount == 1) // user is touching the screen with a single touch
+        if (Input.touchCount == 1 && !isTeleporting) // user is touching the screen with a single touch
         {
             Touch touch = Input.GetTouch(0); // get the touch
             if (touch.phase == TouchPhase.Began) //check for the first touch
@@ -212,7 +212,7 @@ public class PlayerNew : MonoBehaviour
     void MovePlayerFromInputs()
     {
         //Touch screen
-        if (Input.touchCount == 1) // user is touching the screen with a single touch
+        if (Input.touchCount == 1 && !isTeleporting) // user is touching the screen with a single touch
         {
             Touch touch = Input.GetTouch(0); // get the touch
             if (touch.phase == TouchPhase.Began) //check for the first touch
@@ -252,10 +252,9 @@ public class PlayerNew : MonoBehaviour
             }
         }
         //Keyboard move
-        if (Input.GetAxis("Vertical") < 0)
+        if (Input.GetAxis("Vertical") < 0 && teleportable && !isTeleporting)
         {
-            //TODO: Redo this teleport condition
-            //Teleport();
+            Teleport();
         }
         else
         {
@@ -302,28 +301,10 @@ public class PlayerNew : MonoBehaviour
         }
     }
 
-    // Restore player's teleport energy every second if not teleporitng
-    void RestoreEnergy()
-    {
-        if (energy < 4f)
-        {
-            energy += Time.deltaTime;
-        }
-    }
-
-    // Reduce player's teleport energy every second when they use teleport
-    void ReduceEnergy()
-    {
-        if (energy > 0f)
-        {
-            energy -= Time.deltaTime;
-        }
-    }
-
-    // Start the teleportation if not run out of energy
+    // Start the teleportation if player is inside the teleport area
     void Teleport()
     {
-        if (energy != 0f)
+        if (teleportable)
         {
             isTeleporting = true;
             MoveSpeed += speedUp;
@@ -331,8 +312,7 @@ public class PlayerNew : MonoBehaviour
         }
     }
 
-    // Stop the teleportation
-    void StopTeleport()
+    void CancelTeleport()
     {
         isTeleporting = false;
         MoveSpeed -= speedUp;
@@ -372,32 +352,37 @@ public class PlayerNew : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (isTeleporting)
+
+        if (collision.gameObject.tag.Equals("Ground"))
         {
-            if (!collision.gameObject.tag.Equals("Ground") && !collision.gameObject.tag.Equals("LWall") && !collision.gameObject.tag.Equals("RWall"))
+            if (!isGrounded)
+            {
+                isGrounded = true;
+            }
+        } else if (collision.gameObject.tag.Equals("TeleportGate"))
+        {
+            teleportable = true;
+        } else if (isTeleporting)
+        {
+            if (!(collision.collider.tag.Equals("Ground") || collision.collider.tag.Equals("TeleportEnd")))
             {
                 Physics.IgnoreCollision(GetComponent<Collider>(), collision.collider);
-                Physics.IgnoreCollision(GetComponentInChildren<Collider>(), collision.collider);
+            } else if (collision.collider.tag.Equals("TeleportEnd"))
+            {
+                CancelTeleport();
             }
         }
-        else
+
+        fallDamage.setSavePoint(transform.position.x, transform.position.y, transform.position.z);
+
+    }
+
+    private void OnCollisionExit(Collision collision)
+    {
+        if (collision.gameObject.tag.Equals("TeleportGate"))
         {
-            if (collision.gameObject.tag.Equals("Ground"))
-            {
-                if (!isGrounded)
-                {
-                    isGrounded = true;
-                }
-            }
-
-            if (collision.gameObject.tag.Equals("Monster") && !isTeleporting)
-            {
-                Slowdown();
-            }
-
-            fallDamage.setSavePoint(transform.position.x, transform.position.y, transform.position.z);
+            teleportable = false;
         }
-
     }
 
 }

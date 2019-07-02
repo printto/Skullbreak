@@ -36,7 +36,6 @@ public class PlayerTeleportation : MonoBehaviour {
     {
         if (energy != 0f)
         {
-            player.MoveSpeed += player.speedUp;
             isTeleporting = true;
         }
     }
@@ -44,7 +43,6 @@ public class PlayerTeleportation : MonoBehaviour {
     // Stop the teleportation
     void StopTeleport ()
     {
-        player.MoveSpeed -= player.speedUp;
         isTeleporting = false;
     }
 
