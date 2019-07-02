@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class TeleportGate : MonoBehaviour {
+    public GameObject teleportEnd;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -19,5 +20,10 @@ public class TeleportGate : MonoBehaviour {
         {
             PlayerNew.teleportable = false;
         }
+    }
+
+    public GameObject getTeleportEnd()
+    {
+        return teleportEnd;
     }
 }

@@ -43,7 +43,7 @@ public class PlayerNew : MonoBehaviour
     public static bool isSlowedDown = false;
 
     //Teleportation
-    private float speedUp = 100f;
+    private GameObject teleportEnd;
     public static bool teleportable = false;
     public static bool isTeleporting = false;
 
@@ -258,7 +258,6 @@ public class PlayerNew : MonoBehaviour
         //Keyboard move
         if (Input.GetAxis("Vertical") < 0 && teleportable && !isTeleporting)
         {
-            Debug.Log("teleporting");
             Teleport();
         }
         else
@@ -312,16 +311,14 @@ public class PlayerNew : MonoBehaviour
         if (teleportable)
         {
             isTeleporting = true;
-            MoveSpeed += speedUp;
-            GetComponent<MeshRenderer>().enabled = false;
+            Vector3 endPos = teleportEnd.transform.position;
+            transform.position = endPos;
         }
     }
 
     void CancelTeleport()
     {
         isTeleporting = false;
-        MoveSpeed -= speedUp;
-        GetComponent<MeshRenderer>().enabled = true;
     }
 
     public void Slowdown()
@@ -357,30 +354,25 @@ public class PlayerNew : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (isTeleporting)
+        if (collision.gameObject.tag.Equals("Ground"))
         {
-            if (!(collision.gameObject.tag.Equals("Ground") || collision.gameObject.tag.Equals("TeleportEnd")))
+            if (!isGrounded)
             {
-                Physics.IgnoreCollision(GetComponent<Collider>(), collision.collider);
-            }
-            else if (collision.collider.tag.Equals("TeleportEnd"))
-            {
-                Physics.IgnoreCollision(GetComponent<Collider>(), collision.collider);
-                CancelTeleport();
-            }
-        } else 
-        {
-            if (collision.gameObject.tag.Equals("Ground"))
-            {
-                if (!isGrounded)
-                {
-                    isGrounded = true;
-                }
+               isGrounded = true;
             }
             fallDamage.setSavePoint(transform.position.x, transform.position.y, transform.position.z);
-        } 
-        
+        }
+    }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag.Equals("TeleportGate"))
+        {
+            teleportEnd = other.gameObject.GetComponent<TeleportGate>().getTeleportEnd();
+        } else if (other.gameObject.tag.Equals("TeleportEnd"))
+        {
+            CancelTeleport();
+        }
     }
 
 }
