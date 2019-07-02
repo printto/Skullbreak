@@ -45,9 +45,9 @@ public class Player : MonoBehaviour
     private float dragDistance = Screen.height * 5 / 100;
 
     //Buffs
-    public static bool isSlowedDown = false;
     public static bool isDashing = false;
     public static bool isTeleporting = false;
+    public static bool isDamaged = false;
     public static float speedUp = 20;
 
     // Detect if player has a contact with the wall
@@ -89,10 +89,10 @@ public class Player : MonoBehaviour
         ScoreManager.SetCoin(0);
         rb = GetComponent<Rigidbody>();
         //Cursor.lockState = CursorLockMode.Locked;
-        isSlowedDown = false;
         isDashing = false;
         //Input.gyro.enabled = true;
         isTeleporting = false;
+        isDamaged = false;
         hasContactWithLWall = false;
         hasContactWithRWall = false;
     }
@@ -339,7 +339,7 @@ public class Player : MonoBehaviour
 
     void Teleport()
     {
-        if (isGrounded && !isTeleporting)
+        if (isGrounded && !isTeleporting && !isDamaged)
         {
             isTeleporting = true;
             MoveSpeed += speedUp;
@@ -404,28 +404,23 @@ public class Player : MonoBehaviour
 
     public void Slowdown()
     {
-
-        Debug.Log("Slowdown called");
-        if (!isSlowedDown)
+        if (!isDamaged)
         {
+            isDamaged = true;
             CurrentMoveSpeed = MoveSpeed;
-            MoveSpeed = SlowdownMoveSpeed;
-            Debug.Log("Slowdown started");
-            isSlowedDown = true;
+            MoveSpeed = MoveSpeed/2;
             Invoke("CancelSlowdown", 1);
         }
     }
 
     void CancelSlowdown()
     {
-        Debug.Log("Slowdown ended");
-        if (isSlowedDown)
+        if (isDamaged)
         {
+            isDamaged = false;
             MoveSpeed = CurrentMoveSpeed;
         }
-        isSlowedDown = false;
     }
-
 
     /*
      * 
@@ -451,9 +446,7 @@ public class Player : MonoBehaviour
                 {
                     isGrounded = true;
                 }
-            }
-
-            if (collision.gameObject.tag.Equals("Monster") && !isTeleporting)
+            } else if (collision.gameObject.tag.Equals("Monster"))
             {
                 Slowdown();
             }

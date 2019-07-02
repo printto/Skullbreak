@@ -15,10 +15,8 @@ public class GateEnter : MonoBehaviour {
     {
         if (other.gameObject.tag.Equals("Player"))
         {
-            Debug.Log("Enter the gate");
             if (anim != null)
             {
-                Debug.Log("playing map animation");
                 anim.SetTrigger("Player");
             }
         }
