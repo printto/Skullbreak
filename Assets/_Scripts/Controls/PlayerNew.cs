@@ -312,7 +312,7 @@ public class PlayerNew : MonoBehaviour
         {
             isTeleporting = true;
             Vector3 endPos = teleportEnd.transform.position;
-            transform.position = endPos;
+            transform.position = new Vector3(endPos.x, endPos.y, transform.position.z);
         }
     }
 
