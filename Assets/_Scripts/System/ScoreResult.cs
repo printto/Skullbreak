@@ -8,6 +8,9 @@ public class ScoreResult : MonoBehaviour {
     public Text ScoreText;
     public Text SecText;
     public Text CoinText;
+    public Text HighscoreText;
+    public Text HighscoreTextTitle;
+
     public int CoinMultiplyer = 5;
     int sec;
     int coins;
@@ -18,6 +21,7 @@ public class ScoreResult : MonoBehaviour {
         sec = (int) ScoreManager.GetScore();
         coins = ScoreManager.GetCoin();
         score = sec + (coins * CoinMultiplyer);
+        SaveManager.Load();
         UpdateText();
     }
 
@@ -34,6 +38,22 @@ public class ScoreResult : MonoBehaviour {
         if (SecText != null)
         {
             SecText.text = "Time\n" + sec + " sec";
+        }
+        if (HighscoreText != null)
+        {
+            if (HighscoreManager.UpdateHighscore(score))
+            {
+                if(HighscoreTextTitle != null)
+                {
+                    HighscoreTextTitle.text = "";
+                }
+                HighscoreText.fontSize = 30;
+                HighscoreText.text = "New Highscore!";
+            }
+            else
+            {
+                HighscoreText.text = "" + ((int) HighscoreManager.GetHighscore());
+            }
         }
     }
 

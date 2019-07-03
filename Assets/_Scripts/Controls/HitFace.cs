@@ -6,22 +6,31 @@ using UnityEngine.SceneManagement;
 
 public class HitFace : MonoBehaviour {
 
-    string[] obstacleTags = { "Obstacle", "Dashable", "Monster"};
+    string[] obstacleTags = { "Obstacle", "Dashable"};
 
-      private void OnCollisionEnter(Collision collision)
-    {   
-        //Debug.Log("Obstacle: Hit something");
-        if (collision.gameObject.tag.Equals("Dashable") && Player.isDashing)
+    public Animator animator;
+
+
+    private void Update()
+    {
+        // Make this playerface vanish when player is teleporting 
+        GetComponent<MeshRenderer>().enabled = !Player.isTeleporting;
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        /*
+         * if (collision.gameObject.tag.Equals("Dashable") && Player.isDashing && !Player.isTeleporting)
         {
             //Do nothing
         }
-        else if (collision.gameObject.tag.Equals("Monster") && GameMaster.lifePoint > 0)
+        if (collision.gameObject.tag.Equals("Monster") && GameMaster.lifePoint > 0 && !Player.isTeleporting)
         {
             transform.parent.gameObject.GetComponent<Player>().Slowdown();
             Debug.Log("Hit Monster : Player Face");
             //GameMaster.removeLife(1);
         }
-        else if (Array.IndexOf(obstacleTags, collision.gameObject.tag) > -1 && GameMaster.lifePoint > 0)
+        else if (Array.IndexOf(obstacleTags, collision.gameObject.tag) > -1 && GameMaster.lifePoint > 0 && !Player.isTeleporting)
         {
             Debug.Log("Hit obstacle");
             Bounce();
@@ -29,14 +38,22 @@ public class HitFace : MonoBehaviour {
             StartCoroutine(Stop());
 
         }
-        else if (Array.IndexOf(obstacleTags, collision.gameObject.tag) > -1 && GameMaster.lifePoint <= 0)
+         */
+        if (Array.IndexOf(obstacleTags, collision.gameObject.tag) > -1 && GameMaster.lifePoint > 0 && !Player.isTeleporting && !Player.isDamaged)
+        {
+            Bounce();
+            GameMaster.removeLife(1);
+            StartCoroutine(Stop());
+        }
+        else if (Array.IndexOf(obstacleTags, collision.gameObject.tag) > -1 && GameMaster.lifePoint <= 0 && !Player.isTeleporting && !Player.isDamaged)
         {
             DeadScene();
         }
     }
 
     private void Bounce()
-    { 
+    {
+        Player.isDamaged = true;
         transform.parent.gameObject.GetComponent<Player>().MoveSpeed = -transform.parent.gameObject.GetComponent<Player>().MoveSpeed;
     }
 
@@ -44,10 +61,15 @@ public class HitFace : MonoBehaviour {
 
     private void DeadScene()
     {
-        SceneManager.LoadScene(2);
+        //SceneManager.LoadScene(2);
+        //Initiate.Fade("DeadScene", Color.black, 6f);
+        SceneTransition.setAnimator(animator);
+        SceneTransition.setScene("DeadScene");
+        SceneTransition.getScene();
+        StartCoroutine(SceneTransition.LoadScene());
     }
 
-   
+
 
     //not yet implemented
     //For when crashing, it will pause for a seconds then move forward.
@@ -56,7 +78,8 @@ public class HitFace : MonoBehaviour {
         float forward = -transform.parent.gameObject.GetComponent<Player>().MoveSpeed;
         yield return new WaitForSeconds(0.75f);
         transform.parent.gameObject.GetComponent<Player>().MoveSpeed = 0;
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(0.75f);
+        Player.isDamaged = false;
         transform.parent.gameObject.GetComponent<Player>().MoveSpeed = forward;
     }
 }

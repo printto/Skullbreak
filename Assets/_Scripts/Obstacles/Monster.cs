@@ -5,12 +5,10 @@ using UnityEngine.SceneManagement;
 public class Monster : MonoBehaviour {
 
     private float direction;
-    bool isHit = false;
 
 	// Use this for initialization
 	void Start () {
         var rand = Random.Range(0,2);
-        Debug.Log("MonRan : " + rand);
 		switch(rand)
         {
             case 0:
@@ -32,42 +30,44 @@ public class Monster : MonoBehaviour {
 
     private void OnCollisionEnter(Collision collision)
     {
-
         if (collision.gameObject.tag.Equals("Bullet"))
         {
             Dead();
-        }
-        else if ((collision.gameObject.tag.Equals("Player") || collision.gameObject.tag.Equals("PlayerFace")) && GameMaster.lifePoint > 0)
+        } else if (!Player.isDamaged)
         {
-            if (!isHit)
+            if ((collision.gameObject.tag.Equals("Player") || collision.gameObject.tag.Equals("PlayerFace")) && GameMaster.lifePoint > 0)
             {
-                isHit = true;
-                GameMaster.removeLife(1);
-                Debug.Log("Hit Monster : Monster removeLife");
+                if (!Player.isTeleporting)
+                {
+                    GameMaster.removeLife(1);
+                    Dead();
+                }
             }
-            Dead();
-        }
-        else if ((collision.gameObject.tag.Equals("Player") || collision.gameObject.tag.Equals("PlayerFace")) && GameMaster.lifePoint <= 0)
+            else if ((collision.gameObject.tag.Equals("Player") || collision.gameObject.tag.Equals("PlayerFace")) && GameMaster.lifePoint <= 0)
+            {
+                if (!Player.isTeleporting)
+                {
+                    Dead();
+                    EndGame();
+                }
+            } else
+            {
+                ChangeDirection();
+            }
+        } else
         {
-            EndGame();
-            Dead();
+            if (collision.gameObject.tag.Equals("Player") || collision.gameObject.tag.Equals("PlayerFace"))
+            {
+                Physics.IgnoreCollision(collision.collider, GetComponent<Collider>());
+            }
         }
-        else
-        {
-            ChangeDirection();
-        }
-        
-        /*
-        if (!collision.gameObject.tag.Equals("Player") && !collision.gameObject.tag.Equals("PlayerFace"))
-        {
-            ChangeDirection();
-        }
-        */
     }
 
     void EndGame()
     {
-        SceneManager.LoadScene(2);
+        //SceneManager.LoadScene(2);
+        Initiate.Fade("DeadScene", Color.black, 4f);
+
     }
 
     void ChangeDirection()
