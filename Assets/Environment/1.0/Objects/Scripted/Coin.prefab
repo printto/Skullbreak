@@ -21,8 +21,10 @@ GameObject:
   - component: {fileID: 4894042067757660}
   - component: {fileID: 33699298852608382}
   - component: {fileID: 23605102383119798}
+  - component: {fileID: 114168852604650356}
+  - component: {fileID: 64845894484912486}
   m_Layer: 0
-  m_Name: pickup 1 (1)
+  m_Name: Coin
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -36,7 +38,7 @@ Transform:
   m_GameObject: {fileID: 1404882660280848}
   m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
   m_LocalPosition: {x: 0.3872471, y: 10.24, z: -71.66531}
-  m_LocalScale: {x: 35.826023, y: 35.826023, z: 35.826023}
+  m_LocalScale: {x: 10, y: 10, z: 10}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -56,7 +58,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: 50e24fd794f1a7d4cadd6c89657b38fa, type: 3}
+  - {fileID: 2100000, guid: 00dca89a48d2e7c489e336b414c59a50, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -83,3 +85,29 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1404882660280848}
   m_Mesh: {fileID: 4300000, guid: 50e24fd794f1a7d4cadd6c89657b38fa, type: 3}
+--- !u!64 &64845894484912486
+MeshCollider:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1404882660280848}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 0
+  m_CookingOptions: 14
+  m_SkinWidth: 0.01
+  m_Mesh: {fileID: 4300000, guid: 50e24fd794f1a7d4cadd6c89657b38fa, type: 3}
+--- !u!114 &114168852604650356
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1404882660280848}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 902249f4f45075f44a38e7ed1cc7859e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ScoreToAdd: 1

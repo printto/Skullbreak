@@ -21,9 +21,11 @@ GameObject:
   - component: {fileID: 4199227756671744}
   - component: {fileID: 33514894792860646}
   - component: {fileID: 23570615922907388}
+  - component: {fileID: 64757991668466880}
+  - component: {fileID: 114476305205429880}
   m_Layer: 0
-  m_Name: teleportwallv2 (1)
-  m_TagString: Untagged
+  m_Name: TeleportWall
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -36,7 +38,7 @@ Transform:
   m_GameObject: {fileID: 1309682223497746}
   m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
   m_LocalPosition: {x: 30.75, y: 17.31, z: -80.89602}
-  m_LocalScale: {x: 47.38933, y: 342.21667, z: 306.78564}
+  m_LocalScale: {x: 47.38933, y: 265, z: 306.78564}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -56,8 +58,8 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: d3d85ff8f0464b04da102c4a16716ba0, type: 3}
-  - {fileID: 2100002, guid: d3d85ff8f0464b04da102c4a16716ba0, type: 3}
+  - {fileID: 2100000, guid: 469d50a03ba099143b1f88a42ad8205a, type: 2}
+  - {fileID: 2100000, guid: 109baab82d81a21409cd1f2660639ea0, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -84,3 +86,28 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1309682223497746}
   m_Mesh: {fileID: 4300000, guid: d3d85ff8f0464b04da102c4a16716ba0, type: 3}
+--- !u!64 &64757991668466880
+MeshCollider:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1309682223497746}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 0
+  m_CookingOptions: 14
+  m_SkinWidth: 0.01
+  m_Mesh: {fileID: 4300000, guid: d3d85ff8f0464b04da102c4a16716ba0, type: 3}
+--- !u!114 &114476305205429880
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1309682223497746}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dbff3ced29c47bd49bf3d35368f6940f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

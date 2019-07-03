@@ -21,9 +21,11 @@ GameObject:
   - component: {fileID: 4944453526757976}
   - component: {fileID: 33389994830965242}
   - component: {fileID: 23099251471889786}
+  - component: {fileID: 114537362877240344}
+  - component: {fileID: 64375500558083646}
   m_Layer: 0
-  m_Name: obstacletwolane (1)
-  m_TagString: Untagged
+  m_Name: LongObstacle
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -36,7 +38,7 @@ Transform:
   m_GameObject: {fileID: 1614621824780506}
   m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
   m_LocalPosition: {x: 17.936802, y: 9.87, z: -70.06273}
-  m_LocalScale: {x: 117.56706, y: 586.07275, z: 117.56706}
+  m_LocalScale: {x: 65, y: 260, z: 125}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -56,8 +58,8 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: 760425de654b8f64f9bf70f60945eb1d, type: 3}
-  - {fileID: 2100002, guid: 760425de654b8f64f9bf70f60945eb1d, type: 3}
+  - {fileID: 2100000, guid: 109baab82d81a21409cd1f2660639ea0, type: 2}
+  - {fileID: 2100000, guid: d4a6e7ee52909e648869dc732716190e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -84,3 +86,28 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1614621824780506}
   m_Mesh: {fileID: 4300000, guid: 760425de654b8f64f9bf70f60945eb1d, type: 3}
+--- !u!64 &64375500558083646
+MeshCollider:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1614621824780506}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 0
+  m_CookingOptions: 14
+  m_SkinWidth: 0.01
+  m_Mesh: {fileID: 4300000, guid: 760425de654b8f64f9bf70f60945eb1d, type: 3}
+--- !u!114 &114537362877240344
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1614621824780506}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dbff3ced29c47bd49bf3d35368f6940f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

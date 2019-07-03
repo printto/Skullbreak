@@ -21,9 +21,11 @@ GameObject:
   - component: {fileID: 4775654152818844}
   - component: {fileID: 33189939400029022}
   - component: {fileID: 23969681464257402}
+  - component: {fileID: 64246561393231968}
+  - component: {fileID: 114033869002483920}
   m_Layer: 0
-  m_Name: pathwithhole (1)
-  m_TagString: Untagged
+  m_Name: PathWithHole
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -36,7 +38,7 @@ Transform:
   m_GameObject: {fileID: 1307447640374540}
   m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
   m_LocalPosition: {x: 12.755358, y: 13.17, z: -81.11572}
-  m_LocalScale: {x: 791.3148, y: 265.20743, z: 20.053202}
+  m_LocalScale: {x: 791.3148, y: 265, z: 20.053202}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -56,8 +58,8 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: 627b2e983df1d434e9c7551ce64f93bc, type: 3}
-  - {fileID: 2100002, guid: 627b2e983df1d434e9c7551ce64f93bc, type: 3}
+  - {fileID: 2100000, guid: 9997809cd857518498537f577fb22981, type: 2}
+  - {fileID: 2100000, guid: e38f55c505dbada45ac2e8ae5457874b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -84,3 +86,31 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1307447640374540}
   m_Mesh: {fileID: 4300000, guid: 627b2e983df1d434e9c7551ce64f93bc, type: 3}
+--- !u!64 &64246561393231968
+MeshCollider:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1307447640374540}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 0
+  m_CookingOptions: 14
+  m_SkinWidth: 0.01
+  m_Mesh: {fileID: 4300000, guid: 627b2e983df1d434e9c7551ce64f93bc, type: 3}
+--- !u!114 &114033869002483920
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1307447640374540}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb8207576bf4ca544891201d93924a73, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CurrentSegment: {fileID: 0}
+  RoadSegments: []
+  createdNext: 0
