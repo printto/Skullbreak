@@ -32,11 +32,6 @@ public class PlayerNew : MonoBehaviour
     private float jumpSpeed = 7f;
     private float touchJumpSpeed = 10f;
 
-    //Bullet asset
-    public GameObject Bullet;
-    public float BulletForce = 100000;
-    public Camera playerCam;
-
     private float animationDuration = 1.0f;
 
     //Android jumping control
@@ -44,11 +39,13 @@ public class PlayerNew : MonoBehaviour
     private Vector3 lp;   //Last touch position
     private float dragDistance = Screen.height * 5 / 100;
 
-    //Buffs
+    //Slowdown
     public static bool isSlowedDown = false;
-    public static bool isDashing = false;
+
+    //Teleportation
+    private GameObject teleportEnd;
+    public static bool teleportable = false;
     public static bool isTeleporting = false;
-    public static float speedUp = 20;
 
     //Lanes
     public float[] LaneZs;
@@ -84,6 +81,11 @@ public class PlayerNew : MonoBehaviour
         {
             GameMaster.SetLife(3);
         }
+
+        isSlowedDown = false;
+        teleportable = false;
+        isTeleporting = false;
+
         ScoreManager.SetScore(0);
         ScoreManager.SetCoin(0);
         rb = GetComponent<Rigidbody>();
@@ -152,7 +154,7 @@ public class PlayerNew : MonoBehaviour
 
     void checkJump()
     {
-        if (Input.touchCount == 1) // user is touching the screen with a single touch
+        if (Input.touchCount == 1 && !isTeleporting) // user is touching the screen with a single touch
         {
             Touch touch = Input.GetTouch(0); // get the touch
             if (touch.phase == TouchPhase.Began) //check for the first touch
@@ -210,18 +212,11 @@ public class PlayerNew : MonoBehaviour
      * for input controlling functions
      * 
      */
-
-
-    void ShootBullet()
-    {
-        GameObject temp = Instantiate(Bullet, new Vector3(transform.position.x - 3, transform.position.y, transform.position.z), playerCam.transform.rotation);
-        temp.GetComponent<Rigidbody>().velocity = playerCam.transform.forward * BulletForce * 100;
-    }
     
     void MovePlayerFromInputs()
     {
         //Touch screen
-        if (Input.touchCount == 1) // user is touching the screen with a single touch
+        if (Input.touchCount == 1 && !isTeleporting) // user is touching the screen with a single touch
         {
             Touch touch = Input.GetTouch(0); // get the touch
             if (touch.phase == TouchPhase.Began) //check for the first touch
@@ -261,10 +256,9 @@ public class PlayerNew : MonoBehaviour
             }
         }
         //Keyboard move
-        if (Input.GetAxis("Vertical") < 0)
+        if (Input.GetAxis("Vertical") < 0 && teleportable && !isTeleporting)
         {
-            //TODO: Redo this teleport condition
-            //Teleport();
+            Teleport();
         }
         else
         {
@@ -311,6 +305,22 @@ public class PlayerNew : MonoBehaviour
         }
     }
 
+    // Start the teleportation if player is inside the teleport area
+    void Teleport()
+    {
+        if (teleportable)
+        {
+            isTeleporting = true;
+            Vector3 endPos = teleportEnd.transform.position;
+            transform.position = new Vector3(endPos.x, endPos.y, transform.position.z);
+        }
+    }
+
+    void CancelTeleport()
+    {
+        isTeleporting = false;
+    }
+
     public void Slowdown()
     {
 
@@ -344,32 +354,25 @@ public class PlayerNew : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (isTeleporting)
+        if (collision.gameObject.tag.Equals("Ground"))
         {
-            if (!collision.gameObject.tag.Equals("Ground") && !collision.gameObject.tag.Equals("LWall") && !collision.gameObject.tag.Equals("RWall"))
+            if (!isGrounded)
             {
-                Physics.IgnoreCollision(GetComponent<Collider>(), collision.collider);
-                Physics.IgnoreCollision(GetComponentInChildren<Collider>(), collision.collider);
+               isGrounded = true;
             }
-        }
-        else
-        {
-            if (collision.gameObject.tag.Equals("Ground"))
-            {
-                if (!isGrounded)
-                {
-                    isGrounded = true;
-                }
-            }
-
-            if (collision.gameObject.tag.Equals("Monster") && !isTeleporting)
-            {
-                Slowdown();
-            }
-
             fallDamage.setSavePoint(transform.position.x, transform.position.y, transform.position.z);
         }
+    }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag.Equals("TeleportGate"))
+        {
+            teleportEnd = other.gameObject.GetComponent<TeleportGate>().getTeleportEnd();
+        } else if (other.gameObject.tag.Equals("TeleportEnd"))
+        {
+            CancelTeleport();
+        }
     }
 
 }

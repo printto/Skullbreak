@@ -16,7 +16,6 @@ public class Player : MonoBehaviour
     //Movement
     public float MoveSpeed = 10;
     float CurrentMoveSpeed = 0;
-    public float SlowdownMoveSpeed = 5;
 
     //public float TurnRate = 2f;
     public Vector3 moveVector;
