@@ -47,6 +47,10 @@ public class PlayerNew : MonoBehaviour
     public static bool teleportable = false;
     public static bool isTeleporting = false;
 
+    //Crash
+    public static bool isDamaged = false;
+
+
     //Lanes
     public float[] LaneZs;
     public int currentLane = 0;
@@ -85,8 +89,10 @@ public class PlayerNew : MonoBehaviour
         isSlowedDown = false;
         teleportable = false;
         isTeleporting = false;
+        isDamaged = false;
 
-        ScoreManager.SetScore(0);
+
+    ScoreManager.SetScore(0);
         ScoreManager.SetCoin(0);
         rb = GetComponent<Rigidbody>();
         //Cursor.lockState = CursorLockMode.Locked;
