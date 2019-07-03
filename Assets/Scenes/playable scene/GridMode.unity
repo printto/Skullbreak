@@ -391,6 +391,67 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 224634616436015044, guid: 697e9467bcbfacb41adce8e688265dce,
     type: 2}
   m_PrefabInternal: {fileID: 196619755}
+--- !u!1 &198311859
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 198311861}
+  - component: {fileID: 198311860}
+  m_Layer: 0
+  m_Name: GameObjectPool
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &198311860
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 198311859}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5bef63a60fbe71f449db7ae6b9940ddc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  listOfPools:
+  - prefabToCreate: {fileID: 1008670828530156, guid: 085753afe6978d642a619e7a8fa94555,
+      type: 2}
+    amountToCreate: 1
+    amountToAdd: 1
+  - prefabToCreate: {fileID: 1306812236162508, guid: 3ac21ce1a52c83145895a553a4579518,
+      type: 2}
+    amountToCreate: 1
+    amountToAdd: 1
+  - prefabToCreate: {fileID: 1502550627822456, guid: 365e1d0f8a017cd42a249a0873291b0d,
+      type: 2}
+    amountToCreate: 1
+    amountToAdd: 1
+  - prefabToCreate: {fileID: 1184936206602264, guid: 8671cd56250af504f9bbd3e58e670632,
+      type: 2}
+    amountToCreate: 1
+    amountToAdd: 1
+  - prefabToCreate: {fileID: 1618337415216416, guid: 5fc18d17e7b7c2841ac08e54c28cfc0c,
+      type: 2}
+    amountToCreate: 1
+    amountToAdd: 1
+--- !u!4 &198311861
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 198311859}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 21.027908, y: 6.425254, z: -6.220269}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &225106914
 GameObject:
   m_ObjectHideFlags: 0
@@ -1416,6 +1477,21 @@ Prefab:
         type: 2}
       propertyPath: currentLane
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114468432358290952, guid: 038bd7ba6b974644d9a6b9b7fecb8b9a,
+        type: 2}
+      propertyPath: MaxSpeed
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 114468432358290952, guid: 038bd7ba6b974644d9a6b9b7fecb8b9a,
+        type: 2}
+      propertyPath: MoveSpeed
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 114468432358290952, guid: 038bd7ba6b974644d9a6b9b7fecb8b9a,
+        type: 2}
+      propertyPath: SpeedIncreaseRate
+      value: 0.2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 038bd7ba6b974644d9a6b9b7fecb8b9a, type: 2}
