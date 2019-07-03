@@ -186,7 +186,10 @@ public class PlayerNew : MonoBehaviour
                         else
                         {
                             //Down swipe
-                            //TODO: Teleport
+                            if (teleportable && !isTeleporting)
+                            {
+                                Teleport();
+                            }
                             Debug.Log("Down Swipe");
                         }
                     }
