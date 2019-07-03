@@ -96,8 +96,14 @@ public class PlayerNew : MonoBehaviour
 
     int countFrame = 0;
 
+    private void LateUpdate()
+    {
+        MoveByLanePosition();
+    }
+
     private void FixedUpdate()
     {
+        
         if (countFrame % 60 == 0 && MoveSpeed < MaxSpeed)
         {
             //Increase speed as the time goes by
@@ -143,8 +149,6 @@ public class PlayerNew : MonoBehaviour
 
     void Update()
     {
-
-        MoveByLanePosition();
 
         // jump improve
         if (rb.velocity.y < 0)
