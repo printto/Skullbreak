@@ -5,10 +5,10 @@ using UnityEngine;
 public class MapGeneratorForComponent : MonoBehaviour {
 
 
-    private void OnCollisionStay(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
         //Debug.Log("Hit something");
-        if (collision.gameObject.tag.Equals("Player"))
+        if (other.gameObject.tag.Equals("Player"))
         {
             SpawnMap();
         }
