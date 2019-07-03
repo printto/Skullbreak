@@ -93,6 +93,10 @@ public class ObjectPooler : MonoBehaviour
     public GameObject FetchGO_Pos(string newKey, Vector3 newPos)
     {
         GameObject newObj = FetchGO(newKey);
+        if(newObj == null)
+        {
+            return null;
+        }
         newObj.transform.position = newPos;
         //if (newObj.GetComponent<Rigidbody2D>())
         //    newObj.GetComponent<Rigidbody2D>().position = newPos;
