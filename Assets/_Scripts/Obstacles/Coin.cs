@@ -6,6 +6,7 @@ public class Coin : MonoBehaviour {
 
     public int ScoreToAdd = 1;
 
+    /*
     public void OnCollisionEnter(Collision collision) {
 
         if (collision.gameObject.tag.Equals("Player"))
@@ -14,5 +15,15 @@ public class Coin : MonoBehaviour {
             Destroy(gameObject);
         }
 
+    }
+    */
+
+    public void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag.Equals("Player"))
+        {
+            ScoreManager.AddCoin(ScoreToAdd);
+            Destroy(gameObject);
+        }
     }
 }
