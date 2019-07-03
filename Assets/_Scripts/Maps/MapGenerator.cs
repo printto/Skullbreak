@@ -2,25 +2,29 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MapGenerator : MonoBehaviour {
+public class MapGenerator : MonoBehaviour
+{
 
     public GameObject CurrentSegment;
     public GameObject[] RoadSegments;
     public bool createdNext;
 
     // Use this for initialization
-    void Start () {
+    void Start()
+    {
         createdNext = false;
     }
 
     int countDown = 150 * 10;
-	// Update is called once per frame
-	void FixedUpdate () {
-        if ( countDown-- <= 0)
+    // Update is called once per frame
+    void FixedUpdate()
+    {
+        if (countDown-- <= 0)
         {
-            Destroy(gameObject);
+            gameObject.SetActive(false);
+            // Destroy(gameObject);
         }
-	}
+    }
 
     private void OnCollisionStay(Collision collision)
     {
@@ -40,12 +44,21 @@ public class MapGenerator : MonoBehaviour {
 
         var lastTileBounds = GetComponent<MeshFilter>().mesh.bounds;
 
-        Instantiate(RoadSegments[randomed],
-            new Vector3(transform.position.x - lastTileBounds.size.x * transform.localScale.x,
+        string randomName = RoadSegments[randomed].name;
+
+        //Object pool fetching
+        GameObject fetchedObject = ObjectPooler.Instance.FetchGO_Pos(randomName, new Vector3(transform.position.x - lastTileBounds.size.x * transform.localScale.x,
             transform.position.y,
-            transform.position.z),
-            transform.rotation
-            );
+            transform.position.z));
+        if (fetchedObject == null)
+        {
+            Instantiate(RoadSegments[randomed],
+                new Vector3(transform.position.x - lastTileBounds.size.x * transform.localScale.x,
+                transform.position.y,
+                transform.position.z),
+                transform.rotation
+                );
+        }
 
         createdNext = true;
 

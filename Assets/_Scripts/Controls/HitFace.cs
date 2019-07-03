@@ -14,7 +14,7 @@ public class HitFace : MonoBehaviour {
     private void Update()
     {
         // Make this playerface vanish when player is teleporting 
-        GetComponent<MeshRenderer>().enabled = !PlayerNew.isTeleporting;
+        GetComponent<MeshRenderer>().enabled = !Player.isTeleporting;
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -38,7 +38,7 @@ public class HitFace : MonoBehaviour {
             StartCoroutine(Stop());
 
         }
-         
+         */
         if (Array.IndexOf(obstacleTags, collision.gameObject.tag) > -1 && GameMaster.lifePoint > 0 && !Player.isTeleporting && !Player.isDamaged)
         {
             Bounce();
@@ -49,18 +49,6 @@ public class HitFace : MonoBehaviour {
         {
             DeadScene();
         }
-        */
-        if (Array.IndexOf(obstacleTags, collision.gameObject.tag) > -1 && GameMaster.lifePoint > 0 && !PlayerNew.isTeleporting)
-        {
-            Bounce();
-            GameMaster.removeLife(1);
-            StartCoroutine(Stop());
-        }
-        else if (Array.IndexOf(obstacleTags, collision.gameObject.tag) > -1 && GameMaster.lifePoint <= 0 && !PlayerNew.isTeleporting)
-        {
-            DeadScene();
-        }
-
     }
 
     private void Bounce()
