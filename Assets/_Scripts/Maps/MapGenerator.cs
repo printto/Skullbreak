@@ -15,14 +15,14 @@ public class MapGenerator : MonoBehaviour
         createdNext = false;
     }
 
-    int countDown = 150 * 10;
+    int countDown = 60 * 20;
     // Update is called once per frame
     void FixedUpdate()
     {
         if (countDown-- <= 0)
         {
-            gameObject.SetActive(false);
-            // Destroy(gameObject);
+            //gameObject.SetActive(false);
+            Destroy(gameObject);
         }
     }
 
@@ -47,18 +47,22 @@ public class MapGenerator : MonoBehaviour
         string randomName = RoadSegments[randomed].name;
 
         //Object pool fetching
-        GameObject fetchedObject = ObjectPooler.Instance.FetchGO_Pos(randomName, new Vector3(transform.position.x - lastTileBounds.size.x * transform.localScale.x,
+        /*
+        ObjectPooler.Instance.FetchGO_Pos(randomName, new Vector3(transform.position.x - lastTileBounds.size.x * transform.localScale.x,
             transform.position.y,
             transform.position.z));
         if (fetchedObject == null)
         {
+        */
             Instantiate(RoadSegments[randomed],
                 new Vector3(transform.position.x - lastTileBounds.size.x * transform.localScale.x,
                 transform.position.y,
                 transform.position.z),
                 transform.rotation
                 );
+        /*
         }
+        */
 
         createdNext = true;
 
