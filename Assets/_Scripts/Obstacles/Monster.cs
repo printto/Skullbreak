@@ -33,11 +33,11 @@ public class Monster : MonoBehaviour {
         if (collision.gameObject.tag.Equals("Bullet"))
         {
             Dead();
-        } else if (!Player.isDamaged)
+        } else if (!PlayerNew.isDamaged)
         {
             if ((collision.gameObject.tag.Equals("Player") || collision.gameObject.tag.Equals("PlayerFace")) && GameMaster.lifePoint > 0)
             {
-                if (!Player.isTeleporting)
+                if (!PlayerNew.isTeleporting)
                 {
                     GameMaster.removeLife(1);
                     Dead();
@@ -45,7 +45,7 @@ public class Monster : MonoBehaviour {
             }
             else if ((collision.gameObject.tag.Equals("Player") || collision.gameObject.tag.Equals("PlayerFace")) && GameMaster.lifePoint <= 0)
             {
-                if (!Player.isTeleporting)
+                if (!PlayerNew.isTeleporting)
                 {
                     Dead();
                     EndGame();

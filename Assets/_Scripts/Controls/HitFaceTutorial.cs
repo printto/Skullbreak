@@ -13,7 +13,7 @@ public class HitFaceTutorial : MonoBehaviour {
       private void OnCollisionEnter(Collision collision)
     {   
         //Debug.Log("Obstacle: Hit something");
-        if (collision.gameObject.tag.Equals("Dashable") && Player.isDashing)
+        if (collision.gameObject.tag.Equals("Dashable"))
         {
             //Do nothing
         }
@@ -34,7 +34,7 @@ public class HitFaceTutorial : MonoBehaviour {
 
     private void Bounce()
     { 
-        transform.parent.gameObject.GetComponent<Player>().MoveSpeed = -transform.parent.gameObject.GetComponent<Player>().MoveSpeed;
+        transform.parent.gameObject.GetComponent<PlayerNew>().MoveSpeed = -transform.parent.gameObject.GetComponent<PlayerNew>().MoveSpeed;
     }
 
  
@@ -55,10 +55,10 @@ public class HitFaceTutorial : MonoBehaviour {
     //For when crashing, it will pause for a seconds then move forward.
     IEnumerator Stop()
     {
-        float forward = -transform.parent.gameObject.GetComponent<Player>().MoveSpeed;
+        float forward = -transform.parent.gameObject.GetComponent<PlayerNew>().MoveSpeed;
         yield return new WaitForSeconds(0.75f);
-        transform.parent.gameObject.GetComponent<Player>().MoveSpeed = 0;
+        transform.parent.gameObject.GetComponent<PlayerNew>().MoveSpeed = 0;
         yield return new WaitForSeconds(2);
-        transform.parent.gameObject.GetComponent<Player>().MoveSpeed = forward;
+        transform.parent.gameObject.GetComponent<PlayerNew>().MoveSpeed = forward;
     }
 }

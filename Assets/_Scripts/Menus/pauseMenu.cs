@@ -43,6 +43,7 @@ public class pauseMenu : MonoBehaviour {
     public void Menu()
     {
         Time.timeScale = 1f;
+        GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerNew>().MoveSpeed = 0;
         SceneTransition.setAnimator(animator);
         SceneTransition.setScene("Mainmenu");
         SceneTransition.getScene();

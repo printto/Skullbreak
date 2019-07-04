@@ -3,13 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class TeleportGate : MonoBehaviour {
-    public GameObject teleportEnd;
+    [SerializeField]
+    private GameObject teleportEnd;
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag.Equals("Player") || other.gameObject.tag.Equals("PlayerFace"))
         {
             Debug.Log("teleportable");
+            PlayerNew.teleportEnd = getTeleportEnd();
             PlayerNew.teleportable = true;
         }
     }

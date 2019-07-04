@@ -14,7 +14,7 @@ public class HitFace : MonoBehaviour {
     private void Update()
     {
         // Make this playerface vanish when player is teleporting 
-        GetComponent<MeshRenderer>().enabled = !Player.isTeleporting;
+        GetComponent<MeshRenderer>().enabled = !PlayerNew.isTeleporting;
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -39,22 +39,22 @@ public class HitFace : MonoBehaviour {
 
         }
          */
-        if (Array.IndexOf(obstacleTags, collision.gameObject.tag) > -1 && GameMaster.lifePoint > 0 && !Player.isTeleporting && !Player.isDamaged)
+        if (Array.IndexOf(obstacleTags, collision.gameObject.tag) > -1 && GameMaster.lifePoint > 0)
         {
             Bounce();
             GameMaster.removeLife(1);
             StartCoroutine(Stop());
         }
-        else if (Array.IndexOf(obstacleTags, collision.gameObject.tag) > -1 && GameMaster.lifePoint <= 0 && !Player.isTeleporting && !Player.isDamaged)
+        else if (Array.IndexOf(obstacleTags, collision.gameObject.tag) > -1 && GameMaster.lifePoint <= 0)
         {
+            Bounce();
             DeadScene();
         }
     }
 
     private void Bounce()
     {
-        Player.isDamaged = true;
-        transform.parent.gameObject.GetComponent<Player>().MoveSpeed = -transform.parent.gameObject.GetComponent<Player>().MoveSpeed;
+        transform.parent.gameObject.GetComponent<PlayerNew>().MoveSpeed = -transform.parent.gameObject.GetComponent<PlayerNew>().MoveSpeed;
     }
 
  
@@ -75,11 +75,11 @@ public class HitFace : MonoBehaviour {
     //For when crashing, it will pause for a seconds then move forward.
     IEnumerator Stop()
     {
-        float forward = -transform.parent.gameObject.GetComponent<Player>().MoveSpeed;
+        float forward = -transform.parent.gameObject.GetComponent<PlayerNew>().MoveSpeed;
         yield return new WaitForSeconds(0.75f);
-        transform.parent.gameObject.GetComponent<Player>().MoveSpeed = 0;
+        transform.parent.gameObject.GetComponent<PlayerNew>().MoveSpeed = 0;
         yield return new WaitForSeconds(0.75f);
-        Player.isDamaged = false;
-        transform.parent.gameObject.GetComponent<Player>().MoveSpeed = forward;
+        PlayerNew.isDamaged = false;
+        transform.parent.gameObject.GetComponent<PlayerNew>().MoveSpeed = forward;
     }
 }
