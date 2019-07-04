@@ -415,6 +415,7 @@ public class PlayerNew : MonoBehaviour
         }
         else if (other.gameObject.tag.Equals("TeleportEnd"))
         {
+            Destroy(teleportEnd);
             CancelTeleport();
         }
     }
