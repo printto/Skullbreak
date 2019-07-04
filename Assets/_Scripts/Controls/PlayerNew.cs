@@ -104,7 +104,7 @@ public class PlayerNew : MonoBehaviour
 
     private void LateUpdate()
     {
-        MoveByLanePosition();
+        //MoveByLanePosition();
     }
 
     private void FixedUpdate()
@@ -148,6 +148,17 @@ public class PlayerNew : MonoBehaviour
         }
     }
 
+    void LerpByLanePosition()
+    {
+        LerpPlayer();
+    }
+
+    void LerpPlayer()
+    {
+        transform.Translate(new Vector3(-1,0,0) * MoveSpeed * Time.deltaTime, Space.Self);
+        transform.position = Vector3.Lerp(transform.position, new Vector3(transform.position.x, transform.position.y, LaneZs[currentLane]), (MoveSpeed*0.7f) * Time.deltaTime);
+    }
+
     void MovePlayer(float x, float y, float z)
     {
         transform.Translate(new Vector3(x, y, z) * MoveSpeed * Time.deltaTime, Space.Self);
@@ -155,6 +166,8 @@ public class PlayerNew : MonoBehaviour
 
     void Update()
     {
+
+        LerpByLanePosition();
 
         // jump improve
         if (rb.velocity.y < 0)
