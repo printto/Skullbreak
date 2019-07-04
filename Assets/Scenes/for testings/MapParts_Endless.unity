@@ -548,19 +548,9 @@ Prefab:
       propertyPath: m_RootOrder
       value: 16
       objectReference: {fileID: 0}
-    - target: {fileID: 114406132251847156, guid: 8f78a2ed67336264fa973bbb0bd77c1e,
-        type: 2}
-      propertyPath: RoadSegments.Array.data[1]
-      value: 
-      objectReference: {fileID: 301934933}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8f78a2ed67336264fa973bbb0bd77c1e, type: 2}
   m_IsPrefabAsset: 0
---- !u!1 &280160409 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1089727982458286, guid: 8f78a2ed67336264fa973bbb0bd77c1e,
-    type: 2}
-  m_PrefabInternal: {fileID: 280160408}
 --- !u!1 &301934933 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1435993049962754, guid: f26cececc5d213343bd250ee1220884b,
@@ -801,11 +791,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 17
       objectReference: {fileID: 0}
-    - target: {fileID: 114063340756208138, guid: f26cececc5d213343bd250ee1220884b,
-        type: 2}
-      propertyPath: RoadSegments.Array.data[0]
-      value: 
-      objectReference: {fileID: 280160409}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f26cececc5d213343bd250ee1220884b, type: 2}
   m_IsPrefabAsset: 0
@@ -2048,11 +2033,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 18
       objectReference: {fileID: 0}
-    - target: {fileID: 114333801263031530, guid: 8e9256220cd7fd84bb9b7c1e3a840a52,
-        type: 2}
-      propertyPath: RoadSegments.Array.data[1]
-      value: 
-      objectReference: {fileID: 301934933}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8e9256220cd7fd84bb9b7c1e3a840a52, type: 2}
   m_IsPrefabAsset: 0
