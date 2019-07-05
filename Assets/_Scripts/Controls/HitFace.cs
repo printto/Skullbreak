@@ -25,7 +25,6 @@ public class HitFace : MonoBehaviour {
             DeadScene();
         }
     }
-    */
 
     private void OnTriggerEnter(Collider other)
     {
