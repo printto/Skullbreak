@@ -3069,11 +3069,6 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 114406132251847156, guid: 8f78a2ed67336264fa973bbb0bd77c1e,
-        type: 2}
-      propertyPath: RoadSegments.Array.size
-      value: 8
-      objectReference: {fileID: 0}
     - target: {fileID: 4850563194010026, guid: 8f78a2ed67336264fa973bbb0bd77c1e, type: 2}
       propertyPath: m_LocalPosition.x
       value: -34.5
@@ -12477,7 +12472,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 25
+  m_RootOrder: 26
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1017521834
 GameObject:
@@ -18644,18 +18639,8 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4349672253750572, guid: b8602d9c44a6c784ea7b396b46c557e4, type: 2}
       propertyPath: m_RootOrder
-      value: 26
+      value: 27
       objectReference: {fileID: 0}
-    - target: {fileID: 114764718146169558, guid: b8602d9c44a6c784ea7b396b46c557e4,
-        type: 2}
-      propertyPath: RoadSegments.Array.data[1]
-      value: 
-      objectReference: {fileID: 301934933}
-    - target: {fileID: 114764718146169558, guid: b8602d9c44a6c784ea7b396b46c557e4,
-        type: 2}
-      propertyPath: RoadSegments.Array.data[5]
-      value: 
-      objectReference: {fileID: 507459125}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b8602d9c44a6c784ea7b396b46c557e4, type: 2}
   m_IsPrefabAsset: 0
@@ -20278,11 +20263,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 25
       objectReference: {fileID: 0}
-    - target: {fileID: 114209073987324914, guid: 0f8c578cd9529d8479100db62b1efbf0,
-        type: 2}
-      propertyPath: RoadSegments.Array.data[7]
-      value: 
-      objectReference: {fileID: 2140308032}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0f8c578cd9529d8479100db62b1efbf0, type: 2}
   m_IsPrefabAsset: 0
@@ -26602,8 +26582,3 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2108801591}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &2140308032 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1960609507682598, guid: b8602d9c44a6c784ea7b396b46c557e4,
-    type: 2}
-  m_PrefabInternal: {fileID: 1521347495}
