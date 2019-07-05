@@ -77,8 +77,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1387596341189472}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.606, y: 0, z: 0}
-  m_LocalScale: {x: 0.12101876, y: 0.5, z: 0.5}
+  m_LocalPosition: {x: -0.625, y: 0, z: 0}
+  m_LocalScale: {x: 0.30943286, y: 0.5, z: 0.5}
   m_Children: []
   m_Father: {fileID: 4656328706352870}
   m_RootOrder: 0
@@ -90,7 +90,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1102160950481518}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.33, y: 2.13, z: -3.78}
+  m_LocalPosition: {x: 39.62, y: 4.37, z: 0.76}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4652541406057810}
@@ -298,7 +298,7 @@ BoxCollider:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1387596341189472}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
@@ -329,13 +329,13 @@ MonoBehaviour:
   MoveSpeed: 10
   SlowdownMoveSpeed: 5
   moveVector: {x: 0, y: 0, z: 0}
-  SpeedIncreaseRate: 0.1
-  MaxSpeed: 50
+  SpeedIncreaseRate: 0.2
+  MaxSpeed: 40
   SwipeSpeedLimit: 0.75
-  Bullet: {fileID: 0}
-  BulletForce: 1
-  playerCam: {fileID: 0}
-  Lanes: []
+  LaneZs:
+  - -1.7
+  - 1.7
+  currentLane: 1
 --- !u!114 &114766484100844538
 MonoBehaviour:
   m_ObjectHideFlags: 1

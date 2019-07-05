@@ -1343,16 +1343,6 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 114468432358290952, guid: 038bd7ba6b974644d9a6b9b7fecb8b9a,
-        type: 2}
-      propertyPath: Lanes.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 114468432358290952, guid: 038bd7ba6b974644d9a6b9b7fecb8b9a,
-        type: 2}
-      propertyPath: LaneZs.Array.size
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 4656328706352870, guid: 038bd7ba6b974644d9a6b9b7fecb8b9a, type: 2}
       propertyPath: m_LocalPosition.x
       value: 39.62
@@ -1385,15 +1375,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 7
       objectReference: {fileID: 0}
-    - target: {fileID: 114468432358290952, guid: 038bd7ba6b974644d9a6b9b7fecb8b9a,
-        type: 2}
-      propertyPath: playerCam
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: playerCam
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 114105025331554250, guid: 038bd7ba6b974644d9a6b9b7fecb8b9a,
         type: 2}
       propertyPath: animator
@@ -1402,46 +1383,6 @@ Prefab:
     - target: {fileID: 1102160950481518, guid: 038bd7ba6b974644d9a6b9b7fecb8b9a, type: 2}
       propertyPath: m_Name
       value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 114468432358290952, guid: 038bd7ba6b974644d9a6b9b7fecb8b9a,
-        type: 2}
-      propertyPath: Lanes.Array.data[0]
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 114468432358290952, guid: 038bd7ba6b974644d9a6b9b7fecb8b9a,
-        type: 2}
-      propertyPath: Lanes.Array.data[1]
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 114468432358290952, guid: 038bd7ba6b974644d9a6b9b7fecb8b9a,
-        type: 2}
-      propertyPath: LaneZs.Array.data[0]
-      value: -1.7
-      objectReference: {fileID: 0}
-    - target: {fileID: 114468432358290952, guid: 038bd7ba6b974644d9a6b9b7fecb8b9a,
-        type: 2}
-      propertyPath: LaneZs.Array.data[1]
-      value: 1.7
-      objectReference: {fileID: 0}
-    - target: {fileID: 114468432358290952, guid: 038bd7ba6b974644d9a6b9b7fecb8b9a,
-        type: 2}
-      propertyPath: currentLane
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114468432358290952, guid: 038bd7ba6b974644d9a6b9b7fecb8b9a,
-        type: 2}
-      propertyPath: MaxSpeed
-      value: 40
-      objectReference: {fileID: 0}
-    - target: {fileID: 114468432358290952, guid: 038bd7ba6b974644d9a6b9b7fecb8b9a,
-        type: 2}
-      propertyPath: MoveSpeed
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 114468432358290952, guid: 038bd7ba6b974644d9a6b9b7fecb8b9a,
-        type: 2}
-      propertyPath: SpeedIncreaseRate
-      value: 0.2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 038bd7ba6b974644d9a6b9b7fecb8b9a, type: 2}
