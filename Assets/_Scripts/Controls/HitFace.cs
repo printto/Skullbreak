@@ -13,8 +13,7 @@ public class HitFace : MonoBehaviour {
 
     private void Update()
     {
-        // Make this playerface vanish when player is teleporting 
-        GetComponent<MeshRenderer>().enabled = !PlayerNew.isTeleporting;
+        
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -79,7 +78,6 @@ public class HitFace : MonoBehaviour {
         yield return new WaitForSeconds(0.75f);
         transform.parent.gameObject.GetComponent<PlayerNew>().MoveSpeed = 0;
         yield return new WaitForSeconds(0.75f);
-        PlayerNew.isDamaged = false;
         transform.parent.gameObject.GetComponent<PlayerNew>().MoveSpeed = forward;
     }
 }
