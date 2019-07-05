@@ -172,7 +172,7 @@ GameObject:
   - component: {fileID: 4341300845948444}
   m_Layer: 0
   m_Name: Obstacles
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1513,7 +1513,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1633667305064810}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.003325, y: -0.0050399993, z: 0.04339998}
+  m_LocalPosition: {x: -0.002933, y: -0.0050399993, z: 0.04339998}
   m_LocalScale: {x: 0.026644541, y: 0.40207526, z: 2.4838786}
   m_Children: []
   m_Father: {fileID: 4341300845948444}
@@ -2102,7 +2102,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1881471182849370}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.001483, y: -0.00001, z: 0.277}
+  m_LocalPosition: {x: 0.001543, y: -0.00001, z: 0.277}
   m_LocalScale: {x: 0.0033333325, y: 0.037735492, z: 0.4986728}
   m_Children: []
   m_Father: {fileID: 4450322941663726}
@@ -6097,6 +6097,8 @@ MonoBehaviour:
   - {fileID: 1435993049962754}
   - {fileID: 1081164799677810, guid: 8e9256220cd7fd84bb9b7c1e3a840a52, type: 2}
   - {fileID: 1888292614904742, guid: 90ef5097d7f87234e8cfe755ec682e9b, type: 2}
+  - {fileID: 1666970676433284, guid: 5839faaffb2f7c14095c59a9ab7cacc8, type: 2}
+  - {fileID: 1470044858401636, guid: da5e9cbef77274f47acbfd87bb2a5e81, type: 2}
   createdNext: 0
 --- !u!114 &114078244556563352
 MonoBehaviour:
