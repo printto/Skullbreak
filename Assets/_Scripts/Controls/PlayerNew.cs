@@ -43,7 +43,7 @@ public class PlayerNew : MonoBehaviour
     public static bool isSlowedDown = false;
 
     //Teleportation
-    private GameObject teleportEnd;
+    public static GameObject teleportEnd;
     public static bool teleportable = false;
     public static bool isTeleporting = false;
 
@@ -359,6 +359,10 @@ public class PlayerNew : MonoBehaviour
     {
         if (teleportable)
         {
+            if (teleportEnd == null)
+            {
+                Debug.Log("Null End Gate!!");
+            }
             isTeleporting = true;
             Vector3 endPos = teleportEnd.transform.position;
             transform.position = new Vector3(endPos.x, endPos.y, transform.position.z);
@@ -415,12 +419,13 @@ public class PlayerNew : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag.Equals("TeleportGate"))
+        if (other.gameObject.tag.Equals("TeleportEnd"))
         {
-            teleportEnd = other.gameObject.GetComponent<TeleportGate>().getTeleportEnd();
-        }
-        else if (other.gameObject.tag.Equals("TeleportEnd"))
-        {
+            if (teleportEnd != null)
+            {
+                Destroy(teleportEnd);
+                teleportEnd = null;
+            }
             CancelTeleport();
         }
     }
