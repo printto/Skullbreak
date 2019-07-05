@@ -29,7 +29,7 @@ public class SceneTransition {
 
         Debug.Log("fadeout");
         dragTransitionAnim.SetTrigger("end");
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(0.5f);
         SceneManager.LoadScene(sceneName);
     }
 }
