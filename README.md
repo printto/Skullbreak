@@ -40,6 +40,7 @@
 - MagicaVoxel
 - Photoshop
 
+<!---
 ## Compiling the code (OLD, not required anymore)
 **In the new version, we only store the highscore of the player in local device. Firebase is now no longer needed.**
 - To compile code, create ``Environment.cs`` in ``Assets`` folder according to your Firebase project.
@@ -50,6 +51,7 @@ public class Environment {
 
 }
 ```
+-->
 
 ## External links
 - [Github Repository](https://github.com/printto/Zzzprint)
