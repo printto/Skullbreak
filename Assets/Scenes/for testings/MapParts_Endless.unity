@@ -3055,6 +3055,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 17
       objectReference: {fileID: 0}
+    - target: {fileID: 114406132251847156, guid: 8f78a2ed67336264fa973bbb0bd77c1e,
+        type: 2}
+      propertyPath: RoadSegments.Array.data[5]
+      value: 
+      objectReference: {fileID: 399877864}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8f78a2ed67336264fa973bbb0bd77c1e, type: 2}
   m_IsPrefabAsset: 0
@@ -4097,6 +4102,11 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 397529360}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &399877864 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1470044858401636, guid: da5e9cbef77274f47acbfd87bb2a5e81,
+    type: 2}
+  m_PrefabInternal: {fileID: 1981761087}
 --- !u!1001 &406126071
 Prefab:
   m_ObjectHideFlags: 0
@@ -5533,21 +5543,19 @@ Prefab:
       propertyPath: RoadSegments.Array.data[1]
       value: 
       objectReference: {fileID: 301934933}
-    - target: {fileID: 4905283213876098, guid: 90ef5097d7f87234e8cfe755ec682e9b, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: -0.0008
-      objectReference: {fileID: 0}
-    - target: {fileID: 4905283213876098, guid: 90ef5097d7f87234e8cfe755ec682e9b, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0.0938
-      objectReference: {fileID: 0}
-    - target: {fileID: 4033804431708166, guid: 90ef5097d7f87234e8cfe755ec682e9b, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0.129
-      objectReference: {fileID: 0}
+    - target: {fileID: 114500110005097376, guid: 90ef5097d7f87234e8cfe755ec682e9b,
+        type: 2}
+      propertyPath: RoadSegments.Array.data[5]
+      value: 
+      objectReference: {fileID: 399877864}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 90ef5097d7f87234e8cfe755ec682e9b, type: 2}
   m_IsPrefabAsset: 0
+--- !u!1 &507459125 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1888292614904742, guid: 90ef5097d7f87234e8cfe755ec682e9b,
+    type: 2}
+  m_PrefabInternal: {fileID: 507459124}
 --- !u!1 &511322105
 GameObject:
   m_ObjectHideFlags: 0
@@ -6068,10 +6076,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 18
       objectReference: {fileID: 0}
-    - target: {fileID: 4815034487053774, guid: f26cececc5d213343bd250ee1220884b, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 0.001543
-      objectReference: {fileID: 0}
+    - target: {fileID: 114063340756208138, guid: f26cececc5d213343bd250ee1220884b,
+        type: 2}
+      propertyPath: RoadSegments.Array.data[5]
+      value: 
+      objectReference: {fileID: 399877864}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f26cececc5d213343bd250ee1220884b, type: 2}
   m_IsPrefabAsset: 0
@@ -7607,6 +7616,21 @@ Prefab:
     - target: {fileID: 4949674674446774, guid: 5839faaffb2f7c14095c59a9ab7cacc8, type: 2}
       propertyPath: m_RootOrder
       value: 21
+      objectReference: {fileID: 0}
+    - target: {fileID: 114765148440095910, guid: 5839faaffb2f7c14095c59a9ab7cacc8,
+        type: 2}
+      propertyPath: RoadSegments.Array.data[5]
+      value: 
+      objectReference: {fileID: 399877864}
+    - target: {fileID: 64411409501177476, guid: 5839faaffb2f7c14095c59a9ab7cacc8,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 23110413481282548, guid: 5839faaffb2f7c14095c59a9ab7cacc8,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5839faaffb2f7c14095c59a9ab7cacc8, type: 2}
@@ -12394,6 +12418,16 @@ Prefab:
     - target: {fileID: 4952709639149602, guid: 8e9256220cd7fd84bb9b7c1e3a840a52, type: 2}
       propertyPath: m_RootOrder
       value: 19
+      objectReference: {fileID: 0}
+    - target: {fileID: 114333801263031530, guid: 8e9256220cd7fd84bb9b7c1e3a840a52,
+        type: 2}
+      propertyPath: RoadSegments.Array.data[5]
+      value: 
+      objectReference: {fileID: 399877864}
+    - target: {fileID: 64118712109103188, guid: 8e9256220cd7fd84bb9b7c1e3a840a52,
+        type: 2}
+      propertyPath: m_Convex
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8e9256220cd7fd84bb9b7c1e3a840a52, type: 2}
@@ -24046,6 +24080,78 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1973724573}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1001 &1981761087
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4334437896415250, guid: da5e9cbef77274f47acbfd87bb2a5e81, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -34.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4334437896415250, guid: da5e9cbef77274f47acbfd87bb2a5e81, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4334437896415250, guid: da5e9cbef77274f47acbfd87bb2a5e81, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: -56.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4334437896415250, guid: da5e9cbef77274f47acbfd87bb2a5e81, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 4334437896415250, guid: da5e9cbef77274f47acbfd87bb2a5e81, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4334437896415250, guid: da5e9cbef77274f47acbfd87bb2a5e81, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4334437896415250, guid: da5e9cbef77274f47acbfd87bb2a5e81, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071067
+      objectReference: {fileID: 0}
+    - target: {fileID: 4334437896415250, guid: da5e9cbef77274f47acbfd87bb2a5e81, type: 2}
+      propertyPath: m_RootOrder
+      value: 23
+      objectReference: {fileID: 0}
+    - target: {fileID: 114540935542512098, guid: da5e9cbef77274f47acbfd87bb2a5e81,
+        type: 2}
+      propertyPath: RoadSegments.Array.data[1]
+      value: 
+      objectReference: {fileID: 301934933}
+    - target: {fileID: 114540935542512098, guid: da5e9cbef77274f47acbfd87bb2a5e81,
+        type: 2}
+      propertyPath: RoadSegments.Array.data[5]
+      value: 
+      objectReference: {fileID: 507459125}
+    - target: {fileID: 4018594368199182, guid: da5e9cbef77274f47acbfd87bb2a5e81, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -0.0072742654
+      objectReference: {fileID: 0}
+    - target: {fileID: 4242620423424862, guid: da5e9cbef77274f47acbfd87bb2a5e81, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -0.008081266
+      objectReference: {fileID: 0}
+    - target: {fileID: 4799657938115140, guid: da5e9cbef77274f47acbfd87bb2a5e81, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -0.0076872655
+      objectReference: {fileID: 0}
+    - target: {fileID: 4830639632128688, guid: da5e9cbef77274f47acbfd87bb2a5e81, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -0.03787
+      objectReference: {fileID: 0}
+    - target: {fileID: 4641304075797490, guid: da5e9cbef77274f47acbfd87bb2a5e81, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -0.006863265
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: da5e9cbef77274f47acbfd87bb2a5e81, type: 2}
+  m_IsPrefabAsset: 0
 --- !u!1 &1989884667
 GameObject:
   m_ObjectHideFlags: 0
