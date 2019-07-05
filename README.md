@@ -53,6 +53,9 @@ public class Environment {
 ```
 -->
 
+## Compiling the code
+Nothing required to compile our code at the moment.
+
 ## External links
 - [Github Repository](https://github.com/printto/Zzzprint)
 - [Prototype Development Presentation (Early)](https://cdn.discordapp.com/attachments/588698894532345886/590825081035554816/Prototype_Development.pptx)
