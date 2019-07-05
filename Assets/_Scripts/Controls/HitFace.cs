@@ -10,7 +10,6 @@ public class HitFace : MonoBehaviour {
 
     public Animator animator;
 
-    /*
     private void OnCollisionEnter(Collision collision)
     {
         Debug.Log("Player hit " + collision.gameObject.name);
@@ -26,7 +25,6 @@ public class HitFace : MonoBehaviour {
             DeadScene();
         }
     }
-    */
 
     private void OnTriggerEnter(Collider other)
     {
@@ -71,7 +69,6 @@ public class HitFace : MonoBehaviour {
         yield return new WaitForSeconds(0.75f);
         transform.parent.gameObject.GetComponent<PlayerNew>().MoveSpeed = 0;
         yield return new WaitForSeconds(0.75f);
-        PlayerNew.isDamaged = false;
         transform.parent.gameObject.GetComponent<PlayerNew>().MoveSpeed = forward;
     }
 }
