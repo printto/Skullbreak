@@ -42,9 +42,11 @@ public class MapGenerator : MonoBehaviour
 
         int randomed = Random.Range(0, RoadSegments.Length);
 
+        Debug.Log("Map rancom number: " + randomed);
+
         var lastTileBounds = GetComponent<MeshFilter>().mesh.bounds;
 
-        string randomName = RoadSegments[randomed].name;
+        //string randomName = RoadSegments[randomed].name;
 
         //Object pool fetching
         /*
