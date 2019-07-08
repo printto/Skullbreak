@@ -10,7 +10,7 @@ public class PlayerNew : MonoBehaviour
 {
 
     //Player Lifepoint
-    private int lifePoint = 2;
+    public int lifePoint = 2;
     private int coin = 0;
 
     //Movement
@@ -73,6 +73,8 @@ public class PlayerNew : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        GameMaster.SetLife(lifePoint);
+
         if (SceneManager.GetActiveScene().name.Equals("EndlessMode"))
         {
             GameMaster.SetLife(0);
@@ -84,10 +86,6 @@ public class PlayerNew : MonoBehaviour
         else if (SceneManager.GetActiveScene().name.Equals("GridMode"))
         {
             GameMaster.SetLife(0);
-        }
-        else
-        {
-            GameMaster.SetLife(3);
         }
 
         isSlowedDown = false;
