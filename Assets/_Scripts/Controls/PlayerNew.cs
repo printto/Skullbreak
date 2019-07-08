@@ -122,6 +122,7 @@ public class PlayerNew : MonoBehaviour
 
         if(transform.position.y <= -5)
         {
+            MoveSpeed = 0;
             DeadScene();
         }
     }
