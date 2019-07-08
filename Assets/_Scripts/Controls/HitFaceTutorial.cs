@@ -10,25 +10,19 @@ public class HitFaceTutorial : MonoBehaviour {
 
     string[] obstacleTags = { "Obstacle", "Dashable", "Monster"};
 
-      private void OnCollisionEnter(Collision collision)
-    {   
-        //Debug.Log("Obstacle: Hit something");
-        if (collision.gameObject.tag.Equals("Dashable"))
+    private void OnTriggerEnter(Collider other)
+    {
+        Debug.Log("Player hit " + other.gameObject.name);
+        if (Array.IndexOf(obstacleTags, other.gameObject.tag) > -1 && GameMaster.lifePoint > 0)
         {
-            //Do nothing
+            Bounce();
+            GameMaster.removeLife(1);
+            StartCoroutine(Stop());
         }
-        /*
-        else if (collision.gameObject.tag.Equals("Monster") && GameMaster.lifePoint > 0)
+        else if (Array.IndexOf(obstacleTags, other.gameObject.tag) > -1 && GameMaster.lifePoint <= 0)
         {
-            transform.parent.gameObject.GetComponent<Player>().Slowdown();
-            Debug.Log("Hit Monster : Player Face");
-            //GameMaster.removeLife(1);
-        }
-        */
-        else if (Array.IndexOf(obstacleTags, collision.gameObject.tag) > -1 )
-        {
-            Debug.Log("Hit obstacle");
-            showInstructions.respawnPlayerAtCheckPoint();
+            Bounce();
+            DeadScene();
         }
     }
 
