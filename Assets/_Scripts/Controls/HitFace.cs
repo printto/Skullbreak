@@ -11,7 +11,7 @@ public class HitFace : MonoBehaviour {
     public Animator animator;
 
     /*
-     * private void OnCollisionEnter(Collision collision)
+      private void OnCollisionEnter(Collision collision)
     {
         Debug.Log("Player hit " + collision.gameObject.name);
         if (Array.IndexOf(obstacleTags, collision.gameObject.tag) > -1 && GameMaster.lifePoint > 0)
@@ -71,6 +71,6 @@ public class HitFace : MonoBehaviour {
         yield return new WaitForSeconds(0.75f);
         transform.parent.gameObject.GetComponent<PlayerNew>().MoveSpeed = 0;
         yield return new WaitForSeconds(0.75f);
-        transform.parent.gameObject.GetComponent<PlayerNew>().MoveSpeed = forward;
+        //transform.parent.gameObject.GetComponent<PlayerNew>().MoveSpeed = forward;
     }
 }

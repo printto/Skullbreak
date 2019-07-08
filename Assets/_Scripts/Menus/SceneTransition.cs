@@ -11,7 +11,9 @@ public class SceneTransition {
 
     public static void setAnimator(Animator transitionAnim)
     {
+       
         dragTransitionAnim = transitionAnim;
+        Debug.Log(dragTransitionAnim.ToString());
     }
 
     public static void setScene(string name)
