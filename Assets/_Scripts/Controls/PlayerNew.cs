@@ -57,6 +57,10 @@ public class PlayerNew : MonoBehaviour
     float nextZPosition = 0;
     ChangeLaneDirection currentDirection;
 
+    //animator
+    public Animator animator;
+
+
     Rigidbody rb;
 
     void Awake()
@@ -115,6 +119,12 @@ public class PlayerNew : MonoBehaviour
             //Debug.Log("Current movespeed:" + MoveSpeed);
         }
         countFrame++;
+
+        if(transform.position.y <= -5)
+        {
+            MoveSpeed = 0;
+            DeadScene();
+        }
     }
 
     void MoveByLanePosition()
@@ -149,6 +159,19 @@ public class PlayerNew : MonoBehaviour
     void LerpByLanePosition()
     {
         LerpPlayer();
+    }
+
+
+    private void DeadScene()
+    {
+        //SceneManager.LoadScene(2);
+        //Initiate.Fade("DeadScene", Color.black, 6f);
+        Debug.Log("Trigger dead scene");
+        SceneTransition.setAnimator(animator);
+        Debug.Log(animator.ToString());
+        SceneTransition.setScene("DeadScene");
+        SceneTransition.getScene();
+        StartCoroutine(SceneTransition.LoadScene());
     }
 
     void LerpPlayer()
@@ -411,7 +434,7 @@ public class PlayerNew : MonoBehaviour
             {
                 isGrounded = true;
             }
-            fallDamage.setSavePoint(transform.position.x, transform.position.y, transform.position.z);
+            //fallDamage.setSavePoint(transform.position.x, transform.position.y, transform.position.z);
         }
     }
 

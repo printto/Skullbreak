@@ -13,7 +13,12 @@ public class fallDamage : MonoBehaviour
 
     public Animator animator;
 
+    private void Start()
+    {
+        
+    }
 
+    //not used
     public static void setSavePoint(float x, float y, float z)
     {
         fallDamage.x = x;
@@ -23,16 +28,18 @@ public class fallDamage : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.tag.Equals("Player") && GameMaster.lifePoint > 0)
+        /*if (collision.gameObject.tag.Equals("Player") && GameMaster.lifePoint > 0)
         {
             Debug.Log("Respawned");
             //collision.gameObject.transform.SetPositionAndRotation(new Vector3(x,y,z) , collision.gameObject.transform.rotation);
             checkPoint.respawnPlayerAtCheckPoint();
             GameMaster.removeLife(1);
         }
-        else if (collision.gameObject.tag.Equals("Player") && GameMaster.lifePoint <= 0)
+        else
+         */
+        if (collision.gameObject.tag.Equals("Player") && GameMaster.lifePoint <= 0)
         {
-
+            Debug.Log("play animation");
             SceneTransition.setAnimator(animator);
             SceneTransition.setScene("DeadScene");
             SceneTransition.getScene();
