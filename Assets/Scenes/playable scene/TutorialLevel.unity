@@ -2582,6 +2582,23 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 134495721}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &141377427 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1050176852312620, guid: 8f78a2ed67336264fa973bbb0bd77c1e,
+    type: 2}
+  m_PrefabInternal: {fileID: 1476234007}
+--- !u!65 &141377428
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 141377427}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.02, y: 0.019999998, z: 0.019999996}
+  m_Center: {x: -0.00000011920929, y: 9.313226e-10, z: -0.0000000018626451}
 --- !u!1 &141609597
 GameObject:
   m_ObjectHideFlags: 0
@@ -3852,6 +3869,23 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 186879887}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &188301403 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1387596341189472, guid: 038bd7ba6b974644d9a6b9b7fecb8b9a,
+    type: 2}
+  m_PrefabInternal: {fileID: 902176049}
+--- !u!114 &188301405
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 188301403}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41d4f723e03a2bd449bc0d8669d7f012, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 0}
 --- !u!1 &188474391
 GameObject:
   m_ObjectHideFlags: 0
@@ -12642,7 +12676,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.228, y: 5.29}
+  m_AnchoredPosition: {x: -0.284, y: 5.29}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &635016302
@@ -13242,6 +13276,7 @@ GameObject:
   - component: {fileID: 668112570}
   - component: {fileID: 668112569}
   - component: {fileID: 668112568}
+  - component: {fileID: 668112572}
   m_Layer: 0
   m_Name: Obstacle (8)
   m_TagString: Obstacle
@@ -13284,7 +13319,7 @@ MeshCollider:
   m_GameObject: {fileID: 668112566}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Convex: 0
   m_CookingOptions: 14
@@ -13335,6 +13370,18 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 668112566}
   m_Mesh: {fileID: 4300000, guid: 3d2d1d918eaa1ec4ab81911923c82670, type: 3}
+--- !u!65 &668112572
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 668112566}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.02, y: 0.019999996, z: 0.019999998}
+  m_Center: {x: -0.00000011920929, y: 0.0000000018626451, z: -0.0000000018626451}
 --- !u!1 &668977105
 GameObject:
   m_ObjectHideFlags: 0
@@ -17982,6 +18029,7 @@ Prefab:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 114766484100844538, guid: 038bd7ba6b974644d9a6b9b7fecb8b9a, type: 2}
+    - {fileID: 114105025331554250, guid: 038bd7ba6b974644d9a6b9b7fecb8b9a, type: 2}
   m_SourcePrefab: {fileID: 100100000, guid: 038bd7ba6b974644d9a6b9b7fecb8b9a, type: 2}
   m_IsPrefabAsset: 0
 --- !u!1 &906218290
@@ -23816,6 +23864,7 @@ GameObject:
   - component: {fileID: 1256581170}
   - component: {fileID: 1256581169}
   - component: {fileID: 1256581168}
+  - component: {fileID: 1256581172}
   m_Layer: 0
   m_Name: Obstacle (9)
   m_TagString: Obstacle
@@ -23858,7 +23907,7 @@ MeshCollider:
   m_GameObject: {fileID: 1256581166}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Convex: 0
   m_CookingOptions: 14
@@ -23909,6 +23958,18 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1256581166}
   m_Mesh: {fileID: 4300000, guid: 3d2d1d918eaa1ec4ab81911923c82670, type: 3}
+--- !u!65 &1256581172
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1256581166}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.02, y: 0.019999998, z: 0.019999998}
+  m_Center: {x: -0.00000011920929, y: -0.0000000018626451, z: -0.0000000055879354}
 --- !u!1 &1256879860
 GameObject:
   m_ObjectHideFlags: 0
@@ -28365,6 +28426,16 @@ Prefab:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 64133241852855664, guid: 8f78a2ed67336264fa973bbb0bd77c1e,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 64893254846191714, guid: 8f78a2ed67336264fa973bbb0bd77c1e,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 114406132251847156, guid: 8f78a2ed67336264fa973bbb0bd77c1e, type: 2}
   m_SourcePrefab: {fileID: 100100000, guid: 8f78a2ed67336264fa973bbb0bd77c1e, type: 2}
@@ -30194,6 +30265,23 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1551862096}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1552159501 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1197364791652740, guid: 8f78a2ed67336264fa973bbb0bd77c1e,
+    type: 2}
+  m_PrefabInternal: {fileID: 1476234007}
+--- !u!65 &1552159502
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1552159501}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.02, y: 0.019999998, z: 0.019999998}
+  m_Center: {x: 0, y: -0.0000000018626451, z: 0}
 --- !u!1 &1557981088
 GameObject:
   m_ObjectHideFlags: 0
@@ -39365,7 +39453,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.731, y: 5.29}
+  m_AnchoredPosition: {x: -1.009, y: 5.29}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2095750119
