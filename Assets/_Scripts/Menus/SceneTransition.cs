@@ -11,7 +11,9 @@ public class SceneTransition {
 
     public static void setAnimator(Animator transitionAnim)
     {
+       
         dragTransitionAnim = transitionAnim;
+        Debug.Log(dragTransitionAnim.ToString());
     }
 
     public static void setScene(string name)
@@ -29,7 +31,7 @@ public class SceneTransition {
 
         Debug.Log("fadeout");
         dragTransitionAnim.SetTrigger("end");
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(0.5f);
         SceneManager.LoadScene(sceneName);
     }
 }

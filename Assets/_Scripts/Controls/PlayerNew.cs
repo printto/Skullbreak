@@ -10,7 +10,7 @@ public class PlayerNew : MonoBehaviour
 {
 
     //Player Lifepoint
-    private int lifePoint = 2;
+    public int lifePoint = 2;
     private int coin = 0;
 
     //Movement
@@ -43,15 +43,23 @@ public class PlayerNew : MonoBehaviour
     public static bool isSlowedDown = false;
 
     //Teleportation
-    private GameObject teleportEnd;
+    public static GameObject teleportEnd;
     public static bool teleportable = false;
     public static bool isTeleporting = false;
+
+    //Crash
+    public static bool isDamaged = false;
+
 
     //Lanes
     public float[] LaneZs;
     public int currentLane = 0;
     float nextZPosition = 0;
     ChangeLaneDirection currentDirection;
+
+    //animator
+    public Animator animator;
+
 
     Rigidbody rb;
 
@@ -65,6 +73,8 @@ public class PlayerNew : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        GameMaster.SetLife(lifePoint);
+
         if (SceneManager.GetActiveScene().name.Equals("EndlessMode"))
         {
             GameMaster.SetLife(0);
@@ -77,16 +87,14 @@ public class PlayerNew : MonoBehaviour
         {
             GameMaster.SetLife(0);
         }
-        else
-        {
-            GameMaster.SetLife(3);
-        }
 
         isSlowedDown = false;
         teleportable = false;
         isTeleporting = false;
+        isDamaged = false;
 
-        ScoreManager.SetScore(0);
+
+    ScoreManager.SetScore(0);
         ScoreManager.SetCoin(0);
         rb = GetComponent<Rigidbody>();
         //Cursor.lockState = CursorLockMode.Locked;
@@ -111,6 +119,12 @@ public class PlayerNew : MonoBehaviour
             //Debug.Log("Current movespeed:" + MoveSpeed);
         }
         countFrame++;
+
+        if(transform.position.y <= -5)
+        {
+            MoveSpeed = 0;
+            DeadScene();
+        }
     }
 
     void MoveByLanePosition()
@@ -145,6 +159,19 @@ public class PlayerNew : MonoBehaviour
     void LerpByLanePosition()
     {
         LerpPlayer();
+    }
+
+
+    private void DeadScene()
+    {
+        //SceneManager.LoadScene(2);
+        //Initiate.Fade("DeadScene", Color.black, 6f);
+        Debug.Log("Trigger dead scene");
+        SceneTransition.setAnimator(animator);
+        Debug.Log(animator.ToString());
+        SceneTransition.setScene("DeadScene");
+        SceneTransition.getScene();
+        StartCoroutine(SceneTransition.LoadScene());
     }
 
     void LerpPlayer()
@@ -353,6 +380,10 @@ public class PlayerNew : MonoBehaviour
     {
         if (teleportable)
         {
+            if (teleportEnd == null)
+            {
+                Debug.Log("Null End Gate!!");
+            }
             isTeleporting = true;
             Vector3 endPos = teleportEnd.transform.position;
             transform.position = new Vector3(endPos.x, endPos.y, transform.position.z);
@@ -403,18 +434,19 @@ public class PlayerNew : MonoBehaviour
             {
                 isGrounded = true;
             }
-            fallDamage.setSavePoint(transform.position.x, transform.position.y, transform.position.z);
+            //fallDamage.setSavePoint(transform.position.x, transform.position.y, transform.position.z);
         }
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag.Equals("TeleportGate"))
+        if (other.gameObject.tag.Equals("TeleportEnd"))
         {
-            teleportEnd = other.gameObject.GetComponent<TeleportGate>().getTeleportEnd();
-        }
-        else if (other.gameObject.tag.Equals("TeleportEnd"))
-        {
+            if (teleportEnd != null)
+            {
+                Destroy(teleportEnd);
+                teleportEnd = null;
+            }
             CancelTeleport();
         }
     }
