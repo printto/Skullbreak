@@ -980,7 +980,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 534669902}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ff26db721962cdf4a8edcdfa9a767d2a, type: 3}
   m_Name: 
@@ -1413,6 +1413,15 @@ Prefab:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: be518d855dfc1e34cbc916609d0d5a7f, type: 2}
+    - target: {fileID: 1807605192765920, guid: 038bd7ba6b974644d9a6b9b7fecb8b9a, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 23790889309561890, guid: 038bd7ba6b974644d9a6b9b7fecb8b9a,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 038bd7ba6b974644d9a6b9b7fecb8b9a, type: 2}
   m_IsPrefabAsset: 0
