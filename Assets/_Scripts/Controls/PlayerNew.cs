@@ -117,10 +117,6 @@ public class PlayerNew : MonoBehaviour
             MoveSpeed = 0;
             DeadScene();
         }
-        if (transform.position.z == LaneZs[currentLane])
-        {
-            //TODO: Cancel the turning animation by triggering the normal animation.
-        }
         if (!isGrounded)
         {
             if (transform.position.y < lastYAirPosition)
@@ -129,6 +125,11 @@ public class PlayerNew : MonoBehaviour
             }
             lastYAirPosition = transform.position.y;
         }
+        else if (transform.position.z == LaneZs[currentLane])
+        {
+            //TODO: Cancel the turning animation by triggering the normal animation.
+        }
+        
     }
 
     void LerpByLanePosition()
@@ -152,7 +153,7 @@ public class PlayerNew : MonoBehaviour
     void LerpPlayer()
     {
         transform.Translate(new Vector3(-1, 0, 0) * MoveSpeed * Time.deltaTime, Space.Self);
-        transform.position = Vector3.Lerp(transform.position, new Vector3(transform.position.x, transform.position.y, LaneZs[currentLane]), (MoveSpeed * 0.7f) * Time.deltaTime);
+        transform.position = Vector3.Lerp(transform.position, new Vector3(transform.position.x, transform.position.y, LaneZs[currentLane]), (MoveSpeed * 0.5f) * Time.deltaTime);
     }
 
     void Update()
