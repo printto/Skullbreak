@@ -155,11 +155,6 @@ public class PlayerNew : MonoBehaviour
         transform.position = Vector3.Lerp(transform.position, new Vector3(transform.position.x, transform.position.y, LaneZs[currentLane]), (MoveSpeed * 0.7f) * Time.deltaTime);
     }
 
-    void MovePlayer(float x, float y, float z)
-    {
-        transform.Translate(new Vector3(x, y, z) * MoveSpeed * Time.deltaTime, Space.Self);
-    }
-
     void Update()
     {
         LerpByLanePosition();
