@@ -37,7 +37,7 @@ public class ScoreResult : MonoBehaviour {
         }
         if (SecText != null)
         {
-            SecText.text = "Time\n" + sec + " sec";
+            SecText.text = "Time Left\n" + sec + " sec";
         }
         if (HighscoreText != null)
         {

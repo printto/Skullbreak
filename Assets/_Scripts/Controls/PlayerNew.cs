@@ -207,12 +207,12 @@ public class PlayerNew : MonoBehaviour
 
         MovePlayerFromInputs();
 
-        addTimeScore();
+        //addTimeScore();
     }
 
     void addTimeScore()
     {
-        ScoreManager.AddScore(Time.deltaTime);
+        ScoreManager.AddScore(-Time.deltaTime);
     }
 
 

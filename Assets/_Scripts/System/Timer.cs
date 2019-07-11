@@ -36,6 +36,7 @@ public class Timer : MonoBehaviour {
             //SceneManager.LoadScene(2);
             DeadScene();
         }
+        ScoreManager.SetScore(timer);
     }
 
 
