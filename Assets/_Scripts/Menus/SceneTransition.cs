@@ -13,7 +13,7 @@ public class SceneTransition {
     {
        
         dragTransitionAnim = transitionAnim;
-        Debug.Log(dragTransitionAnim.ToString());
+        //Debug.Log(dragTransitionAnim.ToString());
     }
 
     public static void setScene(string name)
