@@ -93,8 +93,7 @@ public class PlayerNew : MonoBehaviour
         isTeleporting = false;
         isDamaged = false;
 
-
-    ScoreManager.SetScore(0);
+        ScoreManager.SetScore(0);
         ScoreManager.SetCoin(0);
         rb = GetComponent<Rigidbody>();
         //Cursor.lockState = CursorLockMode.Locked;
@@ -103,15 +102,9 @@ public class PlayerNew : MonoBehaviour
     }
 
     int countFrame = 0;
-
-    private void LateUpdate()
-    {
-        //MoveByLanePosition();
-    }
-
+    float lastYAirPosition = 0;
     private void FixedUpdate()
     {
-        
         if (countFrame % 60 == 0 && MoveSpeed < MaxSpeed)
         {
             //Increase speed as the time goes by
@@ -119,41 +112,24 @@ public class PlayerNew : MonoBehaviour
             //Debug.Log("Current movespeed:" + MoveSpeed);
         }
         countFrame++;
-
-        if(transform.position.y <= -5)
+        if (transform.position.y <= -5)
         {
             MoveSpeed = 0;
             DeadScene();
         }
-    }
-
-    void MoveByLanePosition()
-    {
-        //Change lane to right
-        if (currentDirection == ChangeLaneDirection.RIGHT && transform.position.z < nextZPosition)
+        if (!isGrounded)
         {
-            MovePlayer(-1, 0f, 1);
+            if (transform.position.y < lastYAirPosition)
+            {
+                //TODO: Trigger the jumping down animation here.
+            }
+            lastYAirPosition = transform.position.y;
         }
-        //Change lane to left
-        else if (currentDirection == ChangeLaneDirection.LEFT && transform.position.z > nextZPosition)
+        else if (transform.position.z == LaneZs[currentLane])
         {
-            MovePlayer(-1, 0f, -1);
+            //TODO: Cancel the turning animation by triggering the normal animation.
         }
-        //If out of lane to the left
-        else if (transform.position.z < nextZPosition - 0.1)
-        {
-            currentDirection = ChangeLaneDirection.RIGHT;
-        }
-        //If out of lane to the right
-        else if (transform.position.z > nextZPosition + 0.1)
-        {
-            currentDirection = ChangeLaneDirection.LEFT;
-        }
-        else
-        {
-            MovePlayer(-1, 0f, 0f);
-            currentDirection = ChangeLaneDirection.STILL;
-        }
+        
     }
 
     void LerpByLanePosition()
@@ -176,20 +152,13 @@ public class PlayerNew : MonoBehaviour
 
     void LerpPlayer()
     {
-        transform.Translate(new Vector3(-1,0,0) * MoveSpeed * Time.deltaTime, Space.Self);
-        transform.position = Vector3.Lerp(transform.position, new Vector3(transform.position.x, transform.position.y, LaneZs[currentLane]), (MoveSpeed*0.7f) * Time.deltaTime);
-    }
-
-    void MovePlayer(float x, float y, float z)
-    {
-        transform.Translate(new Vector3(x, y, z) * MoveSpeed * Time.deltaTime, Space.Self);
+        transform.Translate(new Vector3(-1, 0, 0) * MoveSpeed * Time.deltaTime, Space.Self);
+        transform.position = Vector3.Lerp(transform.position, new Vector3(transform.position.x, transform.position.y, LaneZs[currentLane]), (MoveSpeed * 0.5f) * Time.deltaTime);
     }
 
     void Update()
     {
-
         LerpByLanePosition();
-
         // jump improve
         if (rb.velocity.y < 0)
         {
@@ -199,80 +168,19 @@ public class PlayerNew : MonoBehaviour
         {
             rb.velocity += Vector3.up * Physics2D.gravity.y * (lowJump - 1) * Time.deltaTime;
         }
-
-        //Jumping
-        if (Input.GetButton("Jump"))
-        {
-            Jump(jumpSpeed);
-        }
-
         //For debugging
         if (Input.GetMouseButtonDown(0)) //button 0 is left click and 1 is right click
         {
             //Dash();
         }
-
-        checkJump();
-
         MovePlayerFromInputs();
 
-        addTimeScore();
-    }
-
-    void checkJump()
-    {
-        if (Input.touchCount == 1 && !isTeleporting) // user is touching the screen with a single touch
-        {
-            Touch touch = Input.GetTouch(0); // get the touch
-            if (touch.phase == TouchPhase.Began) //check for the first touch
-            {
-                fp = touch.position;
-                lp = touch.position;
-            }
-            else if (touch.phase == TouchPhase.Moved) // update the last position based on where they moved
-            {
-                lp = touch.position;
-            }
-            else if (touch.phase == TouchPhase.Ended) //check if the finger is removed from the screen
-            {
-                lp = touch.position;  //last touch position. Ommitted if you use list
-
-                //Check if drag distance is greater than dragDistance of the screen height
-                if (Mathf.Abs(lp.x - fp.x) > dragDistance || Mathf.Abs(lp.y - fp.y) > dragDistance)
-                {
-                    //It's a drag
-                    //the vertical movement is greater than the horizontal movement
-                    if (Mathf.Abs(lp.x - fp.x) < Mathf.Abs(lp.y - fp.y))
-                    {
-                        if (lp.y > fp.y)
-                        {
-                            //Up swipe
-                            Jump(touchJumpSpeed);
-                            Debug.Log("Up Swipe");
-                        }
-                        else
-                        {
-                            //Down swipe
-                            if (teleportable && !isTeleporting)
-                            {
-                                Teleport();
-                            }
-                            Debug.Log("Down Swipe");
-                        }
-                    }
-                }
-                else
-                {   //It's a tap as the drag distance is less than dragDistance of the screen height
-                    //ShootBullet is unused.
-                    //ShootBullet();
-                }
-            }
-        }
+        //addTimeScore();
     }
 
     void addTimeScore()
     {
-        ScoreManager.AddScore(Time.deltaTime);
+        ScoreManager.AddScore(-Time.deltaTime);
     }
 
 
@@ -301,7 +209,7 @@ public class PlayerNew : MonoBehaviour
             else if (touch.phase == TouchPhase.Ended) //check if the finger is removed from the screen
             {
                 lp = touch.position;  //last touch position. Ommitted if you use list
-                //Check if drag distance is greater than dragDistance of the screen height
+                                      //Check if drag distance is greater than dragDistance of the screen height
                 if (Mathf.Abs(lp.x - fp.x) > dragDistance || Mathf.Abs(lp.y - fp.y) > dragDistance)
                 {
                     //It's a drag
@@ -312,32 +220,64 @@ public class PlayerNew : MonoBehaviour
                         {
                             //Right swipe
                             ChangeLane(ChangeLaneDirection.RIGHT);
+                            //TODO: Change change lane to the right animation here.
                             Debug.Log("Right Swipe");
                         }
                         else
                         {
                             //Left swipe
                             ChangeLane(ChangeLaneDirection.LEFT);
+                            //TODO: Change change lane to the left animation here.
                             Debug.Log("Left Swipe");
                         }
                     }
+                    //the vertical movement is greater than the horizontal movement
+                    if (Mathf.Abs(lp.x - fp.x) < Mathf.Abs(lp.y - fp.y))
+                    {
+                        if (lp.y > fp.y)
+                        {
+                            //Up swipe
+                            Jump(touchJumpSpeed);
+                            Debug.Log("Up Swipe");
+                        }
+                        else
+                        {
+                            //Down swipe
+                            /* This moved to tapping
+                            if (teleportable && !isTeleporting)
+                            {
+                                Teleport();
+                            }
+                            */
+                            Debug.Log("Down Swipe");
+                        }
+                    }
                 }
-
+                else
+                {   //It's a tap as the drag distance is less than dragDistance of the screen height
+                    if (teleportable && !isTeleporting)
+                    {
+                        Teleport();
+                    }
+                }
             }
+
         }
-        //Keyboard move
-        if (Input.GetAxis("Vertical") < 0 && teleportable && !isTeleporting)
+        //Keyboard moves
+        if (Input.GetAxisRaw("Vertical") < 0 && teleportable && !isTeleporting)
         {
             Teleport();
         }
-        else
+        //Jumping
+        if (Input.GetAxisRaw("Vertical") > 0)
         {
-            if (Input.GetButtonDown("Horizontal"))
+            Jump(jumpSpeed);
+        }
+        if (Input.GetButtonDown("Horizontal"))
             {
                 if (Input.GetAxisRaw("Horizontal") > 0) ChangeLane(ChangeLaneDirection.RIGHT);
                 else if (Input.GetAxisRaw("Horizontal") < 0) ChangeLane(ChangeLaneDirection.LEFT);
             }
-        }
     }
 
     enum ChangeLaneDirection
@@ -372,6 +312,7 @@ public class PlayerNew : MonoBehaviour
         {
             rb.AddForce(new Vector3(0, 1, 0) * speed, ForceMode.Impulse);
             isGrounded = false;
+            //TODO: Start jumping up animation here.
         }
     }
 
