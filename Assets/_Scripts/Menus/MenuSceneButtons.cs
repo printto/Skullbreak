@@ -86,6 +86,23 @@ public class MenuSceneButtons : MonoBehaviour
         MenuUI.gameObject.SetActive(true);
     }
 
+    public void TutorialMode()
+    {
+        SceneTransition.setAnimator(animator);
+        SceneTransition.setScene("TutorialLevel");
+        SceneTransition.getScene();
+        StartCoroutine(SceneTransition.LoadScene());
+    }
+
+
+    public void Level1()
+    {
+        SceneTransition.setAnimator(animator);
+        SceneTransition.setScene("GridMode");
+        SceneTransition.getScene();
+        StartCoroutine(SceneTransition.LoadScene());
+    }
+
     public void Mainmenu()
     {
         SceneTransition.setAnimator(animator);
