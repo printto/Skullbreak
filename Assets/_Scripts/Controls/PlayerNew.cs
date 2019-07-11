@@ -102,15 +102,9 @@ public class PlayerNew : MonoBehaviour
     }
 
     int countFrame = 0;
-
-    private void LateUpdate()
-    {
-        //MoveByLanePosition();
-    }
-
+    float lastYAirPosition = 0;
     private void FixedUpdate()
     {
-
         if (countFrame % 60 == 0 && MoveSpeed < MaxSpeed)
         {
             //Increase speed as the time goes by
@@ -118,40 +112,22 @@ public class PlayerNew : MonoBehaviour
             //Debug.Log("Current movespeed:" + MoveSpeed);
         }
         countFrame++;
-
         if (transform.position.y <= -5)
         {
             MoveSpeed = 0;
             DeadScene();
         }
-    }
-
-    void MoveByLanePosition()
-    {
-        //Change lane to right
-        if (currentDirection == ChangeLaneDirection.RIGHT && transform.position.z < nextZPosition)
+        if (transform.position.z == LaneZs[currentLane])
         {
-            MovePlayer(-1, 0f, 1);
+            //TODO: Cancel the turning animation by triggering the normal animation.
         }
-        //Change lane to left
-        else if (currentDirection == ChangeLaneDirection.LEFT && transform.position.z > nextZPosition)
+        if (!isGrounded)
         {
-            MovePlayer(-1, 0f, -1);
-        }
-        //If out of lane to the left
-        else if (transform.position.z < nextZPosition - 0.1)
-        {
-            currentDirection = ChangeLaneDirection.RIGHT;
-        }
-        //If out of lane to the right
-        else if (transform.position.z > nextZPosition + 0.1)
-        {
-            currentDirection = ChangeLaneDirection.LEFT;
-        }
-        else
-        {
-            MovePlayer(-1, 0f, 0f);
-            currentDirection = ChangeLaneDirection.STILL;
+            if (transform.position.y < lastYAirPosition)
+            {
+                //TODO: Trigger the jumping down animation here.
+            }
+            lastYAirPosition = transform.position.y;
         }
     }
 
@@ -186,9 +162,7 @@ public class PlayerNew : MonoBehaviour
 
     void Update()
     {
-
         LerpByLanePosition();
-
         // jump improve
         if (rb.velocity.y < 0)
         {
@@ -198,15 +172,12 @@ public class PlayerNew : MonoBehaviour
         {
             rb.velocity += Vector3.up * Physics2D.gravity.y * (lowJump - 1) * Time.deltaTime;
         }
-
         //For debugging
         if (Input.GetMouseButtonDown(0)) //button 0 is left click and 1 is right click
         {
             //Dash();
         }
-
         MovePlayerFromInputs();
-
         addTimeScore();
     }
 
@@ -252,12 +223,14 @@ public class PlayerNew : MonoBehaviour
                         {
                             //Right swipe
                             ChangeLane(ChangeLaneDirection.RIGHT);
+                            //TODO: Change change lane to the right animation here.
                             Debug.Log("Right Swipe");
                         }
                         else
                         {
                             //Left swipe
                             ChangeLane(ChangeLaneDirection.LEFT);
+                            //TODO: Change change lane to the left animation here.
                             Debug.Log("Left Swipe");
                         }
                     }
@@ -342,6 +315,7 @@ public class PlayerNew : MonoBehaviour
         {
             rb.AddForce(new Vector3(0, 1, 0) * speed, ForceMode.Impulse);
             isGrounded = false;
+            //TODO: Start jumping up animation here.
         }
     }
 
