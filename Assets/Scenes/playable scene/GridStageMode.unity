@@ -1175,7 +1175,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   uiText: {fileID: 1213553419}
-  mainTimer: 90
+  mainTimer: 120
   animator: {fileID: 955026461}
 --- !u!114 &1213553418
 MonoBehaviour:
@@ -1345,6 +1345,11 @@ Prefab:
         type: 2}
       propertyPath: SpeedIncreaseRate
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114468432358290952, guid: 038bd7ba6b974644d9a6b9b7fecb8b9a,
+        type: 2}
+      propertyPath: MoveSpeed
+      value: 12
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 038bd7ba6b974644d9a6b9b7fecb8b9a, type: 2}
