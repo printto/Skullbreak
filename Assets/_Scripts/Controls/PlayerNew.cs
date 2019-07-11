@@ -177,12 +177,13 @@ public class PlayerNew : MonoBehaviour
             //Dash();
         }
         MovePlayerFromInputs();
-        addTimeScore();
+
+        //addTimeScore();
     }
 
     void addTimeScore()
     {
-        ScoreManager.AddScore(Time.deltaTime);
+        ScoreManager.AddScore(-Time.deltaTime);
     }
 
     /*
