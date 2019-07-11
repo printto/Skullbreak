@@ -30,7 +30,7 @@ public class HitFace : MonoBehaviour {
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Player hit " + other.gameObject.name);
+        //Debug.Log("Player hit " + other.gameObject.name);
         if (Array.IndexOf(obstacleTags, other.gameObject.tag) > -1 && GameMaster.lifePoint > 0)
         {
             Bounce();
