@@ -58,9 +58,10 @@ public class PlayerNew : MonoBehaviour
     LaneDirection currentDirection;
 
     //animations
-    public Animator animator;
+    public Animator ControllingAnimator;
     public float IdlePositionError = 0.2f;
-
+    public GameObject PlayerModelToAnimate;
+    Animator PlayerModelAnimator;
 
     Rigidbody rb;
 
@@ -100,6 +101,8 @@ public class PlayerNew : MonoBehaviour
         //Cursor.lockState = CursorLockMode.Locked;
         currentDirection = LaneDirection.STILL;
         nextZPosition = LaneZs[currentLane];
+
+        PlayerModelAnimator = PlayerModelToAnimate.GetComponent<Animator>();
     }
 
     int countFrame = 0;
@@ -146,8 +149,8 @@ public class PlayerNew : MonoBehaviour
         //SceneManager.LoadScene(2);
         //Initiate.Fade("DeadScene", Color.black, 6f);
         Debug.Log("Trigger dead scene");
-        SceneTransition.setAnimator(animator);
-        Debug.Log(animator.ToString());
+        SceneTransition.setAnimator(ControllingAnimator);
+        Debug.Log(ControllingAnimator.ToString());
         SceneTransition.setScene("DeadScene");
         SceneTransition.getScene();
         StartCoroutine(SceneTransition.LoadScene());
@@ -208,7 +211,8 @@ public class PlayerNew : MonoBehaviour
         if (currentAnimationState != stateToSet)
         {
             string animationName = stateToSet.ToString();
-            Debug.Log(animationName);
+            //Debug.Log(animationName);
+            PlayerModelAnimator.SetTrigger(animationName);
             currentAnimationState = stateToSet;
         }
     }

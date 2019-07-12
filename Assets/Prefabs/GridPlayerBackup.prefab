@@ -337,6 +337,10 @@ MonoBehaviour:
   - -1.7
   - 1.7
   currentLane: 1
+  ControllingAnimator: {fileID: 95261507512526776, guid: c11c02ba0eec663438a0529e0660107f,
+    type: 2}
+  IdlePositionError: 0.2
+  PlayerModelToAnimate: {fileID: 0}
 --- !u!114 &114766484100844538
 MonoBehaviour:
   m_ObjectHideFlags: 1
