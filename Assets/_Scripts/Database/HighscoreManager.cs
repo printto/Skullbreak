@@ -41,6 +41,12 @@ public class HighscoreManager {
         return 0;
     }
 
+    /*
+     * 
+     *  THIS IS IMPORTANT! 
+     *  Don't forget to add new scenes here when adding new stage
+     * 
+     */
     static StageEnum stageNameToStageEnum(string stageName)
     {
         switch (stageName)
