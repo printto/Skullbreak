@@ -94,7 +94,6 @@ GameObject:
   - component: {fileID: 33765894878037414}
   - component: {fileID: 23171889687200886}
   - component: {fileID: 65786697488854588}
-  - component: {fileID: 114520547301983692}
   - component: {fileID: 114352735617374682}
   m_Layer: 0
   m_Name: gate
@@ -2356,7 +2355,7 @@ MeshCollider:
   m_GameObject: {fileID: 1470044858401636}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Convex: 0
   m_CookingOptions: 14
@@ -2655,17 +2654,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ScoreToAdd: 1
---- !u!114 &114520547301983692
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1208929883699018}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6e1a1f494ee981b41ac7969871d9b8bc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &114540935542512098
 MonoBehaviour:
   m_ObjectHideFlags: 1
