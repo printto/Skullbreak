@@ -22,7 +22,6 @@ GameObject:
   - component: {fileID: 33306525377619268}
   - component: {fileID: 23699476758121878}
   - component: {fileID: 65451826110689052}
-  - component: {fileID: 114209295817113660}
   m_Layer: 0
   m_Name: EndingGate
   m_TagString: Untagged
@@ -97,15 +96,3 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.986229, y: 1, z: 1}
   m_Center: {x: -0.49311447, y: 0, z: 0}
---- !u!114 &114209295817113660
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1578866310733498}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b163662c724d9cd49a68b5e952c66ce2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  animator: {fileID: 95261507512526776, guid: c11c02ba0eec663438a0529e0660107f, type: 2}
