@@ -6,23 +6,25 @@ using UnityEngine;
 
 public class SaveManager {
 
+    static string SAVE_FILE_NAME = "ZSS.dat";
+
     public static void Save(User user)
     {
         BinaryFormatter bf = new BinaryFormatter();
-        FileStream file = File.Open(Application.persistentDataPath + "/Zzzsave.dat", FileMode.OpenOrCreate);
+        FileStream file = File.Open(Application.persistentDataPath + "/" + SAVE_FILE_NAME, FileMode.OpenOrCreate);
         bf.Serialize(file, user);
         file.Close();
     }
 
     public static bool Load()
     {
-        if (File.Exists(Application.persistentDataPath + "/Zzzsave.dat"))
+        if (File.Exists(Application.persistentDataPath + "/" + SAVE_FILE_NAME))
         {
             Debug.Log("File does exist!");
             BinaryFormatter bf = new BinaryFormatter();
-            FileStream file = File.Open(Application.persistentDataPath + "/Zzzsave.dat", FileMode.Open);
+            FileStream file = File.Open(Application.persistentDataPath + "/" + SAVE_FILE_NAME, FileMode.Open);
             UserManager.user = (User) bf.Deserialize(file);
-            Debug.Log("Save file: " + UserManager.user.username + " " + UserManager.user.userscore);
+            Debug.Log("Save file: " + UserManager.user.username + " " + UserManager.user.GetScore(StageEnum.STAGE1));
             file.Close();
             return true;
         }
