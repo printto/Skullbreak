@@ -703,10 +703,9 @@ GameObject:
   - component: {fileID: 33554017972743026}
   - component: {fileID: 23357092267105024}
   - component: {fileID: 65731208117350520}
-  - component: {fileID: 114129644835174802}
   m_Layer: 0
   m_Name: EndingGate
-  m_TagString: Untagged
+  m_TagString: EndingGate
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1124,7 +1123,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1447170162057824}
   m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
-  m_LocalPosition: {x: 2.4, y: 0, z: -54.98}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 4000, y: 265, z: 20.053202}
   m_Children:
   - {fileID: 4133340008100834}
@@ -3477,18 +3476,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dbff3ced29c47bd49bf3d35368f6940f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &114129644835174802
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1902634740881564}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b163662c724d9cd49a68b5e952c66ce2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  animator: {fileID: 95261507512526776, guid: c11c02ba0eec663438a0529e0660107f, type: 2}
 --- !u!114 &114142038736840790
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -153,6 +153,13 @@ public class PlayerNew : MonoBehaviour
         StartCoroutine(SceneTransition.LoadScene());
     }
 
+    private void EndingScene()
+    {
+        SceneTransition.setAnimator(animator);
+        SceneTransition.setScene("EndingScene");
+        StartCoroutine(SceneTransition.LoadScene());
+    }
+
     void LerpPlayer()
     {
         transform.Translate(new Vector3(-1, 0, 0) * MoveSpeed * Time.deltaTime, Space.Self);
@@ -428,6 +435,9 @@ public class PlayerNew : MonoBehaviour
                 teleportEnd = null;
             }
             CancelTeleport();
+        } else if (other.gameObject.tag.Equals("EndingGate"))
+        {
+            EndingScene();
         }
     }
 
