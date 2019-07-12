@@ -158,7 +158,7 @@ public class PlayerNew : MonoBehaviour
 
     private void EndingScene()
     {
-        SceneTransition.setAnimator(animator);
+        SceneTransition.setAnimator(ControllingAnimator);
         SceneTransition.setScene("EndingScene");
         StartCoroutine(SceneTransition.LoadScene());
     }
