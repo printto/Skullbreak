@@ -41,7 +41,7 @@ public class ScoreResult : MonoBehaviour {
         }
         if (HighscoreText != null)
         {
-            if (HighscoreManager.UpdateHighscore(score))
+            if (HighscoreManager.UpdateHighscore(score, LoadPrevScene.getLastLevel()))
             {
                 if(HighscoreTextTitle != null)
                 {
@@ -52,7 +52,7 @@ public class ScoreResult : MonoBehaviour {
             }
             else
             {
-                HighscoreText.text = "" + ((int) HighscoreManager.GetHighscore());
+                HighscoreText.text = "" + ((int) HighscoreManager.GetHighscore(LoadPrevScene.getLastLevel()));
             }
         }
     }
