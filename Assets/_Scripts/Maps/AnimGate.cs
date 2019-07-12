@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GateEnter : MonoBehaviour {
+public class AnimGate : MonoBehaviour {
 
     private Animator anim;
 
