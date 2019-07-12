@@ -5,7 +5,6 @@ using UnityEngine.SceneManagement;
 
 public static class LoadPrevScene  {
 
-
         private static string lastLevel;
 
         public static void setLastLevel(string level)
