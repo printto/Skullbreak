@@ -22,6 +22,8 @@ public class Coin : MonoBehaviour {
     {
         if (other.gameObject.tag.Equals("Player"))
         {
+            PlayerNew playerScript = other.GetComponent<PlayerNew>();
+            playerScript.playSound(playerScript.soundEffect.CoinSounds);
             ScoreManager.AddCoin(ScoreToAdd);
             Destroy(gameObject);
         }

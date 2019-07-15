@@ -65,6 +65,9 @@ public class PlayerNew : MonoBehaviour
 
     Rigidbody rb;
 
+    //Sounds
+    public SoundEffect soundEffect;
+
     void Awake()
     {
         // Call the LevelManager and set the last level.
@@ -99,10 +102,12 @@ public class PlayerNew : MonoBehaviour
         ScoreManager.SetCoin(0);
         rb = GetComponent<Rigidbody>();
         //Cursor.lockState = CursorLockMode.Locked;
-        currentDirection = LaneDirection.STILL;
+        currentDirection = LaneDirection.STRAIGHT;
         nextZPosition = LaneZs[currentLane];
 
         PlayerModelAnimator = PlayerModelToAnimate.GetComponent<Animator>();
+
+        soundEffect = GetComponent<SoundEffect>();
     }
 
     int countFrame = 0;
@@ -124,7 +129,7 @@ public class PlayerNew : MonoBehaviour
         
         if (transform.position.y < lastYAirPosition)
         {
-            //TODO: Trigger the jumping down animation here.
+            //TODO: Trigger the jumping down animation and sounds here.
             setAnimation(AnimationStates.JUMP_FALL);
         }
         else if ((transform.position.z + IdlePositionError >= LaneZs[currentLane] && currentAnimationState == AnimationStates.TURN_RIGHT) ||
@@ -172,6 +177,7 @@ public class PlayerNew : MonoBehaviour
     void Update()
     {
         LerpByLanePosition();
+
         // jump improve
         if (rb.velocity.y < 0)
         {
@@ -181,11 +187,14 @@ public class PlayerNew : MonoBehaviour
         {
             rb.velocity += Vector3.up * Physics2D.gravity.y * (lowJump - 1) * Time.deltaTime;
         }
-        //For debugging
+
+        /* //For debugging
         if (Input.GetMouseButtonDown(0)) //button 0 is left click and 1 is right click
         {
-            //Dash();
+            Dash();
         }
+        */
+
         MovePlayerFromInputs();
 
         //addTimeScore();
@@ -226,6 +235,17 @@ public class PlayerNew : MonoBehaviour
 
     /*
      * 
+     * These are for sounds
+     *
+     */
+    public void playSound(AudioClip[] sounds)
+    {
+        if(soundEffect != null)
+            soundEffect.PlaySound(sounds);
+    }
+
+    /*
+     * 
      * Codes below this comment are
      * for input controlling functions
      * 
@@ -258,7 +278,7 @@ public class PlayerNew : MonoBehaviour
                         if (lp.x > fp.x)
                         {
                             //Right swipe
-                            ChangeLane(LaneDirection.RIGHT);
+                            ChangeLane(LaneDirection.TO_RIGHT);
                             //TODO: Change change lane to the right animation here.
                             setAnimation(AnimationStates.TURN_RIGHT);
                             Debug.Log("Right Swipe");
@@ -266,7 +286,7 @@ public class PlayerNew : MonoBehaviour
                         else
                         {
                             //Left swipe
-                            ChangeLane(LaneDirection.LEFT);
+                            ChangeLane(LaneDirection.TO_LEFT);
                             //TODO: Change change lane to the left animation here.
                             setAnimation(AnimationStates.TURN_LEFT);
                             Debug.Log("Left Swipe");
@@ -290,16 +310,17 @@ public class PlayerNew : MonoBehaviour
                                 Teleport();
                             }
                             */
+                            if (teleportable && !isTeleporting)
+                            {
+                                Teleport();
+                            }
                             Debug.Log("Down Swipe");
                         }
                     }
                 }
                 else
                 {   //It's a tap as the drag distance is less than dragDistance of the screen height
-                    if (teleportable && !isTeleporting)
-                    {
-                        Teleport();
-                    }
+                    
                 }
             }
 
@@ -318,12 +339,12 @@ public class PlayerNew : MonoBehaviour
         {
             if (Input.GetAxisRaw("Horizontal") > 0)
             {
-                ChangeLane(LaneDirection.RIGHT);
+                ChangeLane(LaneDirection.TO_RIGHT);
                 setAnimation(AnimationStates.TURN_RIGHT);
             }
             else if (Input.GetAxisRaw("Horizontal") < 0)
             {
-                ChangeLane(LaneDirection.LEFT);
+                ChangeLane(LaneDirection.TO_LEFT);
                 setAnimation(AnimationStates.TURN_LEFT);
             }
         }
@@ -331,28 +352,25 @@ public class PlayerNew : MonoBehaviour
 
     enum LaneDirection
     {
-        LEFT,
-        RIGHT,
-        STILL
+        TO_LEFT,
+        TO_RIGHT,
+        STRAIGHT
     }
     void ChangeLane(LaneDirection direction)
     {
-        if (direction == LaneDirection.LEFT && currentLane > 0)
+        if (direction == LaneDirection.TO_LEFT && currentLane > 0)
         {
             currentLane -= 1;
-            currentDirection = LaneDirection.LEFT;
-            nextZPosition = LaneZs[currentLane];
+            currentDirection = LaneDirection.TO_LEFT;
+            playSound(soundEffect.LaneSounds);
         }
-        else if (direction == LaneDirection.RIGHT && currentLane < LaneZs.Length - 1)
+        else if (direction == LaneDirection.TO_RIGHT && currentLane < LaneZs.Length - 1)
         {
             currentLane += 1;
-            currentDirection = LaneDirection.RIGHT;
-            nextZPosition = LaneZs[currentLane];
+            currentDirection = LaneDirection.TO_RIGHT;
+            playSound(soundEffect.LaneSounds);
         }
-        /*
-        Vector3 newPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, Lanes[currentLane].transform.localPosition.z);
-        transform.localPosition = newPosition;
-        */
+        nextZPosition = LaneZs[currentLane];
     }
 
     void Jump(float speed)
@@ -363,10 +381,12 @@ public class PlayerNew : MonoBehaviour
             isGrounded = false;
             //TODO: Start jumping up animation here.
             setAnimation(AnimationStates.JUMP_UP);
+            playSound(soundEffect.JumpSounds);
         }
     }
 
     // Start the teleportation if player is inside the teleport area
+    // TODO: Play teleport sound here
     void Teleport()
     {
         if (teleportable)
@@ -439,7 +459,8 @@ public class PlayerNew : MonoBehaviour
                 teleportEnd = null;
             }
             CancelTeleport();
-        } else if (other.gameObject.tag.Equals("EndingGate"))
+        }
+        else if (other.gameObject.tag.Equals("EndingGate"))
         {
             EndingScene();
         }
