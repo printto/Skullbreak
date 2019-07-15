@@ -310,16 +310,17 @@ public class PlayerNew : MonoBehaviour
                                 Teleport();
                             }
                             */
+                            if (teleportable && !isTeleporting)
+                            {
+                                Teleport();
+                            }
                             Debug.Log("Down Swipe");
                         }
                     }
                 }
                 else
                 {   //It's a tap as the drag distance is less than dragDistance of the screen height
-                    if (teleportable && !isTeleporting)
-                    {
-                        Teleport();
-                    }
+                    
                 }
             }
 
