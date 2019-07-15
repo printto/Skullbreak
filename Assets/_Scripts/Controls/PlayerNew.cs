@@ -466,4 +466,16 @@ public class PlayerNew : MonoBehaviour
         }
     }
 
+    IEnumerator blinking()
+    {
+        transform.GetComponent<Renderer>().enabled = false;
+        yield return new WaitForSeconds(0.25f);
+        transform.GetComponent<Renderer>().enabled = true;
+        yield return new WaitForSeconds(0.25f);
+        transform.GetComponent<Renderer>().enabled = false;
+        yield return new WaitForSeconds(0.25f);
+        transform.GetComponent<Renderer>().enabled = true;
+        yield return new WaitForSeconds(0.25f);
+    }
+
 }
