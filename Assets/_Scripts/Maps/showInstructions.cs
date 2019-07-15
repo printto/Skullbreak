@@ -14,8 +14,6 @@ public class showInstructions : MonoBehaviour
     static Transform playerTransform;
     public bool isCoroutine = false;
 
-    float duration = 5;
-
 
     private static float x = 0;
     private static float y = 0;
