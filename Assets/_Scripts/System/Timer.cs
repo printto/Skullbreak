@@ -12,7 +12,7 @@ public class Timer : MonoBehaviour {
     public Animator animator;
 
     private float timer;
-    private bool canCount = true;
+    public static bool canCount = true;
     private bool doOnce = false;
 
      void Start()
