@@ -88,9 +88,9 @@ public class PlayerNew : MonoBehaviour
         {
             GameMaster.SetLife(99);
         }
-        else if (SceneManager.GetActiveScene().name.Equals("GridMode"))
+        else if (SceneManager.GetActiveScene().name.Equals("GridStageMode"))
         {
-            GameMaster.SetLife(0);
+            GameMaster.SetLife(3);
         }
 
         isSlowedDown = false;
