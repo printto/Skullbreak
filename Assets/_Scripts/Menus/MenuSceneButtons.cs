@@ -50,7 +50,7 @@ public class MenuSceneButtons : MonoBehaviour
     {
 
         SceneTransition.setAnimator(animator);
-        SceneTransition.setScene("GridMode");
+        SceneTransition.setScene("GridStageMode");
         SceneTransition.getScene();
         StartCoroutine(SceneTransition.LoadScene());
 

@@ -44,8 +44,6 @@ public class HitFace : MonoBehaviour {
         yield return new WaitForSeconds(0.5f);
         transform.parent.gameObject.GetComponent<PlayerNew>().MoveSpeed = 0;
         yield return new WaitForSeconds(2f);
-        transform.parent.gameObject.GetComponent<PlayerNew>().MoveSpeed = forward/1.5f;
-        yield return new WaitForSeconds(1.5f);
         transform.parent.gameObject.GetComponent<PlayerNew>().MoveSpeed = forward ;
 
 
