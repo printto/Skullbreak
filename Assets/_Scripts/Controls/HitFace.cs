@@ -11,23 +11,6 @@ public class HitFace : MonoBehaviour {
     public Animator animator;
 
     /*
-      private void OnCollisionEnter(Collision collision)
-    {
-        Debug.Log("Player hit " + collision.gameObject.name);
-        if (Array.IndexOf(obstacleTags, collision.gameObject.tag) > -1 && GameMaster.lifePoint > 0)
-        {
-            Bounce();
-            GameMaster.removeLife(1);
-            StartCoroutine(Stop());
-        }
-        else if (Array.IndexOf(obstacleTags, collision.gameObject.tag) > -1 && GameMaster.lifePoint <= 0)
-        {
-            Bounce();
-            DeadScene();
-        }
-    }
-     */
-
     private void OnTriggerEnter(Collider other)
     {
         //Debug.Log("Player hit " + other.gameObject.name);
@@ -42,6 +25,23 @@ public class HitFace : MonoBehaviour {
             Bounce();
             DeadScene();
         }
+    }
+    */
+
+    private void OnTriggerEnter(Collider other)
+    {
+        //Debug.Log("Player hit " + other.gameObject.name);
+        if (Array.IndexOf(obstacleTags, other.gameObject.tag) > -1 )
+        {
+            Bounce();
+            StartCoroutine(blinking());
+            StartCoroutine(Stop());
+        }
+        //else if (Array.IndexOf(obstacleTags, other.gameObject.tag) > -1 && GameMaster.lifePoint <= 0)
+        //{
+        //    Bounce();
+        //    DeadScene();
+       // }
     }
 
     private void Bounce()
@@ -63,8 +63,8 @@ public class HitFace : MonoBehaviour {
 
 
 
-    //not yet implemented
     //For when crashing, it will pause for a seconds then move forward.
+    /*
     IEnumerator Stop()
     {
         float forward = -transform.parent.gameObject.GetComponent<PlayerNew>().MoveSpeed;
@@ -72,5 +72,36 @@ public class HitFace : MonoBehaviour {
         transform.parent.gameObject.GetComponent<PlayerNew>().MoveSpeed = 0;
         yield return new WaitForSeconds(0.75f);
         //transform.parent.gameObject.GetComponent<PlayerNew>().MoveSpeed = forward;
+    }
+    */
+
+    IEnumerator Stop()
+    {
+        float forward = -transform.parent.gameObject.GetComponent<PlayerNew>().MoveSpeed;
+        yield return new WaitForSeconds(0.75f);
+        transform.parent.gameObject.GetComponent<PlayerNew>().MoveSpeed = 0;
+        yield return new WaitForSeconds(0.75f);
+        transform.parent.gameObject.GetComponent<PlayerNew>().MoveSpeed = forward;
+    }
+
+    IEnumerator blinking()
+    {
+        GameObject skullo = GameObject.Find("again-im-testing-rigging");
+        //GameObject.Find("skullo");
+        skullo.SetActive(false);
+        yield return new WaitForSeconds(0.25f);
+        skullo.SetActive(true);
+        yield return new WaitForSeconds(0.25f);
+        skullo.SetActive(false);
+        yield return new WaitForSeconds(0.25f);
+        skullo.SetActive(true);
+        yield return new WaitForSeconds(0.25f);
+        skullo.SetActive(false);
+        yield return new WaitForSeconds(0.25f);
+        skullo.SetActive(true);
+        yield return new WaitForSeconds(0.25f);
+        skullo.SetActive(true);
+
+
     }
 }
