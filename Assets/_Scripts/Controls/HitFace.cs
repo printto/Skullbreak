@@ -41,10 +41,14 @@ public class HitFace : MonoBehaviour {
     IEnumerator Stop()
     {
         float forward = -transform.parent.gameObject.GetComponent<PlayerNew>().MoveSpeed;
-        yield return new WaitForSeconds(0.75f);
+        yield return new WaitForSeconds(0.5f);
         transform.parent.gameObject.GetComponent<PlayerNew>().MoveSpeed = 0;
-        yield return new WaitForSeconds(0.75f);
-        transform.parent.gameObject.GetComponent<PlayerNew>().MoveSpeed = forward;
+        yield return new WaitForSeconds(2f);
+        transform.parent.gameObject.GetComponent<PlayerNew>().MoveSpeed = forward/1.5f;
+        yield return new WaitForSeconds(1.5f);
+        transform.parent.gameObject.GetComponent<PlayerNew>().MoveSpeed = forward ;
+
+
     }
 
     IEnumerator blinking()
@@ -61,6 +65,8 @@ public class HitFace : MonoBehaviour {
         skullo.SetActive(false);
         yield return new WaitForSeconds(0.25f);
         skullo.SetActive(true);
+        yield return new WaitForSeconds(0.25f);
+        skullo.SetActive(false);
         yield return new WaitForSeconds(0.25f);
         skullo.SetActive(true);
 
