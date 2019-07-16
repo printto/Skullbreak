@@ -10,24 +10,6 @@ public class HitFace : MonoBehaviour {
 
     public Animator animator;
 
-    /*
-    private void OnTriggerEnter(Collider other)
-    {
-        //Debug.Log("Player hit " + other.gameObject.name);
-        if (Array.IndexOf(obstacleTags, other.gameObject.tag) > -1 && GameMaster.lifePoint > 0)
-        {
-            Bounce();
-            GameMaster.removeLife(1);
-            StartCoroutine(Stop());
-        }
-        else if (Array.IndexOf(obstacleTags, other.gameObject.tag) > -1 && GameMaster.lifePoint <= 0)
-        {
-            Bounce();
-            DeadScene();
-        }
-    }
-    */
-
     private void OnTriggerEnter(Collider other)
     {
         //Debug.Log("Player hit " + other.gameObject.name);
@@ -37,11 +19,7 @@ public class HitFace : MonoBehaviour {
             StartCoroutine(blinking());
             StartCoroutine(Stop());
         }
-        //else if (Array.IndexOf(obstacleTags, other.gameObject.tag) > -1 && GameMaster.lifePoint <= 0)
-        //{
-        //    Bounce();
-        //    DeadScene();
-       // }
+
     }
 
     private void Bounce()
@@ -53,27 +31,12 @@ public class HitFace : MonoBehaviour {
 
     private void DeadScene()
     {
-        //SceneManager.LoadScene(2);
-        //Initiate.Fade("DeadScene", Color.black, 6f);
         SceneTransition.setAnimator(animator);
         SceneTransition.setScene("DeadScene");
         SceneTransition.getScene();
         StartCoroutine(SceneTransition.LoadScene());
     }
 
-
-
-    //For when crashing, it will pause for a seconds then move forward.
-    /*
-    IEnumerator Stop()
-    {
-        float forward = -transform.parent.gameObject.GetComponent<PlayerNew>().MoveSpeed;
-        yield return new WaitForSeconds(0.75f);
-        transform.parent.gameObject.GetComponent<PlayerNew>().MoveSpeed = 0;
-        yield return new WaitForSeconds(0.75f);
-        //transform.parent.gameObject.GetComponent<PlayerNew>().MoveSpeed = forward;
-    }
-    */
 
     IEnumerator Stop()
     {
@@ -87,7 +50,6 @@ public class HitFace : MonoBehaviour {
     IEnumerator blinking()
     {
         GameObject skullo = GameObject.Find("again-im-testing-rigging");
-        //GameObject.Find("skullo");
         skullo.SetActive(false);
         yield return new WaitForSeconds(0.25f);
         skullo.SetActive(true);
