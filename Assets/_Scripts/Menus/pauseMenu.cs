@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class pauseMenu : MonoBehaviour {
 
@@ -13,6 +14,10 @@ public class pauseMenu : MonoBehaviour {
     public GameObject settingUI;
 
     public Animator animator;
+
+    public Text countDownUnpauseText;
+
+    private float saveMoveSpeed;
 
     public void openPauseMenu()
     {
@@ -29,26 +34,31 @@ public class pauseMenu : MonoBehaviour {
     public void Resume()
     {
         pauseMenuUI.SetActive(false);
-        Time.timeScale = 1f;
+        countDownUnpauseText.enabled = true;
+        StartCoroutine(countDown());
         GameIsPaused = false;
     }
 
     public void Pause()
     {
+        GameObject.FindGameObjectWithTag("PlayerAnim").GetComponent<Animator>().enabled = false;
+        Timer.canCount = false;
+        saveMoveSpeed = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerNew>().MoveSpeed;
         pauseMenuUI.SetActive(true);
         Time.timeScale = 0f;
+        GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerNew>().MoveSpeed = 0;
         GameIsPaused = true;
     }
 
     public void Menu()
-    {
+    {   
+
         Time.timeScale = 1f;
         GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerNew>().MoveSpeed = 0;
         SceneTransition.setAnimator(animator);
         SceneTransition.setScene("Mainmenu");
         SceneTransition.getScene();
         StartCoroutine(SceneTransition.LoadScene());
-        //SceneManager.LoadScene(0);
         pauseMenuUI.SetActive(false); 
         GameIsPaused = false;
     }
@@ -57,9 +67,7 @@ public class pauseMenu : MonoBehaviour {
     {   
         
         Application.Quit();
-        //pauseMenuUI.SetActive(false);
-       // Time.timeScale = 1f;
-        //GameIsPaused = false;
+
     }
 
     public void setting()
@@ -76,5 +84,20 @@ public class pauseMenu : MonoBehaviour {
         SettingIsOpened = false;
         settingUI.gameObject.SetActive(false);
         pauseMenuUI.gameObject.SetActive(true);
+    }
+
+    IEnumerator countDown()
+    {
+        Time.timeScale = 1f;
+        countDownUnpauseText.text = "3";
+        yield return new WaitForSeconds(1f);
+        countDownUnpauseText.text = "2";
+        yield return new WaitForSeconds(1f);
+        countDownUnpauseText.text = "1";
+        yield return new WaitForSeconds(1f);
+        countDownUnpauseText.text = "";
+        Timer.canCount = true;
+        GameObject.FindGameObjectWithTag("PlayerAnim").GetComponent<Animator>().enabled = true;
+        GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerNew>().MoveSpeed = saveMoveSpeed;
     }
 }
