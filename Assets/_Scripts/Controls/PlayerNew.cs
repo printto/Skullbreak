@@ -55,13 +55,18 @@ public class PlayerNew : MonoBehaviour
     public float[] LaneZs;
     public int currentLane = 0;
     float nextZPosition = 0;
-    ChangeLaneDirection currentDirection;
+    LaneDirection currentDirection;
 
-    //animator
-    public Animator animator;
-
+    //animations
+    public Animator ControllingAnimator;
+    public float IdlePositionError = 0.2f;
+    public GameObject PlayerModelToAnimate;
+    Animator PlayerModelAnimator;
 
     Rigidbody rb;
+
+    //Sounds
+    public SoundEffect soundEffect;
 
     void Awake()
     {
@@ -97,8 +102,12 @@ public class PlayerNew : MonoBehaviour
         ScoreManager.SetCoin(0);
         rb = GetComponent<Rigidbody>();
         //Cursor.lockState = CursorLockMode.Locked;
-        currentDirection = ChangeLaneDirection.STILL;
+        currentDirection = LaneDirection.STRAIGHT;
         nextZPosition = LaneZs[currentLane];
+
+        PlayerModelAnimator = PlayerModelToAnimate.GetComponent<Animator>();
+
+        soundEffect = GetComponent<SoundEffect>();
     }
 
     int countFrame = 0;
@@ -117,19 +126,21 @@ public class PlayerNew : MonoBehaviour
             MoveSpeed = 0;
             DeadScene();
         }
-        if (!isGrounded)
+        
+        if (transform.position.y < lastYAirPosition)
         {
-            if (transform.position.y < lastYAirPosition)
-            {
-                //TODO: Trigger the jumping down animation here.
-            }
-            lastYAirPosition = transform.position.y;
+            //TODO: Trigger the jumping down animation and sounds here.
+            setAnimation(AnimationStates.JUMP_FALL);
         }
-        else if (transform.position.z == LaneZs[currentLane])
+        else if ((transform.position.z + IdlePositionError >= LaneZs[currentLane] && currentAnimationState == AnimationStates.TURN_RIGHT) ||
+            (transform.position.z - IdlePositionError <= LaneZs[currentLane] && currentAnimationState == AnimationStates.TURN_LEFT) ||
+            (currentAnimationState == AnimationStates.JUMP_FALL))
         {
             //TODO: Cancel the turning animation by triggering the normal animation.
+            setAnimation(AnimationStates.IDLE);
         }
-        
+        lastYAirPosition = transform.position.y;
+        //Debug.Log("Current Z: " + transform.position.z + "\nLaneZ: " + LaneZs[currentLane]);
     }
 
     void LerpByLanePosition()
@@ -143,10 +154,17 @@ public class PlayerNew : MonoBehaviour
         //SceneManager.LoadScene(2);
         //Initiate.Fade("DeadScene", Color.black, 6f);
         Debug.Log("Trigger dead scene");
-        SceneTransition.setAnimator(animator);
-        Debug.Log(animator.ToString());
+        SceneTransition.setAnimator(ControllingAnimator);
+        Debug.Log(ControllingAnimator.ToString());
         SceneTransition.setScene("DeadScene");
         SceneTransition.getScene();
+        StartCoroutine(SceneTransition.LoadScene());
+    }
+
+    private void EndingScene()
+    {
+        SceneTransition.setAnimator(ControllingAnimator);
+        SceneTransition.setScene("EndingScene");
         StartCoroutine(SceneTransition.LoadScene());
     }
 
@@ -159,6 +177,7 @@ public class PlayerNew : MonoBehaviour
     void Update()
     {
         LerpByLanePosition();
+
         // jump improve
         if (rb.velocity.y < 0)
         {
@@ -168,11 +187,14 @@ public class PlayerNew : MonoBehaviour
         {
             rb.velocity += Vector3.up * Physics2D.gravity.y * (lowJump - 1) * Time.deltaTime;
         }
-        //For debugging
+
+        /* //For debugging
         if (Input.GetMouseButtonDown(0)) //button 0 is left click and 1 is right click
         {
-            //Dash();
+            Dash();
         }
+        */
+
         MovePlayerFromInputs();
 
         //addTimeScore();
@@ -183,6 +205,44 @@ public class PlayerNew : MonoBehaviour
         ScoreManager.AddScore(-Time.deltaTime);
     }
 
+    /*
+     * 
+     * These are for animations
+     *
+     */
+    AnimationStates currentAnimationState = AnimationStates.IDLE;
+    enum AnimationStates
+    {
+        IDLE,
+        JUMP_UP,
+        JUMP_FALL,
+        TURN_LEFT,
+        TURN_RIGHT,
+        DIE,
+        TELEPORTING,
+        HIT
+    }
+    void setAnimation(AnimationStates stateToSet)
+    {
+        if (currentAnimationState != stateToSet)
+        {
+            string animationName = stateToSet.ToString();
+            //Debug.Log(animationName);
+            PlayerModelAnimator.SetTrigger(animationName);
+            currentAnimationState = stateToSet;
+        }
+    }
+
+    /*
+     * 
+     * These are for sounds
+     *
+     */
+    public void playSound(AudioClip[] sounds)
+    {
+        if(soundEffect != null)
+            soundEffect.PlaySound(sounds);
+    }
 
     /*
      * 
@@ -190,7 +250,6 @@ public class PlayerNew : MonoBehaviour
      * for input controlling functions
      * 
      */
-
     void MovePlayerFromInputs()
     {
         //Touch screen
@@ -219,15 +278,17 @@ public class PlayerNew : MonoBehaviour
                         if (lp.x > fp.x)
                         {
                             //Right swipe
-                            ChangeLane(ChangeLaneDirection.RIGHT);
+                            ChangeLane(LaneDirection.TO_RIGHT);
                             //TODO: Change change lane to the right animation here.
+                            setAnimation(AnimationStates.TURN_RIGHT);
                             Debug.Log("Right Swipe");
                         }
                         else
                         {
                             //Left swipe
-                            ChangeLane(ChangeLaneDirection.LEFT);
+                            ChangeLane(LaneDirection.TO_LEFT);
                             //TODO: Change change lane to the left animation here.
+                            setAnimation(AnimationStates.TURN_LEFT);
                             Debug.Log("Left Swipe");
                         }
                     }
@@ -249,16 +310,17 @@ public class PlayerNew : MonoBehaviour
                                 Teleport();
                             }
                             */
+                            if (teleportable && !isTeleporting)
+                            {
+                                Teleport();
+                            }
                             Debug.Log("Down Swipe");
                         }
                     }
                 }
                 else
                 {   //It's a tap as the drag distance is less than dragDistance of the screen height
-                    if (teleportable && !isTeleporting)
-                    {
-                        Teleport();
-                    }
+                    
                 }
             }
 
@@ -274,36 +336,41 @@ public class PlayerNew : MonoBehaviour
             Jump(jumpSpeed);
         }
         if (Input.GetButtonDown("Horizontal"))
+        {
+            if (Input.GetAxisRaw("Horizontal") > 0)
             {
-                if (Input.GetAxisRaw("Horizontal") > 0) ChangeLane(ChangeLaneDirection.RIGHT);
-                else if (Input.GetAxisRaw("Horizontal") < 0) ChangeLane(ChangeLaneDirection.LEFT);
+                ChangeLane(LaneDirection.TO_RIGHT);
+                setAnimation(AnimationStates.TURN_RIGHT);
             }
+            else if (Input.GetAxisRaw("Horizontal") < 0)
+            {
+                ChangeLane(LaneDirection.TO_LEFT);
+                setAnimation(AnimationStates.TURN_LEFT);
+            }
+        }
     }
 
-    enum ChangeLaneDirection
+    enum LaneDirection
     {
-        LEFT,
-        RIGHT,
-        STILL
+        TO_LEFT,
+        TO_RIGHT,
+        STRAIGHT
     }
-    void ChangeLane(ChangeLaneDirection direction)
+    void ChangeLane(LaneDirection direction)
     {
-        if (direction == ChangeLaneDirection.LEFT && currentLane > 0)
+        if (direction == LaneDirection.TO_LEFT && currentLane > 0)
         {
             currentLane -= 1;
-            currentDirection = ChangeLaneDirection.LEFT;
-            nextZPosition = LaneZs[currentLane];
+            currentDirection = LaneDirection.TO_LEFT;
+            playSound(soundEffect.LaneSounds);
         }
-        else if (direction == ChangeLaneDirection.RIGHT && currentLane < LaneZs.Length - 1)
+        else if (direction == LaneDirection.TO_RIGHT && currentLane < LaneZs.Length - 1)
         {
             currentLane += 1;
-            currentDirection = ChangeLaneDirection.RIGHT;
-            nextZPosition = LaneZs[currentLane];
+            currentDirection = LaneDirection.TO_RIGHT;
+            playSound(soundEffect.LaneSounds);
         }
-        /*
-        Vector3 newPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, Lanes[currentLane].transform.localPosition.z);
-        transform.localPosition = newPosition;
-        */
+        nextZPosition = LaneZs[currentLane];
     }
 
     void Jump(float speed)
@@ -313,10 +380,13 @@ public class PlayerNew : MonoBehaviour
             rb.AddForce(new Vector3(0, 1, 0) * speed, ForceMode.Impulse);
             isGrounded = false;
             //TODO: Start jumping up animation here.
+            setAnimation(AnimationStates.JUMP_UP);
+            playSound(soundEffect.JumpSounds);
         }
     }
 
     // Start the teleportation if player is inside the teleport area
+    // TODO: Play teleport sound here
     void Teleport()
     {
         if (teleportable)
@@ -390,6 +460,22 @@ public class PlayerNew : MonoBehaviour
             }
             CancelTeleport();
         }
+        else if (other.gameObject.tag.Equals("EndingGate"))
+        {
+            EndingScene();
+        }
+    }
+
+    IEnumerator blinking()
+    {
+        transform.GetComponent<Renderer>().enabled = false;
+        yield return new WaitForSeconds(0.25f);
+        transform.GetComponent<Renderer>().enabled = true;
+        yield return new WaitForSeconds(0.25f);
+        transform.GetComponent<Renderer>().enabled = false;
+        yield return new WaitForSeconds(0.25f);
+        transform.GetComponent<Renderer>().enabled = true;
+        yield return new WaitForSeconds(0.25f);
     }
 
 }

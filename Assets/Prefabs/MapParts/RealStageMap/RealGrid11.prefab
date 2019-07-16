@@ -117,7 +117,6 @@ GameObject:
   - component: {fileID: 33806709059941462}
   - component: {fileID: 23382083985901944}
   - component: {fileID: 65082611071568092}
-  - component: {fileID: 114800236335338028}
   - component: {fileID: 114331822332622764}
   m_Layer: 0
   m_Name: gate
@@ -2187,7 +2186,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1950505566664342}
   m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
-  m_LocalPosition: {x: -9.6, y: -2, z: 47}
+  m_LocalPosition: {x: 0, y: -2, z: 0}
   m_LocalScale: {x: 4000, y: 265, z: 20.053202}
   m_Children:
   - {fileID: 4450284137834318}
@@ -7189,17 +7188,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ScoreToAdd: 1
---- !u!114 &114800236335338028
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1066190274964636}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6e1a1f494ee981b41ac7969871d9b8bc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &114804007273394780
 MonoBehaviour:
   m_ObjectHideFlags: 1

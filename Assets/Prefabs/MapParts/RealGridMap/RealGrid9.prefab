@@ -2231,7 +2231,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1960609507682598}
   m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
-  m_LocalPosition: {x: -34.5, y: -0, z: -105.4}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 4000, y: 265, z: 20.053202}
   m_Children:
   - {fileID: 4975638834244724}
@@ -8896,15 +8896,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CurrentSegment: {fileID: 1960609507682598}
   RoadSegments:
-  - {fileID: 1089727982458286, guid: 8f78a2ed67336264fa973bbb0bd77c1e, type: 2}
-  - {fileID: 1435993049962754, guid: f26cececc5d213343bd250ee1220884b, type: 2}
-  - {fileID: 1081164799677810, guid: 8e9256220cd7fd84bb9b7c1e3a840a52, type: 2}
-  - {fileID: 1888292614904742, guid: 90ef5097d7f87234e8cfe755ec682e9b, type: 2}
-  - {fileID: 1014157152707926, guid: 10d4bfe7c3531f742a1053a698d11cea, type: 2}
-  - {fileID: 1305551902796156, guid: f3619374de838664dba710180846b141, type: 2}
-  - {fileID: 1470044858401636, guid: da5e9cbef77274f47acbfd87bb2a5e81, type: 2}
-  - {fileID: 1876330478209848, guid: 0f8c578cd9529d8479100db62b1efbf0, type: 2}
-  - {fileID: 1960609507682598}
+  - {fileID: 1305551902796156, guid: aa1231356790c1142b724c23185f2de6, type: 2}
   createdNext: 0
 --- !u!114 &114766088300277446
 MonoBehaviour:
