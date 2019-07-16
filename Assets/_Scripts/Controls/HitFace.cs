@@ -66,6 +66,8 @@ public class HitFace : MonoBehaviour {
         yield return new WaitForSeconds(0.25f);
         skullo.SetActive(true);
         yield return new WaitForSeconds(0.25f);
+        skullo.SetActive(false);
+        yield return new WaitForSeconds(0.25f);
         skullo.SetActive(true);
 
 
