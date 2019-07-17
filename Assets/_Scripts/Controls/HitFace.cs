@@ -13,11 +13,17 @@ public class HitFace : MonoBehaviour {
     private void OnTriggerEnter(Collider other)
     {
         //Debug.Log("Player hit " + other.gameObject.name);
-        if (Array.IndexOf(obstacleTags, other.gameObject.tag) > -1 )
+        if (Array.IndexOf(obstacleTags, other.gameObject.tag) > -1 && GameMaster.lifePoint > 0)
         {
             Bounce();
+            GameMaster.removeLife(1);
             StartCoroutine(blinking());
             StartCoroutine(Stop());
+        }
+        else if (Array.IndexOf(obstacleTags, other.gameObject.tag) > -1 && GameMaster.lifePoint <= 0)
+        {
+            transform.parent.gameObject.GetComponent<PlayerNew>().MoveSpeed = 0;
+            DeadScene();
         }
 
     }
