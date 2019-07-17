@@ -21,7 +21,10 @@ public class MenuSceneButtons : MonoBehaviour
     {
         if (!SaveManager.Load())
         {
-            SceneManager.LoadScene(5);
+            SceneTransition.setAnimator(animator);
+            SceneTransition.setScene("TutorialLevel");
+            SceneTransition.getScene();
+            StartCoroutine(SceneTransition.LoadScene());
         }
         Cursor.lockState = CursorLockMode.None;
     }
