@@ -565,6 +565,7 @@ GameObject:
   - component: {fileID: 23171268338247178}
   - component: {fileID: 64452744247101346}
   - component: {fileID: 114862797992947286}
+  - component: {fileID: 114899739302546260}
   m_Layer: 0
   m_Name: RealGrid6
   m_TagString: Ground
@@ -4600,7 +4601,7 @@ MonoBehaviour:
   CurrentSegment: {fileID: 1557875083398560}
   RoadSegments:
   - {fileID: 1470044858401636, guid: ecc733de02490bf4b989daf797906327, type: 2}
-  createdNext: 1
+  createdNext: 0
 --- !u!114 &114887198136527304
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4624,6 +4625,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ScoreToAdd: 1
+--- !u!114 &114899739302546260
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1557875083398560}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c68e8170ce22fdb48a81673e75ab6503, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114903397679635914
 MonoBehaviour:
   m_ObjectHideFlags: 1

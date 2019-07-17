@@ -88,6 +88,7 @@ GameObject:
   - component: {fileID: 23948564176498430}
   - component: {fileID: 64563890514719902}
   - component: {fileID: 114062324426351184}
+  - component: {fileID: 114039389710136180}
   m_Layer: 0
   m_Name: RealGrid16
   m_TagString: Ground
@@ -2050,6 +2051,17 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &114039389710136180
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1130174298516074}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c68e8170ce22fdb48a81673e75ab6503, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114062324426351184
 MonoBehaviour:
   m_ObjectHideFlags: 1

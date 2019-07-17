@@ -493,6 +493,7 @@ GameObject:
   - component: {fileID: 23896781953997212}
   - component: {fileID: 64053853402304494}
   - component: {fileID: 114002933447205830}
+  - component: {fileID: 114729925304227940}
   m_Layer: 0
   m_Name: RealGrid12
   m_TagString: Ground
@@ -14090,6 +14091,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ScoreToAdd: 1
+--- !u!114 &114729925304227940
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1152341140595286}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c68e8170ce22fdb48a81673e75ab6503, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114747282877453462
 MonoBehaviour:
   m_ObjectHideFlags: 1

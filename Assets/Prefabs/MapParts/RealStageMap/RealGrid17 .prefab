@@ -323,6 +323,7 @@ GameObject:
   - component: {fileID: 23363618645952384}
   - component: {fileID: 64552651792558940}
   - component: {fileID: 114460011204059518}
+  - component: {fileID: 114205029511427986}
   m_Layer: 0
   m_Name: 'RealGrid17 '
   m_TagString: Ground
@@ -3533,6 +3534,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ScoreToAdd: 1
+--- !u!114 &114205029511427986
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1447170162057824}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c68e8170ce22fdb48a81673e75ab6503, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114206447469705154
 MonoBehaviour:
   m_ObjectHideFlags: 1
