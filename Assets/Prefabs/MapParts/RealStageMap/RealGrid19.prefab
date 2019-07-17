@@ -673,6 +673,7 @@ GameObject:
   - component: {fileID: 23903585983094586}
   - component: {fileID: 65827855858345918}
   - component: {fileID: 114719699751514694}
+  - component: {fileID: 114587856586617360}
   m_Layer: 0
   m_Name: gate
   m_TagString: Gate
@@ -6622,6 +6623,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ScoreToAdd: 1
+--- !u!114 &114587856586617360
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1350323102305378}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c68e8170ce22fdb48a81673e75ab6503, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114599459853278626
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -13,7 +13,7 @@ public class Timer : MonoBehaviour {
 
     private float timer;
     public static bool canCount = true;
-    private bool doOnce = false;
+    //private bool doOnce = false;
 
      void Start()
     {
