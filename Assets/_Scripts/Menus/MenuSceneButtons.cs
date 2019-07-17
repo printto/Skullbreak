@@ -21,7 +21,10 @@ public class MenuSceneButtons : MonoBehaviour
     {
         if (!SaveManager.Load())
         {
-            SceneManager.LoadScene(5);
+            SceneTransition.setAnimator(animator);
+            SceneTransition.setScene("TutorialLevel");
+            SceneTransition.getScene();
+            StartCoroutine(SceneTransition.LoadScene());
         }
         Cursor.lockState = CursorLockMode.None;
     }
@@ -50,7 +53,7 @@ public class MenuSceneButtons : MonoBehaviour
     {
 
         SceneTransition.setAnimator(animator);
-        SceneTransition.setScene("GridMode");
+        SceneTransition.setScene("GridStageMode");
         SceneTransition.getScene();
         StartCoroutine(SceneTransition.LoadScene());
 

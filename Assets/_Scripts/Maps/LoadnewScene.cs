@@ -10,7 +10,7 @@ public class LoadnewScene : MonoBehaviour {
     {
         if(other.gameObject.tag.Equals("Player"))
         {
-            //SaveManager.Save(new User("Unused player name", 0));
+            SaveManager.Save(new User("Unused player name"));
             SceneTransition.setAnimator(animator);
             SceneTransition.setScene("Mainmenu");
             SceneTransition.getScene();
