@@ -118,6 +118,7 @@ GameObject:
   - component: {fileID: 23382083985901944}
   - component: {fileID: 65082611071568092}
   - component: {fileID: 114331822332622764}
+  - component: {fileID: 114513966867762790}
   m_Layer: 0
   m_Name: gate
   m_TagString: Gate
@@ -1408,7 +1409,6 @@ GameObject:
   - component: {fileID: 23599977033709404}
   - component: {fileID: 64326122005366340}
   - component: {fileID: 114771730058026466}
-  - component: {fileID: 114289389876768450}
   m_Layer: 0
   m_Name: RealGrid11
   m_TagString: Ground
@@ -6717,17 +6717,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dbff3ced29c47bd49bf3d35368f6940f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &114289389876768450
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1950505566664342}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c68e8170ce22fdb48a81673e75ab6503, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &114295861733474260
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6958,6 +6947,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ScoreToAdd: 1
+--- !u!114 &114513966867762790
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1066190274964636}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c68e8170ce22fdb48a81673e75ab6503, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114517223345265056
 MonoBehaviour:
   m_ObjectHideFlags: 1
