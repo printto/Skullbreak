@@ -80,11 +80,7 @@ public class PlayerNew : MonoBehaviour
     {
         GameMaster.SetLife(lifePoint);
 
-        if (SceneManager.GetActiveScene().name.Equals("EndlessMode"))
-        {
-            GameMaster.SetLife(0);
-        }
-        else if (SceneManager.GetActiveScene().name.Equals("TutorialLevel"))
+        if (SceneManager.GetActiveScene().name.Equals("TutorialLevel"))
         {
             GameMaster.SetLife(99);
         }

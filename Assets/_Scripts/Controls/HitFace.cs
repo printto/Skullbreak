@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class HitFace : MonoBehaviour {
 
-    string[] obstacleTags = { "Obstacle", "Dashable"};
+    string[] obstacleTags = { "Obstacle"};
 
     public Animator animator;
 
