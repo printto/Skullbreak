@@ -44,7 +44,7 @@ public class PlayerNew : MonoBehaviour
 
     //Teleportation
     public static GameObject teleportEnd;
-    public static bool teleportable = false;
+    public bool teleportable = false;
     public static bool isTeleporting = false;
 
     //Crash
@@ -398,6 +398,7 @@ public class PlayerNew : MonoBehaviour
             isTeleporting = true;
             Vector3 endPos = teleportEnd.transform.position;
             transform.position = new Vector3(endPos.x, endPos.y, transform.position.z);
+            playSound(soundEffect.TeleportSounds);
         }
     }
 

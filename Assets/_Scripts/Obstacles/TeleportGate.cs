@@ -11,8 +11,10 @@ public class TeleportGate : MonoBehaviour {
         if (other.gameObject.tag.Equals("Player") || other.gameObject.tag.Equals("PlayerFace"))
         {
             Debug.Log("teleportable");
-            PlayerNew.teleportEnd = getTeleportEnd();
-            PlayerNew.teleportable = true;
+            PlayerNew playerScript = other.gameObject.GetComponent<PlayerNew>();
+            PlayerNew.teleportEnd = teleportEnd;
+            playerScript.teleportable = true;
+            //playerScript.playSound(playerScript.soundEffect.TeleportReadySounds);
         }
     }
 
@@ -20,12 +22,8 @@ public class TeleportGate : MonoBehaviour {
     {
         if (other.gameObject.tag.Equals("Player") || other.gameObject.tag.Equals("PlayerFace"))
         {
-            PlayerNew.teleportable = false;
+            PlayerNew playerScript = other.gameObject.GetComponent<PlayerNew>();
+            playerScript.teleportable = false;
         }
-    }
-
-    public GameObject getTeleportEnd()
-    {
-        return teleportEnd;
     }
 }
