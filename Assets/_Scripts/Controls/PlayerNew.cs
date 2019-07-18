@@ -108,7 +108,7 @@ public class PlayerNew : MonoBehaviour
     }
 
     int countFrame = 0;
-    float lastYAirPosition = 0;
+    float lastYLandPosition = 0;
     private void FixedUpdate()
     {
         if (countFrame % 60 == 0 && MoveSpeed < MaxSpeed)
@@ -123,6 +123,12 @@ public class PlayerNew : MonoBehaviour
         {
             MoveSpeed = 0;
             DeadScene();
+        }
+
+        if (isGrounded)
+        {
+            //TODO: Trigger the jumping down animation and sounds here.
+            setAnimation(AnimationStates.IDLE);
         }
 
         /*
@@ -445,6 +451,21 @@ public class PlayerNew : MonoBehaviour
             //fallDamage.setSavePoint(transform.position.x, transform.position.y, transform.position.z);
         }
     }
+
+    /*
+    private void OnCollisionExit(Collision collision)
+    {
+        //Debug.Log("Left something");
+        if (collision.gameObject.tag.Equals("Ground"))
+        {
+            if (isGrounded)
+            {
+                Debug.Log("Left ground");
+                setAnimation(AnimationStates.JUMP_FALL);
+            }
+        }
+    }
+    */
 
     private void OnTriggerEnter(Collider other)
     {
