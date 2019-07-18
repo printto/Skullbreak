@@ -1065,6 +1065,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 0}
+  WhiteController: {fileID: 95863670205314942, guid: cc815c15f0647164798f000dd1780b02,
+    type: 2}
 --- !u!114 &114468432358290952
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1092,6 +1094,7 @@ MonoBehaviour:
   currentLane: 2
   ControllingAnimator: {fileID: 95261507512526776, guid: c11c02ba0eec663438a0529e0660107f,
     type: 2}
+  WhiteController: {fileID: 0}
   IdlePositionError: 0.2
   PlayerModelToAnimate: {fileID: 1839526638256510}
   soundEffect: {fileID: 0}
@@ -1101,13 +1104,13 @@ CapsuleCollider:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1102160950481518}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 7fcd853cd45fa8343a9787e22dfe9788, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.5
+  m_Radius: 0.7
   m_Height: 1
   m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0.1, y: 0, z: 0}
 --- !u!137 &137373939417899708
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1
