@@ -122,7 +122,8 @@ public class PlayerNew : MonoBehaviour
             MoveSpeed = 0;
             DeadScene();
         }
-        
+
+        /*
         if (transform.position.y < lastYAirPosition)
         {
             //TODO: Trigger the jumping down animation and sounds here.
@@ -137,6 +138,7 @@ public class PlayerNew : MonoBehaviour
         }
         lastYAirPosition = transform.position.y;
         //Debug.Log("Current Z: " + transform.position.z + "\nLaneZ: " + LaneZs[currentLane]);
+        */
     }
 
     void LerpByLanePosition()
@@ -206,7 +208,6 @@ public class PlayerNew : MonoBehaviour
      * These are for animations
      *
      */
-    AnimationStates currentAnimationState = AnimationStates.IDLE;
     enum AnimationStates
     {
         IDLE,
@@ -220,12 +221,11 @@ public class PlayerNew : MonoBehaviour
     }
     void setAnimation(AnimationStates stateToSet)
     {
-        if (currentAnimationState != stateToSet)
+        string animationName = stateToSet.ToString();
+        if (!PlayerModelAnimator.GetCurrentAnimatorStateInfo(0).Equals(animationName))
         {
-            string animationName = stateToSet.ToString();
             //Debug.Log(animationName);
             PlayerModelAnimator.SetTrigger(animationName);
-            currentAnimationState = stateToSet;
         }
     }
 
