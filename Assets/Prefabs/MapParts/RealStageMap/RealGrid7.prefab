@@ -76,6 +76,7 @@ GameObject:
   - component: {fileID: 23171889687200886}
   - component: {fileID: 65786697488854588}
   - component: {fileID: 114352735617374682}
+  - component: {fileID: 114324247040167772}
   m_Layer: 0
   m_Name: gate
   m_TagString: Gate
@@ -610,7 +611,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1470044858401636}
   m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 13.9, y: 0, z: 138}
   m_LocalScale: {x: 4000, y: 265, z: 20.053202}
   m_Children:
   - {fileID: 4834773493317590}
@@ -2369,6 +2370,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ScoreToAdd: 1
+--- !u!114 &114324247040167772
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1208929883699018}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c68e8170ce22fdb48a81673e75ab6503, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114352735617374682
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2454,7 +2466,7 @@ MonoBehaviour:
   CurrentSegment: {fileID: 1470044858401636}
   RoadSegments:
   - {fileID: 1876330478209848, guid: c113af1e2d387bd49b9c0f48b9ca5a03, type: 2}
-  createdNext: 1
+  createdNext: 0
 --- !u!114 &114552601829366432
 MonoBehaviour:
   m_ObjectHideFlags: 1

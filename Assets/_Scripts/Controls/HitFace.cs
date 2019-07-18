@@ -6,20 +6,54 @@ using UnityEngine.SceneManagement;
 
 public class HitFace : MonoBehaviour {
 
-    string[] obstacleTags = { "Obstacle", "Dashable"};
+    string[] obstacleTags = { "Obstacle"};
 
     public Animator animator;
+
+    private float forward;
+
+    private void Start()
+    {
+        SceneTransition.setAnimator(animator);
+    }
 
     private void OnTriggerEnter(Collider other)
     {
         //Debug.Log("Player hit " + other.gameObject.name);
-        if (Array.IndexOf(obstacleTags, other.gameObject.tag) > -1 )
+        if (Array.IndexOf(obstacleTags, other.gameObject.tag) > -1 && GameMaster.lifePoint > 0)
         {
-            Bounce();
-            StartCoroutine(blinking());
-            StartCoroutine(Stop());
+            //Bounce();
+            GoBack();
+            //StartCoroutine(Stop());
+        }
+        else if (Array.IndexOf(obstacleTags, other.gameObject.tag) > -1 && GameMaster.lifePoint <= 0)
+        {
+            transform.parent.gameObject.GetComponent<PlayerNew>().MoveSpeed = 0;
+            DeadScene();
         }
 
+    }
+
+    private void FixedUpdate()
+    {
+        if (transform.position.y <= -5 && GameMaster.lifePoint > 0)
+        {
+            transform.parent.gameObject.transform.position = new Vector3(transform.parent.gameObject.transform.position.x, transform.parent.gameObject.transform.position.y + 0.5f, transform.parent.gameObject.transform.position.z);
+            transform.parent.gameObject.GetComponent<Rigidbody>().isKinematic = true;
+            GoBack();
+        }
+        else if (transform.position.y <= -5 && GameMaster.lifePoint <= 0)
+        {
+            DeadScene();
+        }
+    }
+
+    public void GoBack()
+    {
+        
+        StartCoroutine(respawn());
+        StartCoroutine(blinking());
+        GameMaster.removeLife(1);
     }
 
     private void Bounce()
@@ -27,24 +61,25 @@ public class HitFace : MonoBehaviour {
         transform.parent.gameObject.GetComponent<PlayerNew>().MoveSpeed = -transform.parent.gameObject.GetComponent<PlayerNew>().MoveSpeed;
     }
 
- 
-
-    private void DeadScene()
+    IEnumerator respawn()
     {
-        SceneTransition.setAnimator(animator);
-        SceneTransition.setScene("DeadScene");
-        SceneTransition.getScene();
-        StartCoroutine(SceneTransition.LoadScene());
+        forward = transform.parent.gameObject.GetComponent<PlayerNew>().MoveSpeed;
+        transform.parent.gameObject.GetComponent<PlayerNew>().MoveSpeed = 0;
+        animator.SetTrigger("end");
+        yield return new WaitForSeconds(1f);
+        animator.Play("start");
+        yield return new WaitForSeconds(2f);
+        animator.Play("idle");
+
     }
 
 
-    IEnumerator Stop()
+
+    private void DeadScene()
     {
-        float forward = -transform.parent.gameObject.GetComponent<PlayerNew>().MoveSpeed;
-        yield return new WaitForSeconds(0.75f);
-        transform.parent.gameObject.GetComponent<PlayerNew>().MoveSpeed = 0;
-        yield return new WaitForSeconds(0.75f);
-        transform.parent.gameObject.GetComponent<PlayerNew>().MoveSpeed = forward;
+        SceneTransition.setScene("DeadScene");
+        SceneTransition.getScene();
+        StartCoroutine(SceneTransition.LoadScene());
     }
 
     IEnumerator blinking()
@@ -57,12 +92,17 @@ public class HitFace : MonoBehaviour {
         skullo.SetActive(false);
         yield return new WaitForSeconds(0.25f);
         skullo.SetActive(true);
+        checkPoint.respawnPlayerAtCheckPoint();
+        transform.parent.gameObject.GetComponent<Rigidbody>().isKinematic = false;
         yield return new WaitForSeconds(0.25f);
         skullo.SetActive(false);
         yield return new WaitForSeconds(0.25f);
         skullo.SetActive(true);
         yield return new WaitForSeconds(0.25f);
+        skullo.SetActive(false);
+        yield return new WaitForSeconds(0.25f);
         skullo.SetActive(true);
+        transform.parent.gameObject.GetComponent<PlayerNew>().MoveSpeed = forward;
 
 
     }

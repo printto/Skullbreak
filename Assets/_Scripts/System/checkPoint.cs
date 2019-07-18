@@ -10,15 +10,16 @@ public class checkPoint : MonoBehaviour {
     private static float y = 0;
     private static float z = 0;
 
-    public Transform DragTransform;
-    public Transform player;
-    static Transform checkPointTransform;
-    static Transform playerTransform;
+    private static int lane = 0;
+    
+    static Transform ThisTransform;
+
+    static GameObject playerObject;
 
     private void Start()
     {
-        playerTransform = player;
-        checkPointTransform = DragTransform;
+        
+        playerObject = GameObject.FindGameObjectWithTag("Player");
     }
 
     public static void setSavePoint(float x, float y, float z)
@@ -32,18 +33,20 @@ public class checkPoint : MonoBehaviour {
     {
         if (other.gameObject.tag.Equals("Player"))
         {
-            checkPointTransform = DragTransform;
+            ThisTransform = transform;
             Debug.Log("Checkpoint!");
-            Vector3 checkPos = new Vector3(checkPointTransform.transform.position.x, checkPointTransform.transform.position.y, checkPointTransform.transform.position.z);
+            Vector3 checkPos = new Vector3(transform.position.x, transform.position.y, transform.position.z);
             setSavePoint(checkPos.x, checkPos.y, checkPos.z);
-            Debug.Log(checkPos.x.ToString()+", "+ checkPos.x.ToString()+", "+ checkPos.z.ToString());
+            lane = playerObject.GetComponent<PlayerNew>().currentLane;
+            Debug.Log(checkPos.x.ToString()+", "+ checkPos.y.ToString()+", "+ checkPos.z.ToString());
         }
     }
 
     public static void respawnPlayerAtCheckPoint()
-    {
-        playerTransform.SetPositionAndRotation(new Vector3(checkPointTransform.transform.position.x, checkPointTransform.transform.position.y + 0.5f, checkPointTransform.transform.position.z), checkPointTransform.gameObject.transform.rotation);
+    {   
+        playerObject.transform.SetPositionAndRotation(new Vector3(ThisTransform.position.x, ThisTransform.position.y + 0.5f, ThisTransform.position.z), ThisTransform.rotation);
+        playerObject.GetComponent<PlayerNew>().currentLane = lane;
         Debug.Log("Respawned!");
-        Debug.Log(checkPoint.x.ToString() + ", " + checkPoint.x.ToString() + ", " + checkPoint.z.ToString());
+        Debug.Log(checkPoint.x.ToString() + ", " + checkPoint.y.ToString() + ", " + checkPoint.z.ToString());
     }
 }

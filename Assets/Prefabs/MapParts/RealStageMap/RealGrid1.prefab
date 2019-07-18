@@ -642,6 +642,7 @@ GameObject:
   - component: {fileID: 23278545031081346}
   - component: {fileID: 65410644969566154}
   - component: {fileID: 114306203469595478}
+  - component: {fileID: 114372220207411490}
   m_Layer: 0
   m_Name: gate
   m_TagString: Gate
@@ -1290,7 +1291,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1089727982458286}
   m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
-  m_LocalPosition: {x: -34.5, y: 0, z: 0}
+  m_LocalPosition: {x: 14.92, y: 0, z: 80.04908}
   m_LocalScale: {x: 4000, y: 265, z: 20.053202}
   m_Children:
   - {fileID: 4737334935064058}
@@ -3982,6 +3983,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dbff3ced29c47bd49bf3d35368f6940f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114372220207411490
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1731579805287724}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c68e8170ce22fdb48a81673e75ab6503, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DragTransform: {fileID: 4737334935064058}
+  player: {fileID: 4656328706352870, guid: 038bd7ba6b974644d9a6b9b7fecb8b9a, type: 2}
 --- !u!114 &114373359903417940
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -13,7 +13,7 @@ public class Timer : MonoBehaviour {
 
     private float timer;
     public static bool canCount = true;
-    private bool doOnce = false;
+    //private bool doOnce = false;
 
      void Start()
     {
@@ -21,11 +21,11 @@ public class Timer : MonoBehaviour {
     }
 
     void Update()
-    {
+    {     /*
         if(timer >= 0.0f && canCount)
         {
-            timer -= Time.deltaTime;
-            uiText.text = timer.ToString("F");
+            timer += Time.deltaTime;
+            uiText.text = timer.ToString();
         }
         else if (timer <= 0.0f && !doOnce)
         {
@@ -36,7 +36,9 @@ public class Timer : MonoBehaviour {
             //SceneManager.LoadScene(2);
             DeadScene();
         }
-        ScoreManager.SetScore(timer);
+        */
+        ScoreManager.AddScore(Time.deltaTime);
+        Debug.Log(ScoreManager.GetScore());
     }
 
 

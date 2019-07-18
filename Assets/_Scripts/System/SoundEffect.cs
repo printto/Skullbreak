@@ -18,6 +18,7 @@ public class SoundEffect : MonoBehaviour
     public AudioClip[] HitSounds;
     public AudioClip[] CoinSounds;
     public AudioClip[] TeleportSounds;
+    public AudioClip[] TeleportReadySounds;
 
     private void Start()
     {

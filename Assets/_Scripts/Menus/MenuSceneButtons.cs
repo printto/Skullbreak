@@ -19,53 +19,28 @@ public class MenuSceneButtons : MonoBehaviour
 
     private void Start()
     {
+        SceneTransition.setAnimator(animator);
+
         if (!SaveManager.Load())
         {
-            SceneManager.LoadScene(5);
+            SceneTransition.setScene("TutorialLevel");
+            SceneTransition.getScene();
+            StartCoroutine(SceneTransition.LoadScene());
         }
         Cursor.lockState = CursorLockMode.None;
     }
 
-    public void StageMode()
-    {
-        SceneTransition.setAnimator(animator);
-        SceneTransition.setScene("StageMode");
-        SceneTransition.getScene();
-        StartCoroutine(SceneTransition.LoadScene());
-        //SceneManager.LoadScene(4);
-        //Initiate.Fade("StageMode",Color.black,1.5f);
-    }
-
-    public void EndlessMode()
-    {
-
-        SceneTransition.setAnimator(animator);
-        SceneTransition.setScene("EndlessMode");
-        SceneTransition.getScene();
-        StartCoroutine(SceneTransition.LoadScene());
-   
-    }
 
     public void GridMode()
     {
 
-        SceneTransition.setAnimator(animator);
-        SceneTransition.setScene("GridMode");
+        SceneTransition.setScene("GridStageMode");
         SceneTransition.getScene();
         StartCoroutine(SceneTransition.LoadScene());
 
 
     }
 
-    public void BetaMap()
-    {
-        SceneTransition.setAnimator(animator);
-        SceneTransition.setScene("TestMechanical");
-        SceneTransition.getScene();
-        StartCoroutine(SceneTransition.LoadScene());
-
-
-    }
 
     public void ChooseLevelFunc()
     {   
@@ -97,7 +72,6 @@ public class MenuSceneButtons : MonoBehaviour
 
     public void Level1()
     {
-        SceneTransition.setAnimator(animator);
         SceneTransition.setScene("GridMode");
         SceneTransition.getScene();
         StartCoroutine(SceneTransition.LoadScene());
@@ -105,7 +79,6 @@ public class MenuSceneButtons : MonoBehaviour
 
     public void Mainmenu()
     {
-        SceneTransition.setAnimator(animator);
         SceneTransition.setScene("Mainmenu");
         SceneTransition.getScene();
         StartCoroutine(SceneTransition.LoadScene());

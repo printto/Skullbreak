@@ -44,7 +44,7 @@ public class PlayerNew : MonoBehaviour
 
     //Teleportation
     public static GameObject teleportEnd;
-    public static bool teleportable = false;
+    public bool teleportable = false;
     public static bool isTeleporting = false;
 
     //Crash
@@ -79,18 +79,15 @@ public class PlayerNew : MonoBehaviour
     void Start()
     {
         GameMaster.SetLife(lifePoint);
+        SceneTransition.setAnimator(ControllingAnimator);
 
-        if (SceneManager.GetActiveScene().name.Equals("EndlessMode"))
-        {
-            GameMaster.SetLife(0);
-        }
-        else if (SceneManager.GetActiveScene().name.Equals("TutorialLevel"))
+        if (SceneManager.GetActiveScene().name.Equals("TutorialLevel"))
         {
             GameMaster.SetLife(99);
         }
-        else if (SceneManager.GetActiveScene().name.Equals("GridMode"))
+        else if (SceneManager.GetActiveScene().name.Equals("GridStageMode"))
         {
-            GameMaster.SetLife(0);
+            GameMaster.SetLife(3);
         }
 
         isSlowedDown = false;
@@ -121,12 +118,14 @@ public class PlayerNew : MonoBehaviour
             //Debug.Log("Current movespeed:" + MoveSpeed);
         }
         countFrame++;
+
         if (transform.position.y <= -5)
         {
             MoveSpeed = 0;
             DeadScene();
         }
-        
+
+        /*
         if (transform.position.y < lastYAirPosition)
         {
             //TODO: Trigger the jumping down animation and sounds here.
@@ -141,6 +140,7 @@ public class PlayerNew : MonoBehaviour
         }
         lastYAirPosition = transform.position.y;
         //Debug.Log("Current Z: " + transform.position.z + "\nLaneZ: " + LaneZs[currentLane]);
+        */
     }
 
     void LerpByLanePosition()
@@ -154,7 +154,6 @@ public class PlayerNew : MonoBehaviour
         //SceneManager.LoadScene(2);
         //Initiate.Fade("DeadScene", Color.black, 6f);
         Debug.Log("Trigger dead scene");
-        SceneTransition.setAnimator(ControllingAnimator);
         Debug.Log(ControllingAnimator.ToString());
         SceneTransition.setScene("DeadScene");
         SceneTransition.getScene();
@@ -163,7 +162,6 @@ public class PlayerNew : MonoBehaviour
 
     private void EndingScene()
     {
-        SceneTransition.setAnimator(ControllingAnimator);
         SceneTransition.setScene("EndingScene");
         StartCoroutine(SceneTransition.LoadScene());
     }
@@ -210,7 +208,6 @@ public class PlayerNew : MonoBehaviour
      * These are for animations
      *
      */
-    AnimationStates currentAnimationState = AnimationStates.IDLE;
     enum AnimationStates
     {
         IDLE,
@@ -224,12 +221,11 @@ public class PlayerNew : MonoBehaviour
     }
     void setAnimation(AnimationStates stateToSet)
     {
-        if (currentAnimationState != stateToSet)
+        string animationName = stateToSet.ToString();
+        if (!PlayerModelAnimator.GetCurrentAnimatorStateInfo(0).Equals(animationName))
         {
-            string animationName = stateToSet.ToString();
             //Debug.Log(animationName);
             PlayerModelAnimator.SetTrigger(animationName);
-            currentAnimationState = stateToSet;
         }
     }
 
@@ -398,6 +394,7 @@ public class PlayerNew : MonoBehaviour
             isTeleporting = true;
             Vector3 endPos = teleportEnd.transform.position;
             transform.position = new Vector3(endPos.x, endPos.y, transform.position.z);
+            playSound(soundEffect.TeleportSounds);
         }
     }
 
