@@ -9,6 +9,7 @@ public class HitFace : MonoBehaviour {
     string[] obstacleTags = { "Obstacle"};
 
     public Animator animator;
+    public Animator WhiteController;
 
     private float forward;
 
@@ -31,8 +32,14 @@ public class HitFace : MonoBehaviour {
             transform.parent.gameObject.GetComponent<PlayerNew>().MoveSpeed = 0;
             DeadScene();
         }
+        else if (other.gameObject.tag.Equals("EndingGate"))
+        {            
+                StartCoroutine(WhiteEnd());
+        }
 
     }
+
+   
 
     private void FixedUpdate()
     {
@@ -73,11 +80,23 @@ public class HitFace : MonoBehaviour {
 
     }
 
-
+    IEnumerator WhiteEnd()
+    {
+        WhiteController.SetTrigger("WHITE");
+        yield return new WaitForSeconds(2f);
+        EndingScene();
+    }
 
     private void DeadScene()
     {
         SceneTransition.setScene("DeadScene");
+        SceneTransition.getScene();
+        StartCoroutine(SceneTransition.LoadScene());
+    }
+
+    private void EndingScene()
+    {
+        SceneTransition.setScene("EndingScene");
         SceneTransition.getScene();
         StartCoroutine(SceneTransition.LoadScene());
     }

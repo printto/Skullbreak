@@ -166,11 +166,7 @@ public class PlayerNew : MonoBehaviour
         StartCoroutine(SceneTransition.LoadScene());
     }
 
-    private void EndingScene()
-    {
-        SceneTransition.setScene("EndingScene");
-        StartCoroutine(SceneTransition.LoadScene());
-    }
+
 
     void LerpPlayer()
     {
@@ -478,11 +474,10 @@ public class PlayerNew : MonoBehaviour
             }
             CancelTeleport();
         }
-        else if (other.gameObject.tag.Equals("EndingGate"))
-        {
-            EndingScene();
-        }
+   
     }
+
+
 
     IEnumerator blinking()
     {
