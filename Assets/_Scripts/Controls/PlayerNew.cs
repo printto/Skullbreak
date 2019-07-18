@@ -108,7 +108,7 @@ public class PlayerNew : MonoBehaviour
     }
 
     int countFrame = 0;
-    float lastYAirPosition = 0;
+    float lastYLandPosition = 0;
     private void FixedUpdate()
     {
         if (countFrame % 60 == 0 && MoveSpeed < MaxSpeed)
@@ -118,8 +118,20 @@ public class PlayerNew : MonoBehaviour
             //Debug.Log("Current movespeed:" + MoveSpeed);
         }
         countFrame++;
-       
-        
+
+        if (transform.position.y <= -5)
+        {
+            MoveSpeed = 0;
+            DeadScene();
+        }
+
+        if (isGrounded)
+        {
+            //TODO: Trigger the jumping down animation and sounds here.
+            setAnimation(AnimationStates.IDLE);
+        }
+
+        /*
         if (transform.position.y < lastYAirPosition)
         {
             //TODO: Trigger the jumping down animation and sounds here.
@@ -134,6 +146,7 @@ public class PlayerNew : MonoBehaviour
         }
         lastYAirPosition = transform.position.y;
         //Debug.Log("Current Z: " + transform.position.z + "\nLaneZ: " + LaneZs[currentLane]);
+        */
     }
 
     void LerpByLanePosition()
@@ -201,7 +214,6 @@ public class PlayerNew : MonoBehaviour
      * These are for animations
      *
      */
-    AnimationStates currentAnimationState = AnimationStates.IDLE;
     enum AnimationStates
     {
         IDLE,
@@ -215,12 +227,11 @@ public class PlayerNew : MonoBehaviour
     }
     void setAnimation(AnimationStates stateToSet)
     {
-        if (currentAnimationState != stateToSet)
+        string animationName = stateToSet.ToString();
+        if (!PlayerModelAnimator.GetCurrentAnimatorStateInfo(0).Equals(animationName))
         {
-            string animationName = stateToSet.ToString();
             //Debug.Log(animationName);
             PlayerModelAnimator.SetTrigger(animationName);
-            currentAnimationState = stateToSet;
         }
     }
 
@@ -440,6 +451,21 @@ public class PlayerNew : MonoBehaviour
             //fallDamage.setSavePoint(transform.position.x, transform.position.y, transform.position.z);
         }
     }
+
+    /*
+    private void OnCollisionExit(Collision collision)
+    {
+        //Debug.Log("Left something");
+        if (collision.gameObject.tag.Equals("Ground"))
+        {
+            if (isGrounded)
+            {
+                Debug.Log("Left ground");
+                setAnimation(AnimationStates.JUMP_FALL);
+            }
+        }
+    }
+    */
 
     private void OnTriggerEnter(Collider other)
     {

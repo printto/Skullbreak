@@ -34,11 +34,12 @@ public class checkPoint : MonoBehaviour {
         if (other.gameObject.tag.Equals("Player"))
         {
             ThisTransform = transform;
-            Debug.Log("Checkpoint!");
+            //Debug.Log("Checkpoint!");
             Vector3 checkPos = new Vector3(transform.position.x, transform.position.y, transform.position.z);
             setSavePoint(checkPos.x, checkPos.y, checkPos.z);
             lane = playerObject.GetComponent<PlayerNew>().currentLane;
-            Debug.Log(checkPos.x.ToString()+", "+ checkPos.y.ToString()+", "+ checkPos.z.ToString());
+            //Debug.Log(checkPos.x.ToString()+", "+ checkPos.y.ToString()+", "+ checkPos.z.ToString());
+            Debug.Log(checkPos.x.ToString() + ", " + checkPos.y.ToString());
         }
     }
 

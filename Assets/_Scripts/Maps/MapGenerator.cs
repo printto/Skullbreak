@@ -15,7 +15,7 @@ public class MapGenerator : MonoBehaviour
         createdNext = false;
     }
 
-    int countDown = 60 * 20;
+    int countDown = 60 * 30;
     // Update is called once per frame
     void FixedUpdate()
     {
