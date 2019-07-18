@@ -508,6 +508,7 @@ GameObject:
   - component: {fileID: 23374026963135042}
   - component: {fileID: 65396435619288650}
   - component: {fileID: 114634483271916190}
+  - component: {fileID: 114200740349453958}
   m_Layer: 0
   m_Name: gate
   m_TagString: Gate
@@ -1727,7 +1728,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1435993049962754}
   m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
-  m_LocalPosition: {x: -34.5, y: 0, z: 17.38}
+  m_LocalPosition: {x: 15.2, y: -0, z: -12.1}
   m_LocalScale: {x: 4000, y: 265, z: 20.053202}
   m_Children:
   - {fileID: 4398702351263846}
@@ -5961,6 +5962,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ScoreToAdd: 1
+--- !u!114 &114200740349453958
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1377932664024808}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c68e8170ce22fdb48a81673e75ab6503, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DragTransform: {fileID: 4398702351263846}
+  player: {fileID: 4656328706352870, guid: 038bd7ba6b974644d9a6b9b7fecb8b9a, type: 2}
 --- !u!114 &114202457810910232
 MonoBehaviour:
   m_ObjectHideFlags: 1

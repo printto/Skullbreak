@@ -281,7 +281,6 @@ CanvasRenderer:
   m_GameObject: {fileID: 149774283}
   m_CullTransparentMesh: 0
 --- !u!114 &149774287
-
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -536,9 +535,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aec29e83bd0c3c3449680d4934a138d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.7529412}
-  m_EffectDistance: {x: 1, y: -1}
-  m_UseGraphicAlpha: 1
+  target: {fileID: 0}
+  holder: {fileID: 0}
+  smoothSpeed: 0.125
+  yPosRestriction: -1
+  offset: {x: 0, y: 0, z: 0}
 --- !u!114 &225106918
 MonoBehaviour:
   m_ObjectHideFlags: 0

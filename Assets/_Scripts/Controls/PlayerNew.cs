@@ -79,6 +79,7 @@ public class PlayerNew : MonoBehaviour
     void Start()
     {
         GameMaster.SetLife(lifePoint);
+        SceneTransition.setAnimator(ControllingAnimator);
 
         if (SceneManager.GetActiveScene().name.Equals("TutorialLevel"))
         {
@@ -117,6 +118,7 @@ public class PlayerNew : MonoBehaviour
             //Debug.Log("Current movespeed:" + MoveSpeed);
         }
         countFrame++;
+
         if (transform.position.y <= -5)
         {
             MoveSpeed = 0;
@@ -152,7 +154,6 @@ public class PlayerNew : MonoBehaviour
         //SceneManager.LoadScene(2);
         //Initiate.Fade("DeadScene", Color.black, 6f);
         Debug.Log("Trigger dead scene");
-        SceneTransition.setAnimator(ControllingAnimator);
         Debug.Log(ControllingAnimator.ToString());
         SceneTransition.setScene("DeadScene");
         SceneTransition.getScene();
@@ -161,7 +162,6 @@ public class PlayerNew : MonoBehaviour
 
     private void EndingScene()
     {
-        SceneTransition.setAnimator(ControllingAnimator);
         SceneTransition.setScene("EndingScene");
         StartCoroutine(SceneTransition.LoadScene());
     }

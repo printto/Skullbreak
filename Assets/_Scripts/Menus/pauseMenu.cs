@@ -19,6 +19,11 @@ public class pauseMenu : MonoBehaviour {
 
     private float saveMoveSpeed;
 
+    private void Start()
+    {
+        SceneTransition.setAnimator(animator);
+    }
+
     public void openPauseMenu()
     {
         if(GameIsPaused && SettingIsOpened)
@@ -55,7 +60,6 @@ public class pauseMenu : MonoBehaviour {
 
         Time.timeScale = 1f;
         GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerNew>().MoveSpeed = 0;
-        SceneTransition.setAnimator(animator);
         SceneTransition.setScene("Mainmenu");
         SceneTransition.getScene();
         StartCoroutine(SceneTransition.LoadScene());
