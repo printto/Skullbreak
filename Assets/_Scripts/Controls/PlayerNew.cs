@@ -460,12 +460,12 @@ public class PlayerNew : MonoBehaviour
         {
             if (isGrounded)
             {
-                Debug.Log("Left ground");
                 setAnimation(AnimationStates.JUMP_FALL);
             }
         }
     }
     */
+    
 
     private void OnTriggerEnter(Collider other)
     {
