@@ -10,12 +10,15 @@ public class HitFace : MonoBehaviour {
 
     public Animator animator;
     public Animator WhiteController;
+    PlayerNew playerScript;
 
-    private float forward;
+    float LockedMoveSpeed = 0;
 
     private void Start()
     {
         SceneTransition.setAnimator(animator);
+        playerScript = transform.parent.gameObject.GetComponent<PlayerNew>();
+        LockedMoveSpeed = playerScript.MoveSpeed;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -29,12 +32,13 @@ public class HitFace : MonoBehaviour {
         }
         else if (Array.IndexOf(obstacleTags, other.gameObject.tag) > -1 && GameMaster.lifePoint <= 0)
         {
-            transform.parent.gameObject.GetComponent<PlayerNew>().MoveSpeed = 0;
+            playerScript.MoveSpeed = 0;
             DeadScene();
         }
         else if (other.gameObject.tag.Equals("EndingGate"))
-        {            
-                StartCoroutine(WhiteEnd());
+        {
+            playerScript.CanSwipe = false;
+            StartCoroutine(WhiteEnd());
         }
 
     }
@@ -56,7 +60,8 @@ public class HitFace : MonoBehaviour {
     }
 
     public void GoBack()
-    {  
+    {
+        playerScript.CanSwipe = false;
         StartCoroutine(respawn());
         StartCoroutine(blinking());
         GameMaster.removeLife(1);
@@ -64,13 +69,12 @@ public class HitFace : MonoBehaviour {
 
     private void Bounce()
     {
-        transform.parent.gameObject.GetComponent<PlayerNew>().MoveSpeed = -transform.parent.gameObject.GetComponent<PlayerNew>().MoveSpeed;
+        playerScript.MoveSpeed = -transform.parent.gameObject.GetComponent<PlayerNew>().MoveSpeed;
     }
 
     IEnumerator respawn()
     {
-        forward = transform.parent.gameObject.GetComponent<PlayerNew>().MoveSpeed;
-        transform.parent.gameObject.GetComponent<PlayerNew>().MoveSpeed = 0;
+        playerScript.MoveSpeed = 0;
         animator.SetTrigger("end");
         yield return new WaitForSeconds(1f);
         animator.Play("start");
@@ -120,6 +124,7 @@ public class HitFace : MonoBehaviour {
         skullo.SetActive(false);
         yield return new WaitForSeconds(0.25f);
         skullo.SetActive(true);
-        transform.parent.gameObject.GetComponent<PlayerNew>().MoveSpeed = forward;
+        transform.parent.gameObject.GetComponent<PlayerNew>().MoveSpeed = LockedMoveSpeed;
+        playerScript.CanSwipe = true;
     }
 }
