@@ -160,11 +160,7 @@ public class PlayerNew : MonoBehaviour
         StartCoroutine(SceneTransition.LoadScene());
     }
 
-    private void EndingScene()
-    {
-        SceneTransition.setScene("EndingScene");
-        StartCoroutine(SceneTransition.LoadScene());
-    }
+
 
     void LerpPlayer()
     {
@@ -448,12 +444,12 @@ public class PlayerNew : MonoBehaviour
         {
             if (isGrounded)
             {
-                Debug.Log("Left ground");
                 setAnimation(AnimationStates.JUMP_FALL);
             }
         }
     }
     */
+    
 
     private void OnTriggerEnter(Collider other)
     {
@@ -466,11 +462,10 @@ public class PlayerNew : MonoBehaviour
             }
             CancelTeleport();
         }
-        else if (other.gameObject.tag.Equals("EndingGate"))
-        {
-            EndingScene();
-        }
+   
     }
+
+
 
     IEnumerator blinking()
     {
