@@ -338,6 +338,7 @@ public class PlayerNew : MonoBehaviour
         }
         if (Input.GetButtonDown("Horizontal"))
         {
+            
             if (Input.GetAxisRaw("Horizontal") > 0)
             {
                 ChangeLane(LaneDirection.TO_RIGHT);
@@ -348,6 +349,7 @@ public class PlayerNew : MonoBehaviour
                 ChangeLane(LaneDirection.TO_LEFT);
                 setAnimation(AnimationStates.TURN_LEFT);
             }
+            ChangedLane = false;
         }
     }
 

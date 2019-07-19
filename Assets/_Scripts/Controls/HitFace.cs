@@ -12,12 +12,13 @@ public class HitFace : MonoBehaviour {
     public Animator WhiteController;
     PlayerNew playerScript;
 
-    private float forward;
+    float LockedMoveSpeed = 0;
 
     private void Start()
     {
         SceneTransition.setAnimator(animator);
         playerScript = transform.parent.gameObject.GetComponent<PlayerNew>();
+        LockedMoveSpeed = playerScript.MoveSpeed;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -72,7 +73,6 @@ public class HitFace : MonoBehaviour {
 
     IEnumerator respawn()
     {
-        forward = playerScript.MoveSpeed;
         playerScript.MoveSpeed = 0;
         animator.SetTrigger("end");
         yield return new WaitForSeconds(1f);
@@ -123,6 +123,6 @@ public class HitFace : MonoBehaviour {
         skullo.SetActive(false);
         yield return new WaitForSeconds(0.25f);
         skullo.SetActive(true);
-        transform.parent.gameObject.GetComponent<PlayerNew>().MoveSpeed = forward;
+        transform.parent.gameObject.GetComponent<PlayerNew>().MoveSpeed = LockedMoveSpeed;
     }
 }
