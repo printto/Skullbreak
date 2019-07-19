@@ -56,8 +56,7 @@ public class HitFace : MonoBehaviour {
     }
 
     public void GoBack()
-    {
-        
+    {  
         StartCoroutine(respawn());
         StartCoroutine(blinking());
         GameMaster.removeLife(1);
@@ -122,7 +121,5 @@ public class HitFace : MonoBehaviour {
         yield return new WaitForSeconds(0.25f);
         skullo.SetActive(true);
         transform.parent.gameObject.GetComponent<PlayerNew>().MoveSpeed = forward;
-
-
     }
 }
