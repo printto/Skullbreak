@@ -30,7 +30,7 @@ public class PlayerNew : MonoBehaviour
     private float lowJump = 2f;
     private bool isGrounded;
     private float jumpSpeed = 7f;
-    private float touchJumpSpeed = 10f;
+    private float touchJumpSpeed = 7f;
 
     private float animationDuration = 1.0f;
 
