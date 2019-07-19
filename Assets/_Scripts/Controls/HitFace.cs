@@ -60,7 +60,8 @@ public class HitFace : MonoBehaviour {
     }
 
     public void GoBack()
-    {  
+    {
+        playerScript.CanSwipe = false;
         StartCoroutine(respawn());
         StartCoroutine(blinking());
         GameMaster.removeLife(1);
@@ -124,5 +125,6 @@ public class HitFace : MonoBehaviour {
         yield return new WaitForSeconds(0.25f);
         skullo.SetActive(true);
         transform.parent.gameObject.GetComponent<PlayerNew>().MoveSpeed = LockedMoveSpeed;
+        playerScript.CanSwipe = true;
     }
 }
