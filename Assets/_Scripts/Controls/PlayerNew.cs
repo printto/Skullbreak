@@ -265,17 +265,23 @@ public class PlayerNew : MonoBehaviour
                         if (lp.x > fp.x)
                         {
                             //Right swipe
+                            if (!ChangedLane)
+                            {
+                                setAnimation(AnimationStates.TURN_RIGHT);
+                            }
                             ChangeLane(LaneDirection.TO_RIGHT);
                             //TODO: Change change lane to the right animation here.
-                            setAnimation(AnimationStates.TURN_RIGHT);
                             Debug.Log("Right Swipe");
                         }
                         else
                         {
                             //Left swipe
+                            if (!ChangedLane)
+                            {
+                                setAnimation(AnimationStates.TURN_LEFT);
+                            }
                             ChangeLane(LaneDirection.TO_LEFT);
                             //TODO: Change change lane to the left animation here.
-                            setAnimation(AnimationStates.TURN_LEFT);
                             Debug.Log("Left Swipe");
                         }
                     }
