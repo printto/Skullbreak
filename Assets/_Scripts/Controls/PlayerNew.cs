@@ -71,6 +71,9 @@ public class PlayerNew : MonoBehaviour
     //Lock the controls
     public bool CanSwipe = true;
 
+    //Improve swiping
+    bool ChangedLane = false;
+
     void Awake()
     {
         // Call the LevelManager and set the last level.
@@ -253,11 +256,6 @@ public class PlayerNew : MonoBehaviour
             else if (touch.phase == TouchPhase.Moved) // update the last position based on where they moved
             {
                 lp = touch.position;
-            }
-            else if (touch.phase == TouchPhase.Ended) //check if the finger is removed from the screen
-            {
-                lp = touch.position;  //last touch position. Ommitted if you use list
-                                      //Check if drag distance is greater than dragDistance of the screen height
                 if (Mathf.Abs(lp.x - fp.x) > dragDistance || Mathf.Abs(lp.y - fp.y) > dragDistance)
                 {
                     //It's a drag
@@ -307,10 +305,18 @@ public class PlayerNew : MonoBehaviour
                         }
                     }
                 }
+            }
+            else if (touch.phase == TouchPhase.Ended) //check if the finger is removed from the screen
+            {
+                lp = touch.position;  //last touch position. Ommitted if you use list
+                                      //Check if drag distance is greater than dragDistance of the screen height
+                ChangedLane = false;
+                /*
                 else
                 {   //It's a tap as the drag distance is less than dragDistance of the screen height
 
                 }
+                */
             }
 
         }
@@ -347,7 +353,7 @@ public class PlayerNew : MonoBehaviour
     }
     void ChangeLane(LaneDirection direction)
     {
-        if (CanSwipe)
+        if (CanSwipe && !ChangedLane)
         {
             if (direction == LaneDirection.TO_LEFT && currentLane > 0)
             {
@@ -362,6 +368,7 @@ public class PlayerNew : MonoBehaviour
                 playSound(soundEffect.LaneSounds);
             }
             nextZPosition = LaneZs[currentLane];
+            ChangedLane = true;
         }
     }
 
