@@ -947,6 +947,7 @@ GameObject:
   - component: {fileID: 23394597981162738}
   - component: {fileID: 64233202901054134}
   - component: {fileID: 114948757734270484}
+  - component: {fileID: 65121632958111840}
   m_Layer: 0
   m_Name: Obstacle (16)
   m_TagString: Obstacle
@@ -1583,6 +1584,7 @@ GameObject:
   - component: {fileID: 23999251305091006}
   - component: {fileID: 64829213378987954}
   - component: {fileID: 114669740026769748}
+  - component: {fileID: 65999041054554622}
   m_Layer: 0
   m_Name: Wall (1)
   m_TagString: Obstacle
@@ -6740,7 +6742,7 @@ MeshCollider:
   m_GameObject: {fileID: 1511698044012422}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Convex: 0
   m_CookingOptions: 14
@@ -7454,7 +7456,7 @@ MeshCollider:
   m_GameObject: {fileID: 1878766377960772}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Convex: 0
   m_CookingOptions: 14
@@ -7740,6 +7742,18 @@ MeshCollider:
   m_CookingOptions: 14
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300000, guid: 50e24fd794f1a7d4cadd6c89657b38fa, type: 3}
+--- !u!65 &65121632958111840
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1511698044012422}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.02, y: 0.019999992, z: 0.02}
+  m_Center: {x: 0.000000007450581, y: 0.000000059604645, z: 0.000000007450581}
 --- !u!65 &65223440805315938
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -7776,6 +7790,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!65 &65999041054554622
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1878766377960772}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.02, y: 0.019999994, z: 0.019999998}
+  m_Center: {x: 0, y: 0, z: -9.313226e-10}
 --- !u!114 &114001098218470942
 MonoBehaviour:
   m_ObjectHideFlags: 1
