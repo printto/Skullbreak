@@ -68,6 +68,9 @@ public class PlayerNew : MonoBehaviour
     //Sounds
     public SoundEffect soundEffect;
 
+    //Lock the controls
+    public bool CanSwipe = true;
+
     void Awake()
     {
         // Call the LevelManager and set the last level.
@@ -238,7 +241,7 @@ public class PlayerNew : MonoBehaviour
      */
     public void playSound(AudioClip[] sounds)
     {
-        if(soundEffect != null)
+        if (soundEffect != null)
             soundEffect.PlaySound(sounds);
     }
 
@@ -318,7 +321,7 @@ public class PlayerNew : MonoBehaviour
                 }
                 else
                 {   //It's a tap as the drag distance is less than dragDistance of the screen height
-                    
+
                 }
             }
 
@@ -356,19 +359,22 @@ public class PlayerNew : MonoBehaviour
     }
     void ChangeLane(LaneDirection direction)
     {
-        if (direction == LaneDirection.TO_LEFT && currentLane > 0)
+        if (CanSwipe)
         {
-            currentLane -= 1;
-            currentDirection = LaneDirection.TO_LEFT;
-            playSound(soundEffect.LaneSounds);
+            if (direction == LaneDirection.TO_LEFT && currentLane > 0)
+            {
+                currentLane -= 1;
+                currentDirection = LaneDirection.TO_LEFT;
+                playSound(soundEffect.LaneSounds);
+            }
+            else if (direction == LaneDirection.TO_RIGHT && currentLane < LaneZs.Length - 1)
+            {
+                currentLane += 1;
+                currentDirection = LaneDirection.TO_RIGHT;
+                playSound(soundEffect.LaneSounds);
+            }
+            nextZPosition = LaneZs[currentLane];
         }
-        else if (direction == LaneDirection.TO_RIGHT && currentLane < LaneZs.Length - 1)
-        {
-            currentLane += 1;
-            currentDirection = LaneDirection.TO_RIGHT;
-            playSound(soundEffect.LaneSounds);
-        }
-        nextZPosition = LaneZs[currentLane];
     }
 
     void Jump(float speed)
@@ -461,7 +467,7 @@ public class PlayerNew : MonoBehaviour
         }
     }
     */
-    
+
 
     private void OnTriggerEnter(Collider other)
     {
@@ -474,7 +480,7 @@ public class PlayerNew : MonoBehaviour
             }
             CancelTeleport();
         }
-   
+
     }
 
 

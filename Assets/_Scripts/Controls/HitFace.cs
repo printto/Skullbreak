@@ -10,12 +10,14 @@ public class HitFace : MonoBehaviour {
 
     public Animator animator;
     public Animator WhiteController;
+    PlayerNew playerScript;
 
     private float forward;
 
     private void Start()
     {
         SceneTransition.setAnimator(animator);
+        playerScript = transform.parent.gameObject.GetComponent<PlayerNew>();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -29,12 +31,13 @@ public class HitFace : MonoBehaviour {
         }
         else if (Array.IndexOf(obstacleTags, other.gameObject.tag) > -1 && GameMaster.lifePoint <= 0)
         {
-            transform.parent.gameObject.GetComponent<PlayerNew>().MoveSpeed = 0;
+            playerScript.MoveSpeed = 0;
             DeadScene();
         }
         else if (other.gameObject.tag.Equals("EndingGate"))
-        {            
-                StartCoroutine(WhiteEnd());
+        {
+            playerScript.CanSwipe = false;
+            StartCoroutine(WhiteEnd());
         }
 
     }
@@ -64,13 +67,13 @@ public class HitFace : MonoBehaviour {
 
     private void Bounce()
     {
-        transform.parent.gameObject.GetComponent<PlayerNew>().MoveSpeed = -transform.parent.gameObject.GetComponent<PlayerNew>().MoveSpeed;
+        playerScript.MoveSpeed = -transform.parent.gameObject.GetComponent<PlayerNew>().MoveSpeed;
     }
 
     IEnumerator respawn()
     {
-        forward = transform.parent.gameObject.GetComponent<PlayerNew>().MoveSpeed;
-        transform.parent.gameObject.GetComponent<PlayerNew>().MoveSpeed = 0;
+        forward = playerScript.MoveSpeed;
+        playerScript.MoveSpeed = 0;
         animator.SetTrigger("end");
         yield return new WaitForSeconds(1f);
         animator.Play("start");
