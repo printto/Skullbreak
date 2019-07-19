@@ -119,12 +119,6 @@ public class PlayerNew : MonoBehaviour
         }
         countFrame++;
 
-        if (transform.position.y <= -5)
-        {
-            MoveSpeed = 0;
-            DeadScene();
-        }
-
         if (isGrounded)
         {
             //TODO: Trigger the jumping down animation and sounds here.
@@ -192,12 +186,6 @@ public class PlayerNew : MonoBehaviour
             rb.velocity += Vector3.up * Physics2D.gravity.y * (lowJump - 1) * Time.deltaTime;
         }
 
-        /* //For debugging
-        if (Input.GetMouseButtonDown(0)) //button 0 is left click and 1 is right click
-        {
-            Dash();
-        }
-        */
 
         MovePlayerFromInputs();
 
