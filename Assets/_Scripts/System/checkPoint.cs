@@ -8,9 +8,8 @@ public class checkPoint : MonoBehaviour {
 
     private static float x = 0;
     private static float y = 0;
-    private static float z = 0;
 
-    private static int lane = 0;
+    public int lane = 1;
     
     static Transform ThisTransform;
 
@@ -26,7 +25,7 @@ public class checkPoint : MonoBehaviour {
     {
         checkPoint.x = x;
         checkPoint.y = y;
-        checkPoint.z = z;
+        //checkPoint.z = z;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -37,17 +36,17 @@ public class checkPoint : MonoBehaviour {
             //Debug.Log("Checkpoint!");
             Vector3 checkPos = new Vector3(transform.position.x, transform.position.y, transform.position.z);
             setSavePoint(checkPos.x, checkPos.y, checkPos.z);
-            lane = playerObject.GetComponent<PlayerNew>().currentLane;
             //Debug.Log(checkPos.x.ToString()+", "+ checkPos.y.ToString()+", "+ checkPos.z.ToString());
+            PlayerNew.checkPoint = this;
             Debug.Log(checkPos.x.ToString() + ", " + checkPos.y.ToString());
         }
     }
 
-    public static void respawnPlayerAtCheckPoint()
+    public void respawnPlayerAtCheckPoint()
     {   
-        playerObject.transform.SetPositionAndRotation(new Vector3(ThisTransform.position.x, ThisTransform.position.y + 0.5f, ThisTransform.position.z), ThisTransform.rotation);
+        playerObject.transform.SetPositionAndRotation(new Vector3(ThisTransform.position.x, ThisTransform.position.y + 0.5f, playerObject.GetComponent<PlayerNew>().LaneZs[lane]), ThisTransform.rotation);
         playerObject.GetComponent<PlayerNew>().currentLane = lane;
         Debug.Log("Respawned!");
-        Debug.Log(checkPoint.x.ToString() + ", " + checkPoint.y.ToString() + ", " + checkPoint.z.ToString());
+        Debug.Log(checkPoint.x.ToString() + ", " + checkPoint.y.ToString() + ", " + playerObject.GetComponent<PlayerNew>().LaneZs[lane]);
     }
 }
