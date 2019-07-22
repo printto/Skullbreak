@@ -106,7 +106,7 @@ public class HitFace : MonoBehaviour {
 
     IEnumerator blinking()
     {
-        GameObject skullo = GameObject.Find("again-im-testing-rigging");
+        GameObject skullo = GameObject.Find("Skullo Material Color");
         skullo.SetActive(false);
         yield return new WaitForSeconds(0.25f);
         skullo.SetActive(true);
