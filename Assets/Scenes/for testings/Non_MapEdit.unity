@@ -667,6 +667,48 @@ Prefab:
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e47ac1196dc5c344783fdfbec2b03a48, type: 2}
   m_IsPrefabAsset: 0
+--- !u!1001 &298466771
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4247534621968884, guid: 02a5ca6f2ddbb594eaa8e344c2488b57, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 2.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4247534621968884, guid: 02a5ca6f2ddbb594eaa8e344c2488b57, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4247534621968884, guid: 02a5ca6f2ddbb594eaa8e344c2488b57, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: -97.02
+      objectReference: {fileID: 0}
+    - target: {fileID: 4247534621968884, guid: 02a5ca6f2ddbb594eaa8e344c2488b57, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 4247534621968884, guid: 02a5ca6f2ddbb594eaa8e344c2488b57, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4247534621968884, guid: 02a5ca6f2ddbb594eaa8e344c2488b57, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4247534621968884, guid: 02a5ca6f2ddbb594eaa8e344c2488b57, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071067
+      objectReference: {fileID: 0}
+    - target: {fileID: 4247534621968884, guid: 02a5ca6f2ddbb594eaa8e344c2488b57, type: 2}
+      propertyPath: m_RootOrder
+      value: 27
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 02a5ca6f2ddbb594eaa8e344c2488b57, type: 2}
+  m_IsPrefabAsset: 0
 --- !u!1 &299734254
 GameObject:
   m_ObjectHideFlags: 0
@@ -1319,7 +1361,7 @@ Prefab:
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8d10c7d30ebf88a4e8957a00b5a80f33, type: 2}
   m_IsPrefabAsset: 0
---- !u!1001 &745332738
+--- !u!1001 &734099939
 Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2

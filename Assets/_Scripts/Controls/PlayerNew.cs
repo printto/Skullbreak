@@ -30,7 +30,7 @@ public class PlayerNew : MonoBehaviour
     private float lowJump = 2f;
     private bool isGrounded;
     private float jumpSpeed = 7f;
-    private float touchJumpSpeed = 10f;
+    private float touchJumpSpeed = 7f;
 
     private float animationDuration = 1.0f;
 
@@ -50,6 +50,11 @@ public class PlayerNew : MonoBehaviour
     //Crash
     public static bool isDamaged = false;
 
+    //Distance Progress Bar
+    private float startXPos;
+    private float endXPos = -1528f;
+    private float distance;
+    public Slider progress;
 
     //Lanes
     public float[] LaneZs;
@@ -67,6 +72,12 @@ public class PlayerNew : MonoBehaviour
 
     //Sounds
     public SoundEffect soundEffect;
+
+    //Lock the controls
+    public bool CanSwipe = true;
+
+    //Improve swiping
+    bool ChangedLane = false;
 
     void Awake()
     {
@@ -102,6 +113,10 @@ public class PlayerNew : MonoBehaviour
         currentDirection = LaneDirection.STRAIGHT;
         nextZPosition = LaneZs[currentLane];
 
+        //get player x pos when start and assign value for distance to ending.
+        startXPos = transform.position.x;
+        distance = Mathf.Abs(endXPos - startXPos);
+
         PlayerModelAnimator = PlayerModelToAnimate.GetComponent<Animator>();
 
         soundEffect = GetComponent<SoundEffect>();
@@ -111,6 +126,8 @@ public class PlayerNew : MonoBehaviour
     float lastYLandPosition = 0;
     private void FixedUpdate()
     {
+        UpdatePlayerProgress();
+
         if (countFrame % 60 == 0 && MoveSpeed < MaxSpeed)
         {
             //Increase speed as the time goes by
@@ -118,12 +135,6 @@ public class PlayerNew : MonoBehaviour
             //Debug.Log("Current movespeed:" + MoveSpeed);
         }
         countFrame++;
-
-        if (transform.position.y <= -5)
-        {
-            MoveSpeed = 0;
-            DeadScene();
-        }
 
         if (isGrounded)
         {
@@ -149,6 +160,16 @@ public class PlayerNew : MonoBehaviour
         */
     }
 
+    //Update player distance from start and change the value of the slider on UI.
+    void UpdatePlayerProgress()
+    {
+        float currentX = transform.position.x;
+        float currentDistance = Mathf.Abs(currentX - startXPos);
+        float percentage = (currentDistance * 100) / distance;
+
+        progress.value = percentage / 100;
+    }
+
     void LerpByLanePosition()
     {
         LerpPlayer();
@@ -166,11 +187,7 @@ public class PlayerNew : MonoBehaviour
         StartCoroutine(SceneTransition.LoadScene());
     }
 
-    private void EndingScene()
-    {
-        SceneTransition.setScene("EndingScene");
-        StartCoroutine(SceneTransition.LoadScene());
-    }
+
 
     void LerpPlayer()
     {
@@ -192,12 +209,6 @@ public class PlayerNew : MonoBehaviour
             rb.velocity += Vector3.up * Physics2D.gravity.y * (lowJump - 1) * Time.deltaTime;
         }
 
-        /* //For debugging
-        if (Input.GetMouseButtonDown(0)) //button 0 is left click and 1 is right click
-        {
-            Dash();
-        }
-        */
 
         MovePlayerFromInputs();
 
@@ -242,7 +253,7 @@ public class PlayerNew : MonoBehaviour
      */
     public void playSound(AudioClip[] sounds)
     {
-        if(soundEffect != null)
+        if (soundEffect != null)
             soundEffect.PlaySound(sounds);
     }
 
@@ -266,11 +277,6 @@ public class PlayerNew : MonoBehaviour
             else if (touch.phase == TouchPhase.Moved) // update the last position based on where they moved
             {
                 lp = touch.position;
-            }
-            else if (touch.phase == TouchPhase.Ended) //check if the finger is removed from the screen
-            {
-                lp = touch.position;  //last touch position. Ommitted if you use list
-                                      //Check if drag distance is greater than dragDistance of the screen height
                 if (Mathf.Abs(lp.x - fp.x) > dragDistance || Mathf.Abs(lp.y - fp.y) > dragDistance)
                 {
                     //It's a drag
@@ -280,17 +286,23 @@ public class PlayerNew : MonoBehaviour
                         if (lp.x > fp.x)
                         {
                             //Right swipe
+                            if (!ChangedLane)
+                            {
+                                setAnimation(AnimationStates.TURN_RIGHT);
+                            }
                             ChangeLane(LaneDirection.TO_RIGHT);
                             //TODO: Change change lane to the right animation here.
-                            setAnimation(AnimationStates.TURN_RIGHT);
                             Debug.Log("Right Swipe");
                         }
                         else
                         {
                             //Left swipe
+                            if (!ChangedLane)
+                            {
+                                setAnimation(AnimationStates.TURN_LEFT);
+                            }
                             ChangeLane(LaneDirection.TO_LEFT);
                             //TODO: Change change lane to the left animation here.
-                            setAnimation(AnimationStates.TURN_LEFT);
                             Debug.Log("Left Swipe");
                         }
                     }
@@ -320,10 +332,18 @@ public class PlayerNew : MonoBehaviour
                         }
                     }
                 }
+            }
+            else if (touch.phase == TouchPhase.Ended) //check if the finger is removed from the screen
+            {
+                lp = touch.position;  //last touch position. Ommitted if you use list
+                                      //Check if drag distance is greater than dragDistance of the screen height
+                ChangedLane = false;
+                /*
                 else
                 {   //It's a tap as the drag distance is less than dragDistance of the screen height
-                    
+
                 }
+                */
             }
 
         }
@@ -339,6 +359,7 @@ public class PlayerNew : MonoBehaviour
         }
         if (Input.GetButtonDown("Horizontal"))
         {
+            
             if (Input.GetAxisRaw("Horizontal") > 0)
             {
                 ChangeLane(LaneDirection.TO_RIGHT);
@@ -349,6 +370,7 @@ public class PlayerNew : MonoBehaviour
                 ChangeLane(LaneDirection.TO_LEFT);
                 setAnimation(AnimationStates.TURN_LEFT);
             }
+            ChangedLane = false;
         }
     }
 
@@ -360,19 +382,23 @@ public class PlayerNew : MonoBehaviour
     }
     void ChangeLane(LaneDirection direction)
     {
-        if (direction == LaneDirection.TO_LEFT && currentLane > 0)
+        if (CanSwipe && !ChangedLane)
         {
-            currentLane -= 1;
-            currentDirection = LaneDirection.TO_LEFT;
-            playSound(soundEffect.LaneSounds);
+            if (direction == LaneDirection.TO_LEFT && currentLane > 0)
+            {
+                currentLane -= 1;
+                currentDirection = LaneDirection.TO_LEFT;
+                playSound(soundEffect.LaneSounds);
+            }
+            else if (direction == LaneDirection.TO_RIGHT && currentLane < LaneZs.Length - 1)
+            {
+                currentLane += 1;
+                currentDirection = LaneDirection.TO_RIGHT;
+                playSound(soundEffect.LaneSounds);
+            }
+            nextZPosition = LaneZs[currentLane];
+            ChangedLane = true;
         }
-        else if (direction == LaneDirection.TO_RIGHT && currentLane < LaneZs.Length - 1)
-        {
-            currentLane += 1;
-            currentDirection = LaneDirection.TO_RIGHT;
-            playSound(soundEffect.LaneSounds);
-        }
-        nextZPosition = LaneZs[currentLane];
     }
 
     void Jump(float speed)
@@ -465,7 +491,7 @@ public class PlayerNew : MonoBehaviour
         }
     }
     */
-    
+
 
     private void OnTriggerEnter(Collider other)
     {
@@ -478,11 +504,10 @@ public class PlayerNew : MonoBehaviour
             }
             CancelTeleport();
         }
-        else if (other.gameObject.tag.Equals("EndingGate"))
-        {
-            EndingScene();
-        }
+
     }
+
+
 
     IEnumerator blinking()
     {

@@ -9,12 +9,16 @@ public class HitFace : MonoBehaviour {
     string[] obstacleTags = { "Obstacle"};
 
     public Animator animator;
+    public Animator WhiteController;
+    PlayerNew playerScript;
 
-    private float forward;
+    float LockedMoveSpeed = 0;
 
     private void Start()
     {
         SceneTransition.setAnimator(animator);
+        playerScript = transform.parent.gameObject.GetComponent<PlayerNew>();
+        LockedMoveSpeed = playerScript.MoveSpeed;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -28,11 +32,18 @@ public class HitFace : MonoBehaviour {
         }
         else if (Array.IndexOf(obstacleTags, other.gameObject.tag) > -1 && GameMaster.lifePoint <= 0)
         {
-            transform.parent.gameObject.GetComponent<PlayerNew>().MoveSpeed = 0;
+            playerScript.MoveSpeed = 0;
             DeadScene();
+        }
+        else if (other.gameObject.tag.Equals("EndingGate"))
+        {
+            playerScript.CanSwipe = false;
+            StartCoroutine(WhiteEnd());
         }
 
     }
+
+   
 
     private void FixedUpdate()
     {
@@ -50,7 +61,7 @@ public class HitFace : MonoBehaviour {
 
     public void GoBack()
     {
-        
+        playerScript.CanSwipe = false;
         StartCoroutine(respawn());
         StartCoroutine(blinking());
         GameMaster.removeLife(1);
@@ -58,13 +69,12 @@ public class HitFace : MonoBehaviour {
 
     private void Bounce()
     {
-        transform.parent.gameObject.GetComponent<PlayerNew>().MoveSpeed = -transform.parent.gameObject.GetComponent<PlayerNew>().MoveSpeed;
+        playerScript.MoveSpeed = -transform.parent.gameObject.GetComponent<PlayerNew>().MoveSpeed;
     }
 
     IEnumerator respawn()
     {
-        forward = transform.parent.gameObject.GetComponent<PlayerNew>().MoveSpeed;
-        transform.parent.gameObject.GetComponent<PlayerNew>().MoveSpeed = 0;
+        playerScript.MoveSpeed = 0;
         animator.SetTrigger("end");
         yield return new WaitForSeconds(1f);
         animator.Play("start");
@@ -73,11 +83,23 @@ public class HitFace : MonoBehaviour {
 
     }
 
-
+    IEnumerator WhiteEnd()
+    {
+        WhiteController.SetTrigger("WHITE");
+        yield return new WaitForSeconds(2f);
+        EndingScene();
+    }
 
     private void DeadScene()
     {
         SceneTransition.setScene("DeadScene");
+        SceneTransition.getScene();
+        StartCoroutine(SceneTransition.LoadScene());
+    }
+
+    private void EndingScene()
+    {
+        SceneTransition.setScene("EndingScene");
         SceneTransition.getScene();
         StartCoroutine(SceneTransition.LoadScene());
     }
@@ -102,8 +124,7 @@ public class HitFace : MonoBehaviour {
         skullo.SetActive(false);
         yield return new WaitForSeconds(0.25f);
         skullo.SetActive(true);
-        transform.parent.gameObject.GetComponent<PlayerNew>().MoveSpeed = forward;
-
-
+        transform.parent.gameObject.GetComponent<PlayerNew>().MoveSpeed = LockedMoveSpeed;
+        playerScript.CanSwipe = true;
     }
 }
