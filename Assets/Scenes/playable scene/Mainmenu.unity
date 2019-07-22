@@ -826,7 +826,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74feb609a32cf9649a495fd68e749571, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animator: {fileID: 1158833349}
+  animator: {fileID: 560087418}
   ChooseLevel: {fileID: 560178626}
   MenuUI: {fileID: 1068394145}
   title: {fileID: 1710968110}
@@ -1345,11 +1345,6 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1132563978}
   m_CullTransparentMesh: 0
---- !u!95 &1158833349 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 95044129688897568, guid: 598758572ef3b4142beaed6e8da3e15f,
-    type: 2}
-  m_PrefabInternal: {fileID: 1254846402}
 --- !u!1001 &1254846402
 Prefab:
   m_ObjectHideFlags: 0
@@ -2489,20 +2484,20 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2011089530}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: e2be91a2723f43444ae26d54a678f20f, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
