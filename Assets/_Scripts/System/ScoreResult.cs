@@ -11,14 +11,15 @@ public class ScoreResult : MonoBehaviour {
     public Text HighscoreText;
     public Text HighscoreTextTitle;
 
-    public int CoinMultiplyer = 5;
+    public int CoinMultiplyer = 1;
     int sec;
     int coins;
     float score;
 
     // Update is called once per frame
     private void Start() {
-        sec = (int) ScoreManager.GetScore();
+        //sec = (int) ScoreManager.GetScore();
+        sec = 0;
         coins = ScoreManager.GetCoin();
         score = sec + (coins * CoinMultiplyer);
         SaveManager.Load();
@@ -33,7 +34,8 @@ public class ScoreResult : MonoBehaviour {
         }
         if (CoinText != null)
         {
-            CoinText.text = "Coins\n" + coins + " x " + CoinMultiplyer + " = " + (coins * CoinMultiplyer);
+            //CoinText.text = "Coins\n" + coins + " x " + CoinMultiplyer + " = " + (coins * CoinMultiplyer);
+            CoinText.text = "LIGHTS\n" + (coins * CoinMultiplyer);
         }
         if (SecText != null)
         {
@@ -41,6 +43,7 @@ public class ScoreResult : MonoBehaviour {
         }
         if (HighscoreText != null)
         {
+            /*
             if (HighscoreManager.UpdateHighscore(score, LoadPrevScene.getLastLevel()))
             {
                 if(HighscoreTextTitle != null)
@@ -53,6 +56,15 @@ public class ScoreResult : MonoBehaviour {
             else
             {
                 HighscoreText.text = "" + ((int) HighscoreManager.GetHighscore(LoadPrevScene.getLastLevel()));
+            }
+            */
+            if (HighscoreManager.UpdateHighscore(score, LoadPrevScene.getLastLevel()))
+            {
+                HighscoreText.text = "New\nHighscore!";
+            }
+            else
+            {
+                HighscoreText.text = "Highscore\n" + ((int)HighscoreManager.GetHighscore(LoadPrevScene.getLastLevel()));
             }
         }
     }
