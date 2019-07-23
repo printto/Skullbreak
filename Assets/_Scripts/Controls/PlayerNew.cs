@@ -50,6 +50,11 @@ public class PlayerNew : MonoBehaviour
     //Crash
     public static bool isDamaged = false;
 
+    //Distance Progress Bar
+    private float startXPos;
+    private float endXPos = -1528f;
+    private float distance;
+    public Slider progress;
 
     //Lanes
     public float[] LaneZs;
@@ -108,6 +113,10 @@ public class PlayerNew : MonoBehaviour
         currentDirection = LaneDirection.STRAIGHT;
         nextZPosition = LaneZs[currentLane];
 
+        //get player x pos when start and assign value for distance to ending.
+        startXPos = transform.position.x;
+        distance = Mathf.Abs(endXPos - startXPos);
+
         PlayerModelAnimator = PlayerModelToAnimate.GetComponent<Animator>();
 
         soundEffect = GetComponent<SoundEffect>();
@@ -117,6 +126,8 @@ public class PlayerNew : MonoBehaviour
     float lastYLandPosition = 0;
     private void FixedUpdate()
     {
+        UpdatePlayerProgress();
+
         if (countFrame % 60 == 0 && MoveSpeed < MaxSpeed)
         {
             //Increase speed as the time goes by
@@ -147,6 +158,16 @@ public class PlayerNew : MonoBehaviour
         lastYAirPosition = transform.position.y;
         //Debug.Log("Current Z: " + transform.position.z + "\nLaneZ: " + LaneZs[currentLane]);
         */
+    }
+
+    //Update player distance from start and change the value of the slider on UI.
+    void UpdatePlayerProgress()
+    {
+        float currentX = transform.position.x;
+        float currentDistance = Mathf.Abs(currentX - startXPos);
+        float percentage = (currentDistance * 100) / distance;
+
+        progress.value = percentage / 100;
     }
 
     void LerpByLanePosition()

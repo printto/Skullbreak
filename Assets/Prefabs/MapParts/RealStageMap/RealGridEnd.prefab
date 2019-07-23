@@ -94,6 +94,7 @@ GameObject:
   - component: {fileID: 23466984716747666}
   - component: {fileID: 64270792828570920}
   - component: {fileID: 95637878449807182}
+  - component: {fileID: 114601393641379802}
   m_Layer: 0
   m_Name: RealGridEnd
   m_TagString: Ground
@@ -432,3 +433,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dbff3ced29c47bd49bf3d35368f6940f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114601393641379802
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1975650308326948}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb8207576bf4ca544891201d93924a73, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CurrentSegment: {fileID: 1975650308326948}
+  RoadSegments:
+  - {fileID: 1191081025145668, guid: 0e31ec6691b073747a8d0dcdb1150b1c, type: 2}
+  createdNext: 0
