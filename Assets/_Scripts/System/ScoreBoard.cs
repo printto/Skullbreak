@@ -16,7 +16,7 @@ public class ScoreBoard : MonoBehaviour {
         }
         if (CoinText != null)
         {
-            CoinText.text = "Coins: " + ((int)ScoreManager.GetCoin()).ToString();
+            CoinText.text = ((int)ScoreManager.GetCoin()).ToString();
         }
     }
 }

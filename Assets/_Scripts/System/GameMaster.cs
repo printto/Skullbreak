@@ -31,6 +31,6 @@ public class GameMaster : MonoBehaviour {
 
     public void Update()
     {
-        lifeText.text = "LIVES: "+((int)lifePoint).ToString();
+        lifeText.text = ((int)lifePoint).ToString();
     }
 }

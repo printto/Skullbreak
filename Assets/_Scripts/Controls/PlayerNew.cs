@@ -13,6 +13,8 @@ public class PlayerNew : MonoBehaviour
     public int lifePoint = 2;
     private int coin = 0;
 
+    public static checkPoint checkPoint;
+
     //Movement
     public float MoveSpeed = 10;
     float CurrentMoveSpeed = 0;
@@ -167,7 +169,11 @@ public class PlayerNew : MonoBehaviour
         float currentDistance = Mathf.Abs(currentX - startXPos);
         float percentage = (currentDistance * 100) / distance;
 
-        progress.value = percentage / 100;
+        if(progress != null)
+        {
+            progress.value = percentage / 100;
+        }
+        
     }
 
     void LerpByLanePosition()
