@@ -35,8 +35,7 @@ public class SlideShow : MonoBehaviour
 {
 
     public Animator animator;
-
-
+    
     public Sprite[] slides = new Sprite[1];
     public float changeTime = 10.0f;
     private int currentSlide = 0;
