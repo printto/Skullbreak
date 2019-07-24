@@ -919,7 +919,7 @@ Prefab:
         type: 2}
       propertyPath: progress
       value: 
-      objectReference: {fileID: 1285372887}
+      objectReference: {fileID: 1503707434}
     - target: {fileID: 114442808909605360, guid: 038bd7ba6b974644d9a6b9b7fecb8b9a,
         type: 2}
       propertyPath: animator
@@ -952,6 +952,22 @@ Prefab:
     - target: {fileID: 4952349027360790, guid: 038bd7ba6b974644d9a6b9b7fecb8b9a, type: 2}
       propertyPath: m_LocalPosition.y
       value: -5.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 136565885452383326, guid: 038bd7ba6b974644d9a6b9b7fecb8b9a,
+        type: 2}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 13400000, guid: 7fcd853cd45fa8343a9787e22dfe9788,
+        type: 2}
+    - target: {fileID: 136565885452383326, guid: 038bd7ba6b974644d9a6b9b7fecb8b9a,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 54822104291656150, guid: 038bd7ba6b974644d9a6b9b7fecb8b9a,
+        type: 2}
+      propertyPath: m_Constraints
+      value: 112
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 038bd7ba6b974644d9a6b9b7fecb8b9a, type: 2}
@@ -3094,12 +3110,6 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 224904845770436674, guid: 33edc31877df7c3429dcd151f49a10cd,
     type: 2}
   m_PrefabInternal: {fileID: 493762118}
---- !u!114 &1285372887 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 114448701508418272, guid: 33edc31877df7c3429dcd151f49a10cd,
-    type: 2}
-  m_PrefabInternal: {fileID: 493762118}
-  m_Script: {fileID: -113659843, guid: f70555f144d8491a825f0804e09c671c, type: 3}
 --- !u!1 &1289165160 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1900786789907674, guid: edc54242df26abc44a68dcfc6c862919,
@@ -3260,6 +3270,12 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1327000742}
   m_CullTransparentMesh: 0
+--- !u!114 &1503707434 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 114448701508418272, guid: 33edc31877df7c3429dcd151f49a10cd,
+    type: 2}
+  m_PrefabInternal: {fileID: 331454258}
+  m_Script: {fileID: -113659843, guid: f70555f144d8491a825f0804e09c671c, type: 3}
 --- !u!224 &1523849579 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 224194969348375582, guid: df62cb0f0b19ed741b80f1d8bb08f586,
