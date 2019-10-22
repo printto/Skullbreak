@@ -9,13 +9,13 @@ public class MenuSceneButtons : MonoBehaviour
 
     public Animator animator;
 
-    public GameObject ChooseLevel;
+    public GameObject CreditUI;
 
     public GameObject MenuUI;
 
     public Text title;
 
-    private bool ChooseLevelIsOpened;
+    private bool creditIsOpened;
 
     private void Start()
     {
@@ -41,7 +41,7 @@ public class MenuSceneButtons : MonoBehaviour
 
     }
 
-
+    /*
     public void ChooseLevelFunc()
     {   
 
@@ -51,15 +51,29 @@ public class MenuSceneButtons : MonoBehaviour
         ChooseLevel.gameObject.SetActive(true);
         MenuUI.gameObject.SetActive(false);
     }
+    */
 
+    public void CreditOpen()
+    {
+
+        creditIsOpened = true;
+        title.gameObject.SetActive(false);
+        Debug.Log("Credit here");
+        CreditUI.gameObject.SetActive(true);
+        MenuUI.gameObject.SetActive(false);
+    }
 
     public void Back()
     {
         title.gameObject.SetActive(true);
-        ChooseLevelIsOpened = false;
-        ChooseLevel.gameObject.SetActive(false);
+        creditIsOpened = false;
+        //ChooseLevelIsOpened = false;
+        //ChooseLevel.gameObject.SetActive(false);
+        CreditUI.gameObject.SetActive(false);
         MenuUI.gameObject.SetActive(true);
     }
+
+   
 
     public void TutorialMode()
     {
